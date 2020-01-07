@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: org.glassfish.jersey.media:jersey-media-json-jackson:2.22.2@jar">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-json-jackson/2.22.2/9c17b5f890a38d410c838d05918b5a027346a45f/jersey-media-json-jackson-2.22.2.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-json-jackson/2.22.2/9c17b5f890a38d410c838d05918b5a027346a45f/jersey-media-json-jackson-2.22.2.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-json-jackson/2.22.2/7d7459f21eb4645f9c55b0b1c7d007c30e8c5ca5/jersey-media-json-jackson-2.22.2-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-json-jackson/2.22.2/7d7459f21eb4645f9c55b0b1c7d007c30e8c5ca5/jersey-media-json-jackson-2.22.2-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-json-jackson/2.22.2/814eec189d614a2a610145fcb993221a8a6e844e/jersey-media-json-jackson-2.22.2-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-json-jackson/2.22.2/814eec189d614a2a610145fcb993221a8a6e844e/jersey-media-json-jackson-2.22.2-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

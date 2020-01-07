@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: com.fasterxml.jackson.datatype:jackson-datatype-guava:2.9.8@jar">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-guava/2.9.8/b7f7819800f8ebe51a03dd951636f6dbc6245ce6/jackson-datatype-guava-2.9.8.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-guava/2.9.8/b7f7819800f8ebe51a03dd951636f6dbc6245ce6/jackson-datatype-guava-2.9.8.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-guava/2.9.8/3088bf7cc1ff6f26c4ef53e6bf3998abc0930f2/jackson-datatype-guava-2.9.8-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-guava/2.9.8/3088bf7cc1ff6f26c4ef53e6bf3998abc0930f2/jackson-datatype-guava-2.9.8-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-guava/2.9.8/f50bd532f7a898c3bb889dfecf9a5bc8dd354940/jackson-datatype-guava-2.9.8-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-guava/2.9.8/f50bd532f7a898c3bb889dfecf9a5bc8dd354940/jackson-datatype-guava-2.9.8-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

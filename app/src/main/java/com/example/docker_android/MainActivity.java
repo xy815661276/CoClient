@@ -20,10 +20,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        DockerClientService dockerClientService = null;
         try {
-            dockerClientService = new DockerClientService();
+            DockerClientService dockerClientService = new DockerClientService();
             dockerClientService.getDockerInfo();
         } catch (Exception e) {
             e.printStackTrace();

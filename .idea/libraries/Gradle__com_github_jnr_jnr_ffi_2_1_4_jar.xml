@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.jnr:jnr-ffi:2.1.4@jar">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.4/a63bbd4af5cee55d820ef40dc5347d45765b788/jnr-ffi-2.1.4.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.4/a63bbd4af5cee55d820ef40dc5347d45765b788/jnr-ffi-2.1.4.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.4/3e98374ec455f8a043fb7e90928f950625c72cc5/jnr-ffi-2.1.4-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.4/3e98374ec455f8a043fb7e90928f950625c72cc5/jnr-ffi-2.1.4-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.4/a424f2cb3f578f0e0da817ab6a0e3963b990d2f3/jnr-ffi-2.1.4-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.4/a424f2cb3f578f0e0da817ab6a0e3963b990d2f3/jnr-ffi-2.1.4-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

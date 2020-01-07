@@ -13,7 +13,7 @@ import java.util.List;
 public class DockerClientService {
     public void getDockerInfo() throws InterruptedException, DockerException, DockerCertificateException {
 
-        final DockerClient docker = DefaultDockerClient.fromEnv().build();
+        final DockerClient docker = DefaultDockerClient.builder().build();
         // List all containers. Only running containers are shown by default.
         final List<Container> containers = docker.listContainers(DockerClient.ListContainersParam.allContainers());
         for(Container container:containers){

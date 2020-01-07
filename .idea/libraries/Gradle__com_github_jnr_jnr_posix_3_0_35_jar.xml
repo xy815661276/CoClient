@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.jnr:jnr-posix:3.0.35@jar">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-posix/3.0.35/ffba08928bec368c494180c1573a10f1f57cd031/jnr-posix-3.0.35.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-posix/3.0.35/ffba08928bec368c494180c1573a10f1f57cd031/jnr-posix-3.0.35.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-posix/3.0.35/cc6aea32c514fa21e7061b648728c2f9c721d38b/jnr-posix-3.0.35-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-posix/3.0.35/cc6aea32c514fa21e7061b648728c2f9c721d38b/jnr-posix-3.0.35-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-posix/3.0.35/6e6ca23b0e34803bfa1362de0bbeaa40dbcc60e2/jnr-posix-3.0.35-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-posix/3.0.35/6e6ca23b0e34803bfa1362de0bbeaa40dbcc60e2/jnr-posix-3.0.35-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: org.slf4j:slf4j-nop:1.7.30@jar">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-nop/1.7.30/55d4c73dd343efebd236abfeb367c9ef41d55063/slf4j-nop-1.7.30.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-nop/1.7.30/55d4c73dd343efebd236abfeb367c9ef41d55063/slf4j-nop-1.7.30.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-nop/1.7.30/fc79cb7f647485760212ba712dcdad95e7a4e1d4/slf4j-nop-1.7.30-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-nop/1.7.30/fc79cb7f647485760212ba712dcdad95e7a4e1d4/slf4j-nop-1.7.30-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-nop/1.7.30/a166ecad84482080b7f9b51692b2f84142117e8a/slf4j-nop-1.7.30-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-nop/1.7.30/a166ecad84482080b7f9b51692b2f84142117e8a/slf4j-nop-1.7.30-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:2.9.8@jar">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/2.9.8/113dc616852ea990255d3a820d1006ac2531ae7/jackson-jaxrs-base-2.9.8.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/2.9.8/113dc616852ea990255d3a820d1006ac2531ae7/jackson-jaxrs-base-2.9.8.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/2.9.8/aba0212bcd9ae6f876032717e396159e3d792fc0/jackson-jaxrs-base-2.9.8-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/2.9.8/aba0212bcd9ae6f876032717e396159e3d792fc0/jackson-jaxrs-base-2.9.8-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/2.9.8/4672a5a0d77ba2a6930415f167f73ac33195049/jackson-jaxrs-base-2.9.8-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/2.9.8/4672a5a0d77ba2a6930415f167f73ac33195049/jackson-jaxrs-base-2.9.8-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

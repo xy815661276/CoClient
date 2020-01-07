@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: org.glassfish.jersey.core:jersey-client:2.22.2@jar">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-client/2.22.2/1712fff037ce5a59e3d67f90fff29222989799ee/jersey-client-2.22.2.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-client/2.22.2/1712fff037ce5a59e3d67f90fff29222989799ee/jersey-client-2.22.2.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-client/2.22.2/fe3f390547acea740b65995f08bd359725ab5569/jersey-client-2.22.2-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-client/2.22.2/fe3f390547acea740b65995f08bd359725ab5569/jersey-client-2.22.2-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-client/2.22.2/15af6171149c6c9b89d1a7bfdeb2ae0089efbafb/jersey-client-2.22.2-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-client/2.22.2/15af6171149c6c9b89d1a7bfdeb2ae0089efbafb/jersey-client-2.22.2-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

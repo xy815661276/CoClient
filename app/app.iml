@@ -95,6 +95,7 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.3@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: net.sf.kxml:kxml2:2.3.0@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.squareup:javawriter:2.1.1@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: javax.inject:javax.inject:1@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.code.findbugs:jsr305:2.0.1@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test.ext:junit:1.1.1@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test.espresso:espresso-core:3.2.0@aar" level="project" />
@@ -122,19 +123,12 @@
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.9.8@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.9.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: org.glassfish.jersey.connectors:jersey-apache-connector:2.22.2@jar" level="project" />
-    <orderEntry type="library" name="Gradle: org.glassfish.jersey.core:jersey-client:2.22.2@jar" level="project" />
-    <orderEntry type="library" name="Gradle: org.glassfish.jersey.core:jersey-common:2.22.2@jar" level="project" />
+    <orderEntry type="library" name="Gradle: org.glassfish.jersey.core:jersey-client:2.27@jar" level="project" />
+    <orderEntry type="library" name="Gradle: org.glassfish.jersey.core:jersey-common:2.27@jar" level="project" />
     <orderEntry type="library" name="Gradle: org.glassfish.jersey.ext:jersey-entity-filtering:2.22.2@jar" level="project" />
-    <orderEntry type="library" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1@jar" level="project" />
+    <orderEntry type="library" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: javax.annotation:javax.annotation-api:1.2@jar" level="project" />
-    <orderEntry type="library" name="Gradle: org.glassfish.jersey.bundles.repackaged:jersey-guava:2.22.2@jar" level="project" />
-    <orderEntry type="library" name="Gradle: org.glassfish.hk2:hk2-locator:2.4.0-b34@jar" level="project" />
-    <orderEntry type="library" name="Gradle: org.glassfish.hk2:hk2-api:2.4.0-b34@jar" level="project" />
-    <orderEntry type="library" name="Gradle: org.glassfish.hk2:hk2-utils:2.4.0-b34@jar" level="project" />
-    <orderEntry type="library" name="Gradle: javax.inject:javax.inject:1@jar" level="project" />
-    <orderEntry type="library" name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.4.0-b34@jar" level="project" />
-    <orderEntry type="library" name="Gradle: org.glassfish.hk2.external:javax.inject:2.4.0-b34@jar" level="project" />
-    <orderEntry type="library" name="Gradle: org.javassist:javassist:3.18.1-GA@jar" level="project" />
+    <orderEntry type="library" name="Gradle: org.glassfish.hk2.external:javax.inject:2.5.0-b42@jar" level="project" />
     <orderEntry type="library" name="Gradle: org.glassfish.hk2:osgi-resource-locator:1.0.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpclient:4.5@jar" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpcore:4.4.5@jar" level="project" />
