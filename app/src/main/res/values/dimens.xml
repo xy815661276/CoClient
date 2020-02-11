@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--常用字体设置-->
+    <dimen name="default_tinyer_text_size">10sp</dimen>
+    <dimen name="text_size_11">11sp</dimen>
+    <dimen name="default_tiny_text_size">12sp</dimen>
+    <dimen name="default_small_text_size">14sp</dimen>
+    <dimen name="small_text_size">15sp</dimen>
+    <dimen name="default_medium_text_size">16sp</dimen>
+    <dimen name="default_big_text_size">18sp</dimen>
+    <dimen name="default_big_large_text_size">22sp</dimen>
+    <dimen name="default_big_title_size">19sp</dimen>
+    <dimen name="balance_big_text_size">70sp</dimen>
+    <dimen name="sp_20">20sp</dimen>
+
+    <!-- 重写bottomnavigation默认设置来达到更好的视觉效果 -->
+    <dimen name="design_bottom_navigation_active_text_size">10sp</dimen>
+    <dimen name="design_bottom_navigation_text_size">10sp</dimen>
+    <dimen name="design_bottom_navigation_height">48dp</dimen>
+    <dimen name="design_bottom_navigation_margin">4dp</dimen>
+
+    <!-- margin -->
+    <dimen name="min_margin_2">2dp</dimen>
+    <dimen name="default_tiny_margin">3dp</dimen>
+    <dimen name="default_small_margin">5dp</dimen>
+    <dimen name="small_margin_6">6dp</dimen>
+    <dimen name="small_margin_8">8dp</dimen>
+    <dimen name="dafault_general_margin">10dp</dimen>
+    <dimen name="medium_margin_12">12dp</dimen>
+    <dimen name="default_general_big_margin">15dp</dimen>
+    <dimen name="default_big_margin">20dp</dimen>
+    <dimen name="default_large_margin">40dp</dimen>
+    <dimen name="dafault_fab_margin">16dp</dimen>
+    <dimen name="dafault_cardView_margin">5dp</dimen>
+
+    <!-- height -->
+    <dimen name="tiny_bar_size">28dp</dimen>
+    <dimen name="tiny_actionBar_size">38dp</dimen>
+    <dimen name="small_actionBar_size">48dp</dimen>
+    <dimen name="fixed_actionBar_size">52dp</dimen>
+    <dimen name="dafault_cardView_height">100dp</dimen>
+    <dimen name="recommended_cover_height">110dp</dimen>
+    <dimen name="list_cover_height">200dp</dimen>
+    <dimen name="tab_indicator_small_height">2dp</dimen>
+    <dimen name="tab_indicator_common_height">3dp</dimen>
+    <dimen name="form_common_height">45dp</dimen>
+
+    <!-- width -->
+    <dimen name="circle_default_width">1dp</dimen>
+    <dimen name="width_0">0dp</dimen>
+    <dimen name="width_1">1dp</dimen>
+    <dimen name="width_3">3dp</dimen>
+    <dimen name="width_4">4dp</dimen>
+    <dimen name="width_8">8dp</dimen>
+    <dimen name="width_24">24dp</dimen>
+    <dimen name="width_60">60dp</dimen>
+    <dimen name="width_80">80dp</dimen>
+
+    <!-- radius -->
+    <dimen name="dafault_cardView_radius">4dp</dimen>
+    <dimen name="hotlatest_cardView_radius">10dp</dimen>
+
+    <!-- size -->
+    <dimen name="toolbar_avatar_size">24dp</dimen>
+
+    <!-- padding -->
+    <dimen name="padding_3">3dp</dimen>
+    <dimen name="padding_9">9dp</dimen>
+    <dimen name="toolbar_textbtn_padding">4dp</dimen>
+
+</resources>
