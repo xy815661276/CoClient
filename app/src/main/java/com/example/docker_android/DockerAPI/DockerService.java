@@ -24,7 +24,7 @@ public class DockerService {
     public static void getContainers(okhttp3.Callback callback) {
         OkHttpClient client=new OkHttpClient();
         Request request=new Request.Builder()
-                .url(address+"/containers/json")
+                .url(address+"/containers/json?all=true")
                 .build();
         client.newCall(request).enqueue(callback);
     }
@@ -49,6 +49,17 @@ public class DockerService {
         Request request=new Request.Builder()
                 .url(address+"/containers/"+id+"/json")
 
+                .build();
+        client.newCall(request).enqueue(callback);
+    }
+    /**
+     * 获取镜像列表，GET方法
+     * @param callback 回调方法
+     */
+    public static void getImages(okhttp3.Callback callback) {
+        OkHttpClient client=new OkHttpClient();
+        Request request=new Request.Builder()
+                .url(address+"/images/json")
                 .build();
         client.newCall(request).enqueue(callback);
     }

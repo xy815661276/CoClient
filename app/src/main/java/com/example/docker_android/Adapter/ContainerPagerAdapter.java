@@ -6,20 +6,20 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.docker_android.Fragment.ContainerFragment;
-import com.example.docker_android.Fragment.ImageFragment;
+import com.example.docker_android.Fragment.ContainerRunFragment;
+import com.example.docker_android.Fragment.ContainerStopFragment;
 import com.example.docker_android.R;
 
 
 /**
  * 用于首页的Viewpager
  */
-public class MainPagerAdapter extends FragmentPagerAdapter {
+public class ContainerPagerAdapter extends FragmentPagerAdapter {
 
     private final String[] TITLES;
     private Fragment[] mFragments;
 
-    public MainPagerAdapter(FragmentManager fm, Context context) {
+    public ContainerPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         TITLES = context.getResources().getStringArray(R.array.maintab_sections);//默认tab名称，后期考虑更改。
         mFragments = new Fragment[TITLES.length];
@@ -30,10 +30,10 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
         if (mFragments[position] == null) {
             switch (position) {
                 case 0:
-                    mFragments[position] = new ContainerFragment();
+                    mFragments[position] = new ContainerRunFragment();
                     break;
                 case 1:
-                    mFragments[position] = new ImageFragment();
+                    mFragments[position] = new ContainerStopFragment();
                     break;
                 default:
                     break;
