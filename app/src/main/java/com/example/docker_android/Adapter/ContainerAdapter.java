@@ -66,7 +66,7 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Container container = mClassList.get(position);
-        holder.ContainerName.setText(container.getNames().toString());
+        holder.ContainerName.setText(container.getNames().get(0));
         holder.ContainerID.setText(String.valueOf(container.getId()));
         holder.ContainerState.setText(String.valueOf(container.getState()));
         holder.ContainerCreateTime.setText(stampToDate(String.valueOf(container.getCreated())));

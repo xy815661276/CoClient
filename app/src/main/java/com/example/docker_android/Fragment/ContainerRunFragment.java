@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,11 +21,13 @@ import com.example.docker_android.Adapter.ContainerAdapter;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
 import com.example.docker_android.R;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import okhttp3.Call;
 import okhttp3.Response;
 
@@ -45,7 +48,7 @@ public class ContainerRunFragment extends Fragment {
     private String mParam2;
     private RecyclerView recyclerView;
     private List<Container> list = new ArrayList<>();
-
+    private AVLoadingIndicatorView avi;
     public ContainerRunFragment() {
         // Required empty public constructor
     }
@@ -83,7 +86,15 @@ public class ContainerRunFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_container, container, false);
         recyclerView = view.findViewById(R.id.container_recycler_View);
-        LoadData();
+        avi = view.findViewById(R.id.avi);
+        startAnim();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //加载动画太快，延时几秒
+                LoadData();
+            }
+        },1000);
         return view;
     }
     private void LoadData() {
@@ -117,9 +128,21 @@ public class ContainerRunFragment extends Fragment {
                             e.printStackTrace();
                             Toast.makeText(getContext(), "刷新失败，请稍后再试或联系管理员", Toast.LENGTH_SHORT).show();
                         }
+                        stopAnim();
                     }
                 });
             }
         });
+    }
+
+
+    private void startAnim(){
+        avi.show();
+        //avi.smoothToShow();
+    }
+
+    private void stopAnim(){
+        avi.hide();
+        //avi.smoothToHide();
     }
 }

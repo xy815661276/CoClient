@@ -5,8 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/pure_white"
     android:gravity="center"
     tools:context=".Activity.ContainerActivity">
+    <include layout="@layout/toolbar_mainpage"/>
 
     <com.flyco.tablayout.SlidingTabLayout
         android:id="@+id/main_tabLayout"

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--作为Toolbar的菜单-->
+<!--    <item-->
+<!--        android:id="@+id/menu1"-->
+<!--        android:title="菜单1"-->
+<!--        android:icon="@mipmap/ic_launcher"-->
+<!--        app:showAsAction="ifRoom"/>-->
+<!--    <item-->
+<!--        android:id="@+id/menu2"-->
+<!--        android:title="菜单2"-->
+<!--        android:icon="@mipmap/ic_launcher"-->
+<!--        app:showAsAction="ifRoom"/>-->
+    <item
+        android:id="@+id/menu3"
+        android:title="关于我们"
+        android:icon="@mipmap/ic_launcher"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/menu4"
+        android:title="设置"
+        android:icon="@mipmap/ic_launcher"
+        app:showAsAction="never"/>
+</menu>

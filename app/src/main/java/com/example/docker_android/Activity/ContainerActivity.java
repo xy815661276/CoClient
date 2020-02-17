@@ -10,6 +10,7 @@ import android.os.Bundle;
 import com.example.docker_android.Adapter.ContainerPagerAdapter;
 import com.example.docker_android.R;
 import com.flyco.tablayout.SlidingTabLayout;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,7 +38,7 @@ public class ContainerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_container);
         ButterKnife.bind(this);  //使用BindView必须，不然会崩溃
         ContainerPagerAdapter mFragmentAdapter = new ContainerPagerAdapter(getSupportFragmentManager(),this);
-        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setOffscreenPageLimit(1);
         mViewPager.setAdapter(mFragmentAdapter);
         mSlidingTabLayout.setViewPager(mViewPager);
         mViewPager.setCurrentItem(0);

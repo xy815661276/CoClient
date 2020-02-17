@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
 import com.example.docker_android.Entity.Image.Image;
 import com.example.docker_android.R;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,6 +35,8 @@ import okhttp3.Response;
 public class ImageActivity extends AppCompatActivity {
     @BindView(R.id.image_recycler_View)
     RecyclerView recyclerView;
+    @BindView(R.id.avi)
+    AVLoadingIndicatorView avi;
     private List<Image> list = new ArrayList<>();
     /**
      * 活动跳转接口
@@ -51,7 +55,14 @@ public class ImageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image);
         ButterKnife.bind(this);  //使用BindView必须，不然会崩溃
-        LoadData();
+        startAnim();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //加载动画太快，延时几秒
+                LoadData();
+            }
+        },1000);
     }
 
     private void LoadData() {
@@ -82,9 +93,22 @@ public class ImageActivity extends AppCompatActivity {
                             e.printStackTrace();
                             Toast.makeText(ImageActivity.this, "刷新失败，请稍后再试或联系管理员", Toast.LENGTH_SHORT).show();
                         }
+                        stopAnim();
                     }
                 });
             }
         });
+    }
+
+
+
+    private void startAnim(){
+        avi.show();
+        //avi.smoothToShow();
+    }
+
+    private void stopAnim(){
+        avi.hide();
+        //avi.smoothToHide();
     }
 }
