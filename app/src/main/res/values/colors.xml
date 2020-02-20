@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#512DA8</color>
-    <color name="colorPrimaryDark">#512DA8</color>
+    <color name="colorPrimary">#265CAB</color>
+    <color name="colorPrimaryDark">#1A4179</color>
     <color name="colorPrimaryPlain">#5AB963</color>
     <color name="colorAccent">#005cb9</color>
     <color name="colorGreen">#ff669900</color>
@@ -55,4 +55,10 @@
     <color name="transparent_black">#00000000</color>
     <color name="near_transparent_white">#88FFFFFF</color>
     <color name="transparentBlack">#96000000</color>
+    <color name="dashboard">#18A689</color>
+    <color name="running">#18A689</color>
+    <color name="stopped">#ED5565</color>
+    <color name="images">#23C6C8</color>
+    <color name="os">#F8AC59</color>
+    <color name="networkout">#FFC107</color>
 </resources>

@@ -6,12 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.docker_android.Activity.ContainerDetailsActivity;
-import com.example.docker_android.Activity.MainActivity;
 import com.example.docker_android.Entity.Container.Container;
 import com.example.docker_android.R;
 
@@ -22,7 +20,7 @@ import java.util.List;
 /**
  * RecyclerView Adapter用于适配飞机的列表，包含飞机图片，飞机名称以及简介
  */
-public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.ViewHolder> {
+public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStoppedAdapter.ViewHolder> {
 
     private List<Container> mClassList;//收集容器对象
     private Context mContext;
@@ -30,27 +28,19 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
     static class ViewHolder extends RecyclerView.ViewHolder {
         View classView;//cardView
         TextView ContainerName;//容器名
-//        TextView ContainerID;//ID
-//        TextView ContainerState;//状态
         TextView ContainerTime;//创建时间
-//        TextView ContainerPorts;//端口映射
-//        TextView ContainerLabel;//标签
         TextView ContainerImage;//镜像名
 
         private ViewHolder(View view) {//绑定控件
             super(view);
             classView = view;
             ContainerName = view.findViewById(R.id.containerTV);
-//            ContainerID = view.findViewById(R.id.container_id);
-//            ContainerState = view.findViewById(R.id.container_state);
             ContainerTime = view.findViewById(R.id.timeTV);
-//            ContainerPorts = view.findViewById(R.id.container_ports);
-//            ContainerLabel = view.findViewById(R.id.container_label);
             ContainerImage = view.findViewById(R.id.imageTV);
         }
     }
 
-    public ContainerAdapter(List<Container> classList, Context context) {
+    public ContainerStoppedAdapter(List<Container> classList, Context context) {
         mContext = context;
         mClassList = classList;
     }
@@ -62,9 +52,7 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
         holder.classView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int position = holder.getAdapterPosition();
-                Container container = mClassList.get(position);
-                ContainerDetailsActivity.actionStart(mContext,container.getId(),container.getImage());
+
             }
         });
         return holder;
@@ -74,31 +62,11 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
     public void onBindViewHolder(ViewHolder holder, int position) {
         Container container = mClassList.get(position);
         holder.ContainerName.setText(container.getNames().get(0));
-//        holder.ContainerID.setText(String.valueOf(container.getId()));
-//        holder.ContainerState.setText(String.valueOf(container.getState()));
         holder.ContainerTime.setText(container.getStatus());
-//        holder.ContainerPorts.setText(container.getPorts().toString());
-//        holder.ContainerLabel.setText(container.getLabels().toString());
         holder.ContainerImage.setText(container.getImage());
     }
-
     @Override
     public int getItemCount() {
         return mClassList.size();
-    }
-    /*
-
-     * 将UNIX时间戳转换为时间
-
-     */
-
-    private static String stampToDate(String s){
-
-        String res;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        long lt = Long.valueOf(s)*1000;//毫秒转成秒
-        Date date = new Date(lt);
-        res = simpleDateFormat.format(date);
-        return res;
     }
 }

@@ -28,19 +28,19 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     static class ViewHolder extends RecyclerView.ViewHolder {
         View classView;//cardView
         TextView ImageName;//镜像名
-        TextView ImageID;//ID
+//        TextView ImageID;//ID
         TextView ImageTag;//标签
-        TextView ImageCreateTime;//创建时间
+//        TextView ImageCreateTime;//创建时间
         TextView ImageSize;//大小
 
         private ViewHolder(View view) {//绑定控件
             super(view);
             classView = view;
-            ImageName = view.findViewById(R.id.image_name);
-            ImageID = view.findViewById(R.id.image_id);
-            ImageTag = view.findViewById(R.id.image_tag);
-            ImageCreateTime = view.findViewById(R.id.image_create_time);
-            ImageSize = view.findViewById(R.id.image_size);
+            ImageName = view.findViewById(R.id.imageTV);
+//            ImageID = view.findViewById(R.id.image_id);
+            ImageTag = view.findViewById(R.id.tagTV);
+//            ImageCreateTime = view.findViewById(R.id.image_create_time);
+            ImageSize = view.findViewById(R.id.sizeTV);
         }
     }
 
@@ -67,9 +67,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         Image image = mClassList.get(position);
         String tag = image.getRepoTags().get(0);
         holder.ImageName.setText(tag.substring(0,tag.indexOf(":")));
-        holder.ImageID.setText(image.getId());
+//        holder.ImageID.setText(image.getId());
         holder.ImageTag.setText(tag.substring(tag.indexOf(":")+1));
-        holder.ImageCreateTime.setText(stampToDate(String.valueOf(image.getCreated())));
+//        holder.ImageCreateTime.setText(stampToDate(String.valueOf(image.getCreated())));
         holder.ImageSize.setText(getPrintSize(image.getSize()));
     }
 

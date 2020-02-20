@@ -28,6 +28,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Response;
 
@@ -45,15 +47,18 @@ public class ContainerStopFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private RecyclerView recyclerView;
-
+    @BindView(R.id.container_stop_recycler_View)
+    RecyclerView recyclerView;
+    @BindView(R.id.avi)
+    AVLoadingIndicatorView avi;
     private List<Container> list = new ArrayList<>();
-
-    private AVLoadingIndicatorView avi;
     public ContainerStopFragment() {
         // Required empty public constructor
     }
-
+    public ContainerStopFragment(List<Container> stopped) {
+        // Required empty public constructor
+        this.list = stopped;
+    }
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -86,8 +91,7 @@ public class ContainerStopFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_container_stop, container, false);
-        recyclerView = view.findViewById(R.id.container_stop_recycler_View);
-        avi = view.findViewById(R.id.avi);
+        ButterKnife.bind(this,view);  //使用BindView必须，不然会崩溃
         startAnim();
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -136,12 +140,17 @@ public class ContainerStopFragment extends Fragment {
             }
         });
     }
-
+    /**
+     * 打开加载动画
+     */
     private void startAnim(){
         avi.show();
         //avi.smoothToShow();
     }
 
+    /**
+     * 关闭加载动画
+     */
     private void stopAnim(){
         avi.hide();
         //avi.smoothToHide();

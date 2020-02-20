@@ -2,8 +2,6 @@ package com.example.docker_android.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.viewpager.widget.ViewPager;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,30 +10,60 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONException;
+import com.alibaba.fastjson.JSONObject;
+import com.example.docker_android.DockerAPI.DockerService;
+import com.example.docker_android.Entity.Container.Container;
+import com.example.docker_android.Entity.Image.Image;
 import com.example.docker_android.R;
-import com.google.android.material.tabs.TabLayout;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    @BindView(R.id.card_view_container)
-    CardView container;
-    @BindView(R.id.card_view_Image)
-    CardView image;
+    @BindView(R.id.runningHeader)
+    RelativeLayout containerRun;
+    @BindView(R.id.stoppedHeader)
+    RelativeLayout containerStop;
+    @BindView(R.id.imagesHeader)
+    RelativeLayout image;
+    @BindView(R.id.osHeader)
+    RelativeLayout os;
     @BindView(R.id.mainpage_toolbar)
     Toolbar toolbar;
+    @BindView(R.id.running)
+    TextView running;
+    @BindView(R.id.stopped)
+    TextView stopped;
+    @BindView(R.id.images)
+    TextView images;
     private long exitTime = 0;//点击两次返回退出时间
+    private List<Container> list_run = new ArrayList<>();
+    public static List<Container> list_stop = new ArrayList<>();
+    private List<Image> list_image = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         ButterKnife.bind(this);  //使用BindView必须，不然会崩溃
-        container.setOnClickListener(this);
+        containerRun.setOnClickListener(this);
+        containerStop.setOnClickListener(this);
         image.setOnClickListener(this);
+        os.setOnClickListener(this);
         initToolbar();
+        LoadData();
     }
 
     /**
@@ -45,11 +73,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.card_view_container:
-                ContainerActivity.actionStart(MainActivity.this,"","");
+            case R.id.runningHeader:
+                ContainerRunningActivity.actionStart(MainActivity.this,"","");
                 break;
-            case R.id.card_view_Image:
+            case R.id.stoppedHeader:
+                ContainerStoppedActivity.actionStart(MainActivity.this,"","");
+                break;
+            case R.id.imagesHeader:
                 ImageActivity.actionStart(MainActivity.this,"","");
+                break;
+            case R.id.osHeader:
+                OSInfoActivity.actionStart(MainActivity.this,"","");
                 break;
             default:
                 break;
@@ -107,5 +141,69 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
+    private void LoadData() {
+        DockerService.getContainers(new okhttp3.Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String responseData = response.body().string(); //toString方法未重写，这里使用string()方法 //string不能调用两次 被调用一次就关闭了，这里调用两次会报异常
+                Log.d("Component", "onResponse: " + responseData);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONArray jsonArray = JSONArray.parseArray(responseData);
+                            for (int i= 0;i < jsonArray.size();i++){
+                                Log.d("container", "onResponse: " + jsonArray.getString(i));
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                Log.d("container",jsonObject.getString("Names"));
+                                Container container = JSON.parseObject(jsonArray.getString(i), Container.class);
+                                if(container.getState().equals("running"))
+                                    list_run.add(container);
+                                else
+                                    list_stop.add(container);
+                            }
+                            running.setText(String.valueOf(list_run.size()));
+                            stopped.setText(String.valueOf(list_stop.size()));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(MainActivity.this, "获取数据失败，请稍后再试", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
 
+        DockerService.getImages(new okhttp3.Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String responseData = response.body().string(); //toString方法未重写，这里使用string()方法 //string不能调用两次 被调用一次就关闭了，这里调用两次会报异常
+                Log.d("Component", "onResponse: " + responseData);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONArray jsonArray = JSONArray.parseArray(responseData);
+                            for (int i= 0;i < jsonArray.size();i++){
+                                Log.d("container", "onResponse: " + jsonArray.getString(i));
+                                Image image = JSON.parseObject(jsonArray.getString(i), Image.class);
+                                list_image.add(image);
+                            }
+                            images.setText(String.valueOf(list_image.size()));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(MainActivity.this, "获取数据失败，请稍后再试", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+    }
 }
