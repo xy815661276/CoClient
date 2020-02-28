@@ -8,10 +8,14 @@
     android:background="@color/pure_white"
     tools:context=".Activity.ContainerRunningActivity">
     <include layout="@layout/toolbar_mainpage"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/stopped_RecycleView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/container_stopped_srl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/stopped_RecycleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

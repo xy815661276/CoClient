@@ -2,23 +2,36 @@ package com.example.docker_android.Adapter;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.example.docker_android.Activity.ContainerDetailsActivity;
+import com.example.docker_android.Activity.ContainerStoppedActivity;
+import com.example.docker_android.Dialog.LoadingDialog;
+import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
 import com.example.docker_android.R;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import okhttp3.Call;
+import okhttp3.Response;
+
 /**
- * RecyclerView Adapter用于适配飞机的列表，包含飞机图片，飞机名称以及简介
+ * RecyclerView Adapter
  */
 public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStoppedAdapter.ViewHolder> {
 
@@ -52,7 +65,9 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
         holder.classView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int position = holder.getAdapterPosition();
+                Container container = mClassList.get(position);
+                showSingDialog(container.getId());
             }
         });
         return holder;
@@ -68,5 +83,80 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
     @Override
     public int getItemCount() {
         return mClassList.size();
+    }
+
+    /**
+     * 开启对话框，用于对容器的操作
+     */
+    int choice;
+    private void showSingDialog(String id){
+        final String[] items = {"启动","删除","待定"};
+        AlertDialog.Builder singleChoiceDialog = new AlertDialog.Builder(mContext);
+        singleChoiceDialog.setIcon(R.drawable.docker);
+        singleChoiceDialog.setTitle("请选择");
+        //第二个参数是默认的选项
+        singleChoiceDialog.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                choice= which;
+            }
+        });
+        singleChoiceDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                LoadingDialog.showDialogForLoading(mContext);
+                if (choice == 0){
+                    DockerService.ContainerAction(id,"start",new okhttp3.Callback(){
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            ((AppCompatActivity)mContext).runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if(response.code() == 204)
+                                        Toast.makeText(mContext,"启动成功",Toast.LENGTH_SHORT).show();
+                                    else
+                                        Toast.makeText(mContext,"启动失败，请稍后再试",Toast.LENGTH_SHORT).show();
+                                    ((ContainerStoppedActivity)mContext).LoadData();
+                                    LoadingDialog.hideDialogForLoading();
+                                }
+                            });
+                        }
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }
+                else if(choice == 1){
+                    DockerService.DeleteContainer(id,new okhttp3.Callback(){
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            e.printStackTrace();
+                        }
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            ((AppCompatActivity)mContext).runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if(response.code() == 204)
+                                        Toast.makeText(mContext,"删除成功",Toast.LENGTH_SHORT).show();
+                                    else
+                                        Toast.makeText(mContext,"删除失败，请稍后再试",Toast.LENGTH_SHORT).show();
+                                    ((ContainerStoppedActivity)mContext).LoadData();
+                                    LoadingDialog.hideDialogForLoading();
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+        });
+        singleChoiceDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        singleChoiceDialog.show();
     }
 }

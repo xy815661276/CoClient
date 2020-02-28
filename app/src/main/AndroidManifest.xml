@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.OSInfoActivity"></activity>
+        <activity android:name=".Activity.CreateImageActivity"></activity>
+        <activity android:name=".Activity.CreateContainerActivity" />
+        <activity android:name=".Activity.OSInfoActivity" />
         <activity android:name=".Activity.ImageDetailsActivity" />
         <activity android:name=".Activity.ContainerDetailsActivity" />
         <activity android:name=".Activity.ImageActivity" />

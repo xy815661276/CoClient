@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.R;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -41,10 +42,6 @@ public class ContainerDetailsActivity extends AppCompatActivity {
     TextView networkOutTV;
     @BindView(R.id.container_details_srl)
     SwipeRefreshLayout swipeRefreshLayout;
-    @BindView(R.id.avi)
-    AVLoadingIndicatorView avi;
-    @BindView(R.id.container_details_ScrollView)
-    ScrollView scrollView;
     /**
      * 活动跳转接口
      * @param context
@@ -77,7 +74,7 @@ public class ContainerDetailsActivity extends AppCompatActivity {
                 });
             }
         });
-        startAnim();
+        LoadingDialog.showDialogForLoading(ContainerDetailsActivity.this);
         LoadData(getIntent().getStringExtra("id"));
     }
 
@@ -102,8 +99,7 @@ public class ContainerDetailsActivity extends AppCompatActivity {
                         //停止刷新
                         swipeRefreshLayout.setRefreshing(false);
                         try {
-                            scrollView.setVisibility(View.VISIBLE);
-                            stopAnim();
+                            LoadingDialog.hideDialogForLoading();
                             JSONObject tmp= JSON.parseObject(responseData);
                             Double cpu=Double.valueOf(tmp.getJSONObject("cpu_stats").getJSONObject("cpu_usage").getLong("total_usage") / 1000000);
                             Double cpu_system=Double.valueOf(tmp.getJSONObject("cpu_stats").getLong("system_cpu_usage") / 1000000);
@@ -126,20 +122,4 @@ public class ContainerDetailsActivity extends AppCompatActivity {
         });
     }
 
-
-    /**
-     * 打开加载动画
-     */
-    private void startAnim(){
-        avi.show();
-        //avi.smoothToShow();
-    }
-
-    /**
-     * 关闭加载动画
-     */
-    private void stopAnim(){
-        avi.hide();
-        //avi.smoothToHide();
-    }
 }

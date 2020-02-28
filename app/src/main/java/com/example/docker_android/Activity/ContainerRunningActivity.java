@@ -16,6 +16,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.example.docker_android.Adapter.ContainerAdapter;
+import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
 import com.example.docker_android.R;
@@ -61,16 +62,17 @@ public class ContainerRunningActivity extends AppCompatActivity {
                     public void run() {
                         // 设置是否开始刷新,true为刷新，false为停止刷新
                         swipeRefreshLayout.setRefreshing(true);
-                        list.clear();
                         LoadData();
                     }
                 });
             }
         });
+        LoadingDialog.showDialogForLoading(ContainerRunningActivity.this);
         LoadData();
     }
 
-    private void LoadData() {
+    public void LoadData() {
+        list.clear();
         DockerService.getContainers(new okhttp3.Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -86,6 +88,7 @@ public class ContainerRunningActivity extends AppCompatActivity {
                     public void run() {
                         //停止刷新
                         swipeRefreshLayout.setRefreshing(false);
+                        LoadingDialog.hideDialogForLoading();
                         try {
                             JSONArray jsonArray = JSONArray.parseArray(responseData);
                             for (int i = 0; i < jsonArray.size(); i++) {

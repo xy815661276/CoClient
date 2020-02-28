@@ -18,7 +18,7 @@
         <androidx.appcompat.widget.Toolbar
         android:id="@+id/mainpage_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="55dp"
         android:background="@color/colorPrimary"
         android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light"

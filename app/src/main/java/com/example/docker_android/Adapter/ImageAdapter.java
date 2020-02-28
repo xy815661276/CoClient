@@ -2,20 +2,32 @@ package com.example.docker_android.Adapter;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.docker_android.Activity.ContainerRunningActivity;
+import com.example.docker_android.Activity.ImageActivity;
+import com.example.docker_android.Dialog.LoadingDialog;
+import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
 import com.example.docker_android.Entity.Image.Image;
 import com.example.docker_android.R;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 /**
  * RecyclerView Adapter用于适配飞机的列表，包含飞机图片，飞机名称以及简介
@@ -28,18 +40,14 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     static class ViewHolder extends RecyclerView.ViewHolder {
         View classView;//cardView
         TextView ImageName;//镜像名
-//        TextView ImageID;//ID
         TextView ImageTag;//标签
-//        TextView ImageCreateTime;//创建时间
         TextView ImageSize;//大小
 
         private ViewHolder(View view) {//绑定控件
             super(view);
             classView = view;
             ImageName = view.findViewById(R.id.imageTV);
-//            ImageID = view.findViewById(R.id.image_id);
             ImageTag = view.findViewById(R.id.tagTV);
-//            ImageCreateTime = view.findViewById(R.id.image_create_time);
             ImageSize = view.findViewById(R.id.sizeTV);
         }
     }
@@ -56,7 +64,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         holder.classView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int position = holder.getAdapterPosition();
+                Image image = mClassList.get(position);
+                showSingDialog(image.getId());
             }
         });
         return holder;
@@ -67,9 +77,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         Image image = mClassList.get(position);
         String tag = image.getRepoTags().get(0);
         holder.ImageName.setText(tag.substring(0,tag.indexOf(":")));
-//        holder.ImageID.setText(image.getId());
         holder.ImageTag.setText(tag.substring(tag.indexOf(":")+1));
-//        holder.ImageCreateTime.setText(stampToDate(String.valueOf(image.getCreated())));
         holder.ImageSize.setText(getPrintSize(image.getSize()));
     }
 
@@ -120,5 +128,62 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             return (size / 100) + "."
                     + (size % 100) + "GB";
         }
+    }
+
+
+    /**
+     * 开启对话框，用于对容器的操作
+     */
+    int choice;
+    private void showSingDialog(String id){
+        final String[] items = {"删除","待定"};
+        AlertDialog.Builder singleChoiceDialog = new AlertDialog.Builder(mContext);
+        singleChoiceDialog.setIcon(R.drawable.docker);
+        singleChoiceDialog.setTitle("请选择");
+        //第二个参数是默认的选项
+        singleChoiceDialog.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                choice= which;
+            }
+        });
+        singleChoiceDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                LoadingDialog.showDialogForLoading(mContext);
+                if (choice==0) {
+                    DockerService.DeleteImage(id,new okhttp3.Callback(){
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            ((AppCompatActivity)mContext).runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if(response.code() == 200){
+                                        Toast.makeText(mContext,"删除成功",Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                        Toast.makeText(mContext,"删除失败，请稍后再试",Toast.LENGTH_SHORT).show();
+                                    }
+                                    ((ImageActivity)mContext).LoadData();
+                                    LoadingDialog.hideDialogForLoading();
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+        });
+        singleChoiceDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        singleChoiceDialog.show();
     }
 }

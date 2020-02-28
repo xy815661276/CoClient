@@ -6,6 +6,7 @@ import com.example.docker_android.DockerAPI.Configuration.CreateContainerConfig;
 
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -61,11 +62,11 @@ public class DockerService {
     /**
      * 创建容器
      */
-    public static void createContainer(String image,Integer host_port,Integer container_port,okhttp3.Callback callback) {
+    public static void createContainer(String name,String image,String host_port,String container_port,String host_volume,String container_volume,okhttp3.Callback callback) {
         OkHttpClient client=new OkHttpClient();
         Request request=new Request.Builder()
-                .url(address+"/containers/create?"+"name=test")
-                .post(RequestBody.create(JSON, CreateContainerConfig.getJSON(image,host_port,container_port)))
+                .url(address+"/containers/create?"+"name="+name)
+                .post(RequestBody.create(JSON, CreateContainerConfig.getJSON(image,host_port,container_port,host_volume,container_volume)))
                 .build();
         client.newCall(request).enqueue(callback);
     }
@@ -88,6 +89,68 @@ public class DockerService {
         OkHttpClient client=new OkHttpClient();
         Request request=new Request.Builder()
                 .url(address+"/containers/"+id+"/stats?stream=false")
+                .build();
+        client.newCall(request).enqueue(callback);
+    }
+    /**
+     * 对容器进行的操作，启动，停止，重启等
+     * @param callback 回调方法
+     */
+    public static void ContainerAction(String id,String action,okhttp3.Callback callback) {
+        OkHttpClient client=new OkHttpClient();
+        RequestBody body = new FormBody.Builder()
+                .build();
+        Request request=new Request.Builder()
+                .url(address+"/containers/"+id+"/"+action)
+                .post(body)
+                .build();
+        client.newCall(request).enqueue(callback);
+    }
+    /**
+     * 删除容器
+     * @param callback 回调方法
+     */
+    public static void DeleteContainer(String id,okhttp3.Callback callback) {
+        OkHttpClient client=new OkHttpClient();
+        RequestBody body = new FormBody.Builder()
+                .add("v","false")
+                .build();
+        Request request=new Request.Builder()
+                .url(address+"/containers/"+id)
+                .delete(body)
+                .build();
+        client.newCall(request).enqueue(callback);
+    }
+    /**
+     * 拉取镜像
+     * @param callback 回调方法
+     */
+    public static void CreateImage(String name,String tag,okhttp3.Callback callback) {
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .connectTimeout(60000, TimeUnit.MILLISECONDS)//设置超时时间为60s
+                .readTimeout(60000, TimeUnit.MILLISECONDS).build();
+        RequestBody body = new FormBody.Builder()
+                .add("fromImage",name)
+                .add("tag",tag)
+                .build();
+        Request request=new Request.Builder()
+                .url(address+"/images/create")
+                .post(body)
+                .build();
+        client.newCall(request).enqueue(callback);
+    }
+    /**
+     * 删除镜像
+     * @param callback 回调方法
+     */
+    public static void DeleteImage(String id,okhttp3.Callback callback) {
+        OkHttpClient client=new OkHttpClient();
+        RequestBody body = new FormBody.Builder()
+                .add("force","false")
+                .build();
+        Request request=new Request.Builder()
+                .url(address+"/images/"+id)
+                .delete(body)
                 .build();
         client.newCall(request).enqueue(callback);
     }

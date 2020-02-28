@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.example.docker_android.Adapter.ContainerAdapter;
 import com.example.docker_android.Adapter.ImageAdapter;
+import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
 import com.example.docker_android.Entity.Image.Image;
@@ -65,16 +66,17 @@ public class ImageActivity extends AppCompatActivity {
                     public void run() {
                         // 设置是否开始刷新,true为刷新，false为停止刷新
                         swipeRefreshLayout.setRefreshing(true);
-                        list.clear();
                         LoadData();
                     }
                 });
             }
         });
+        LoadingDialog.showDialogForLoading(ImageActivity.this);
         LoadData();
     }
 
-    private void LoadData() {
+    public void LoadData() {
+        list.clear();
         DockerService.getImages(new okhttp3.Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -100,9 +102,11 @@ public class ImageActivity extends AppCompatActivity {
                             recyclerView.setAdapter(adapter);
                             GridLayoutManager layoutManager = new GridLayoutManager(ImageActivity.this,1);
                             recyclerView.setLayoutManager(layoutManager);
+                            LoadingDialog.hideDialogForLoading();
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(ImageActivity.this, "获取数据失败，请稍后再试", Toast.LENGTH_SHORT).show();
+                            LoadingDialog.hideDialogForLoading();
                         }
                     }
                 });
