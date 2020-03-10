@@ -42,6 +42,9 @@ public class ContainerDetailsActivity extends AppCompatActivity {
     TextView networkOutTV;
     @BindView(R.id.container_details_srl)
     SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.run_exec)
+    TextView Run_exec;
+    private String id;
     /**
      * 活动跳转接口
      * @param context
@@ -60,6 +63,7 @@ public class ContainerDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_container_details);
         ButterKnife.bind(this);  //使用BindView必须，不然会崩溃
+        id = getIntent().getStringExtra("id");
         imageTV.setText(getIntent().getStringExtra("image"));swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -69,13 +73,19 @@ public class ContainerDetailsActivity extends AppCompatActivity {
                     public void run() {
                         // 设置是否开始刷新,true为刷新，false为停止刷新
                         swipeRefreshLayout.setRefreshing(true);
-                        LoadData(getIntent().getStringExtra("id"));
+                        LoadData(id);
                     }
                 });
             }
         });
         LoadingDialog.showDialogForLoading(ContainerDetailsActivity.this);
         LoadData(getIntent().getStringExtra("id"));
+        Run_exec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ExecActivity.actionStart(ContainerDetailsActivity.this,id,"");
+            }
+        });
     }
 
     /**

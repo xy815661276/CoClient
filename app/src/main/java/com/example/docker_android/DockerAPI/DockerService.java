@@ -3,6 +3,7 @@ package com.example.docker_android.DockerAPI;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.docker_android.DockerAPI.Configuration.CreateContainerConfig;
+import com.example.docker_android.DockerAPI.Configuration.CreateExecConfig;
 
 
 import java.io.IOException;
@@ -151,6 +152,34 @@ public class DockerService {
         Request request=new Request.Builder()
                 .url(address+"/images/"+id)
                 .delete(body)
+                .build();
+        client.newCall(request).enqueue(callback);
+    }
+    /**
+     * 创建exec
+     * @param callback 回调方法
+     */
+    public static void CreateExec(String id,String cmd,String working_dir,okhttp3.Callback callback) {
+        OkHttpClient client=new OkHttpClient();
+        Request request=new Request.Builder()
+                .url(address+"/containers/"+id+"/exec")
+                .post(RequestBody.create(JSON, CreateExecConfig.getJSON(cmd,working_dir)))
+                .build();
+        client.newCall(request).enqueue(callback);
+    }
+    /**
+     * 运行exec
+     * @param callback 回调方法
+     */
+    public static void StartExec(String id,okhttp3.Callback callback) {
+        OkHttpClient client=new OkHttpClient();
+        Request request=new Request.Builder()
+                .url(address+"/exec/"+id+"/start")
+                .post(RequestBody.create(JSON,
+                        "{\n" +
+                        "\"Detach\": false,\n" +
+                        "\"Tty\": false\n" +
+                        "}"))
                 .build();
         client.newCall(request).enqueue(callback);
     }

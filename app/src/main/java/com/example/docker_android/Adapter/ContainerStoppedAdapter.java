@@ -3,6 +3,7 @@ package com.example.docker_android.Adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,6 +110,7 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
                     DockerService.ContainerAction(id,"start",new okhttp3.Callback(){
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
+                            Log.d("start container",response.body().string());
                             ((AppCompatActivity)mContext).runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
