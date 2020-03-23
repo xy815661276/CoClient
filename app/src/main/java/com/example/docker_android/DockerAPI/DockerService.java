@@ -9,6 +9,7 @@ import com.example.docker_android.DockerAPI.Configuration.CreateExecConfig;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import cn.edu.hust.wjz.crun.CrunJni;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -60,8 +61,16 @@ public class DockerService {
                 .build();
         client.newCall(request).enqueue(callback);
     }
+
     /**
      * 创建容器
+     * @param name 容器名称
+     * @param image 镜像名
+     * @param host_port 主机端口
+     * @param container_port 容器端口
+     * @param host_volume 主机路径
+     * @param container_volume 容器路径
+     * @param callback 回调方法
      */
     public static void createContainer(String name,String image,String host_port,String container_port,String host_volume,String container_volume,okhttp3.Callback callback) {
         OkHttpClient client=new OkHttpClient();
@@ -82,8 +91,10 @@ public class DockerService {
                 .build();
         client.newCall(request).enqueue(callback);
     }
+
     /**
-     * 获取镜像列表，GET方法
+     * 获取容器的使用资源统计，GET方法
+     * @param id 容器id
      * @param callback 回调方法
      */
     public static void getStats(String id,okhttp3.Callback callback) {
@@ -93,8 +104,11 @@ public class DockerService {
                 .build();
         client.newCall(request).enqueue(callback);
     }
+
     /**
      * 对容器进行的操作，启动，停止，重启等
+     * @param id 容器id
+     * @param action 操作方法
      * @param callback 回调方法
      */
     public static void ContainerAction(String id,String action,okhttp3.Callback callback) {
@@ -107,8 +121,10 @@ public class DockerService {
                 .build();
         client.newCall(request).enqueue(callback);
     }
+
     /**
      * 删除容器
+     * @param id 容器id
      * @param callback 回调方法
      */
     public static void DeleteContainer(String id,okhttp3.Callback callback) {
@@ -122,8 +138,11 @@ public class DockerService {
                 .build();
         client.newCall(request).enqueue(callback);
     }
+
     /**
      * 拉取镜像
+     * @param name 镜像名
+     * @param tag 镜像标签
      * @param callback 回调方法
      */
     public static void CreateImage(String name,String tag,okhttp3.Callback callback) {
@@ -142,6 +161,7 @@ public class DockerService {
     }
     /**
      * 删除镜像
+     * @param id 镜像id
      * @param callback 回调方法
      */
     public static void DeleteImage(String id,okhttp3.Callback callback) {
@@ -155,8 +175,12 @@ public class DockerService {
                 .build();
         client.newCall(request).enqueue(callback);
     }
+
     /**
      * 创建exec
+     * @param id 容器id
+     * @param cmd 命令
+     * @param working_dir 工作目录
      * @param callback 回调方法
      */
     public static void CreateExec(String id,String cmd,String working_dir,okhttp3.Callback callback) {
@@ -169,6 +193,7 @@ public class DockerService {
     }
     /**
      * 运行exec
+     * @param id exec实例id
      * @param callback 回调方法
      */
     public static void StartExec(String id,okhttp3.Callback callback) {
@@ -183,4 +208,5 @@ public class DockerService {
                 .build();
         client.newCall(request).enqueue(callback);
     }
+
 }

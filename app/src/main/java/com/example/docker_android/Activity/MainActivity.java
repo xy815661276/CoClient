@@ -266,6 +266,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setLabelBackgroundDrawable(RFABShape.generateCornerShapeDrawable(0xaa000000, RFABTextUtil.dip2px(MainActivity.this, 4)))
                 .setWrapper(1)
         );
+        items.add(new RFACLabelItem<Integer>()
+                .setLabel("CRUN")
+                .setResId(R.drawable.image)
+                .setIconNormalColor(0xff4e342e)
+                .setIconPressedColor(0xff3e2723)
+                .setLabelColor(Color.WHITE)
+                .setLabelSizeSp(14)
+                .setLabelBackgroundDrawable(RFABShape.generateCornerShapeDrawable(0xaa000000, RFABTextUtil.dip2px(MainActivity.this, 4)))
+                .setWrapper(1)
+        );
         rfaContent
                 .setItems(items)
                 .setIconShadowRadius(RFABTextUtil.dip2px(MainActivity.this, 5))
@@ -289,6 +299,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case 1:
                 CreateImageActivity.actionStart(MainActivity.this,"","");
                 break;
+            case 2:
+                CrunActivity.actionStart(MainActivity.this,"","");
+                break;
             default:
                 break;
         }
@@ -303,6 +316,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 1:
                 CreateImageActivity.actionStart(MainActivity.this,"","");
+                break;
+            case 2:
+                CrunActivity.actionStart(MainActivity.this,"","");
                 break;
             default:
                 break;
