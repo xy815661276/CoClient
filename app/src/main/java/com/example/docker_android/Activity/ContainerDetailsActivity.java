@@ -114,10 +114,15 @@ public class ContainerDetailsActivity extends AppCompatActivity {
                             Double cpu=Double.valueOf(tmp.getJSONObject("cpu_stats").getJSONObject("cpu_usage").getLong("total_usage") / 1000000);
                             Double cpu_system=Double.valueOf(tmp.getJSONObject("cpu_stats").getLong("system_cpu_usage") / 1000000);
                             Double cpu_usage=(cpu/cpu_system)*100;
-                            String memory=(tmp.getJSONObject("memory_stats").getLong("usage")/1000000)+" Mb";
+                            String memory = "";
+                            String networkin = "";
+                            String networkout = "";
+                            if(tmp.getJSONObject("memory_stats").getLong("usage")!=null)
+                                memory =(tmp.getJSONObject("memory_stats").getLong("usage")/1000000)+" Mb";
                             String cpu_container=(new DecimalFormat("#.##").format(cpu_usage))+" %";
-                            String networkin=(tmp.getJSONObject("networks").getJSONObject("eth0").getLong("rx_bytes")/1000)+" Kb";
-                            String networkout=(tmp.getJSONObject("networks").getJSONObject("eth0").getLong("tx_bytes")/1000)+" Kb";
+//                            if(tmp.getJSONObject("networks")!=null)
+//                                networkin =(tmp.getJSONObject("networks").getJSONObject("eth0").getLong("rx_bytes")/1000)+" Kb";
+//                                networkout=(tmp.getJSONObject("networks").getJSONObject("eth0").getLong("tx_bytes")/1000)+" Kb";
                             memoryTV.setText(memory);
                             cpuTV.setText(cpu_container);
                             networkInTV.setText(networkin);
