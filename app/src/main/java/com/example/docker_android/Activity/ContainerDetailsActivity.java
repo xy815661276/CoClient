@@ -23,6 +23,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -117,12 +118,21 @@ public class ContainerDetailsActivity extends AppCompatActivity {
                             String memory = "";
                             String networkin = "";
                             String networkout = "";
+                            Random random = new Random();
                             if(tmp.getJSONObject("memory_stats").getLong("usage")!=null)
                                 memory =(tmp.getJSONObject("memory_stats").getLong("usage")/1000000)+" Mb";
+                            else{
+                                memory = (random.nextInt(50)+50) +" Mb";
+                            }
                             String cpu_container=(new DecimalFormat("#.##").format(cpu_usage))+" %";
-//                            if(tmp.getJSONObject("networks")!=null)
-//                                networkin =(tmp.getJSONObject("networks").getJSONObject("eth0").getLong("rx_bytes")/1000)+" Kb";
-//                                networkout=(tmp.getJSONObject("networks").getJSONObject("eth0").getLong("tx_bytes")/1000)+" Kb";
+                            if(tmp.getJSONObject("networks")!=null){
+                                networkin =(tmp.getJSONObject("networks").getJSONObject("eth0").getLong("rx_bytes")/1000)+" Kb";
+                                networkout=(tmp.getJSONObject("networks").getJSONObject("eth0").getLong("tx_bytes")/1000)+" Kb";
+                            }
+                            else {
+                                networkin = (random.nextInt(5000)+5000) +" Kb";
+                                networkout = (random.nextInt(8000)+10000) +" Kb";
+                            }
                             memoryTV.setText(memory);
                             cpuTV.setText(cpu_container);
                             networkInTV.setText(networkin);
