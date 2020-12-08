@@ -1,11 +1,16 @@
 package com.example.docker_android.Base;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.docker_android.R;
 
 
 /**
@@ -22,6 +27,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         initToolbar();
         initViews(savedInstanceState);
         initFragment();
+        setTranslucentStatus();
     }
 
     public abstract int getLayoutId();
@@ -31,7 +37,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     public abstract void initToolbar();
 
     public void beforeSetView() {
-
     }
 
     public void initFragment() {
@@ -58,6 +63,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void finishTask() {
+
+    }
+    //设置透明状态栏
+    public void setTranslucentStatus() {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        //注意要清除 FLAG_TRANSLUCENT_STATUS flag
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
 
     }
 
