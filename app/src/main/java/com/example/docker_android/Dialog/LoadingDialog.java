@@ -22,57 +22,6 @@ import com.wang.avi.AVLoadingIndicatorView;
  *
  */
 public class LoadingDialog{
-//
-//    private static AVLoadingIndicatorView avi;
-//    private static Context mContext;
-//    public static LoadingDialog getInstance(Context context) {
-//            LoadingDialog loadingDialog;
-//            loadingDialog = new LoadingDialog(context, R.style.TransparentDialog); //设置AlertDialog背景透明
-//            loadingDialog.setCancelable(false);
-//            loadingDialog.setCanceledOnTouchOutside(false);
-//            loadingDialog.mContext = context;
-//        return loadingDialog;
-//    }
-//    private LoadingDialog(Context context, int themeResId) {
-//        super(context,themeResId);
-//    }
-//
-////    @Override
-////    protected void onCreate(Bundle savedInstanceState) {
-////        super.onCreate(savedInstanceState);
-////        this.setContentView(R.layout.dialog_loading);
-////        avi = this.findViewById(R.id.avi);
-////    }
-////    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        this.setContentView(R.layout.dialog_loading);
-//        avi = this.findViewById(R.id.avi);
-//    }
-//    @Override
-//    public void show() {
-//        //在dialog show之前判断一下
-//        if (!getActivity(LoadingDialog.mContext).isFinishing()) {
-//            super.show();
-//        }
-//        avi.show();
-//    }
-//
-//    @Override
-//    public void dismiss() {
-//        super.dismiss();
-//        avi.hide();
-//    }
-//
-//    private Activity getActivity(Context context) {
-//        while (!(context instanceof Activity) && context instanceof ContextWrapper) {
-//            context = ((ContextWrapper) context).getBaseContext();
-//        }
-//        if (context instanceof Activity) {
-//            return (Activity) context;
-//        }else
-//            return null;
-//    }
     private static Dialog mLoadingDialog;
     /**
      * 显示加载对话框
@@ -83,7 +32,7 @@ public class LoadingDialog{
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_loading, null);
         TextView loadingText = view.findViewById(R.id.id_tv_loading_dialog_text);
         AVLoadingIndicatorView avLoadingIndicatorView = view.findViewById(R.id.AVLoadingIndicatorView);
-        loadingText.setText("加载中,请稍后...");
+        loadingText.setText("loading...");
         mLoadingDialog = new Dialog(context, R.style.loading_dialog_style);
         mLoadingDialog.setCancelable(false);
         mLoadingDialog.setContentView(view, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,

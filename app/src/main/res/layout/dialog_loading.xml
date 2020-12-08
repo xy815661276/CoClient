@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 android:background="@drawable/dialog_shape"
 android:gravity="center"
@@ -13,7 +13,6 @@ android:padding="10dp">
 <com.wang.avi.AVLoadingIndicatorView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_centerInParent="true"
     android:id="@+id/AVLoadingIndicatorView"
     app:indicatorColor="#1390ea"
     app:indicatorName="BallSpinFadeLoaderIndicator"/>
@@ -23,7 +22,7 @@ android:padding="10dp">
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
-    android:text="加载中…"
+    android:text="loading..."
     android:textColor="#555555"
     android:textSize="14sp" />
 

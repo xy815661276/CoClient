@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+import com.example.docker_android.Base.BaseActivity;
 import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.R;
@@ -25,26 +26,17 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Random;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class ContainerDetailsActivity extends AppCompatActivity {
-    @BindView(R.id.image)
-    TextView imageTV;
-    @BindView(R.id.memory)
-    TextView memoryTV;
-    @BindView(R.id.cpu)
-    TextView cpuTV;
-    @BindView(R.id.networkIn)
-    TextView networkInTV;
-    @BindView(R.id.networkOut)
-    TextView networkOutTV;
-    @BindView(R.id.container_details_srl)
-    SwipeRefreshLayout swipeRefreshLayout;
-    @BindView(R.id.run_exec)
-    TextView Run_exec;
+public class ContainerDetailsActivity extends BaseActivity {
+    private TextView imageTV;
+    private TextView memoryTV;
+    private TextView cpuTV;
+    private TextView networkInTV;
+    private TextView networkOutTV;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private TextView Run_exec;
     private String id;
     /**
      * 活动跳转接口
@@ -60,10 +52,19 @@ public class ContainerDetailsActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_container_details);
-        ButterKnife.bind(this);  //使用BindView必须，不然会崩溃
+    public int getLayoutId() {
+        return R.layout.activity_container_details;
+    }
+
+    @Override
+    public void initViews(Bundle savedInstanceState) {
+        imageTV = findViewById(R.id.image);
+        memoryTV = findViewById(R.id.memory);
+        cpuTV = findViewById(R.id.cpu);
+        networkInTV = findViewById(R.id.networkIn);
+        networkOutTV = findViewById(R.id.networkOut);
+        swipeRefreshLayout = findViewById(R.id.container_details_srl);
+        Run_exec = findViewById(R.id.run_exec);
         id = getIntent().getStringExtra("id");
         imageTV.setText(getIntent().getStringExtra("image"));swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -74,13 +75,13 @@ public class ContainerDetailsActivity extends AppCompatActivity {
                     public void run() {
                         // 设置是否开始刷新,true为刷新，false为停止刷新
                         swipeRefreshLayout.setRefreshing(true);
-                        LoadData(id);
+                        loadData(id);
                     }
                 });
             }
         });
         LoadingDialog.showDialogForLoading(ContainerDetailsActivity.this);
-        LoadData(getIntent().getStringExtra("id"));
+        loadData(getIntent().getStringExtra("id"));
         Run_exec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,11 +90,16 @@ public class ContainerDetailsActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void initToolbar() {
+
+    }
+
     /**
      * 加载数据
      * @param id
      */
-    private void LoadData(String id){
+    public void loadData(String id){
         DockerService.getStats(id,new okhttp3.Callback(){
             @Override
             public void onFailure(Call call, IOException e) {

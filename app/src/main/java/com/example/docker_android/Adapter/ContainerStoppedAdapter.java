@@ -118,7 +118,7 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
                                         Toast.makeText(mContext,"启动成功",Toast.LENGTH_SHORT).show();
                                     else
                                         Toast.makeText(mContext,"启动失败，请稍后再试",Toast.LENGTH_SHORT).show();
-                                    ((ContainerStoppedActivity)mContext).LoadData();
+                                    ((ContainerStoppedActivity)mContext).loadData();
                                     LoadingDialog.hideDialogForLoading();
                                 }
                             });
@@ -144,7 +144,7 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
                                         Toast.makeText(mContext,"删除成功",Toast.LENGTH_SHORT).show();
                                     else
                                         Toast.makeText(mContext,"删除失败，请稍后再试",Toast.LENGTH_SHORT).show();
-                                    ((ContainerStoppedActivity)mContext).LoadData();
+                                    ((ContainerStoppedActivity)mContext).loadData();
                                     LoadingDialog.hideDialogForLoading();
                                 }
                             });

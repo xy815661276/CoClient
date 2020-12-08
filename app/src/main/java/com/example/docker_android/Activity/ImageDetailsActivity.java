@@ -6,9 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.docker_android.Base.BaseActivity;
 import com.example.docker_android.R;
 
-public class ImageDetailsActivity extends AppCompatActivity {
+public class ImageDetailsActivity extends BaseActivity {
     /**
      * 活动跳转接口
      * @param context
@@ -21,9 +22,19 @@ public class ImageDetailsActivity extends AppCompatActivity {
         intent.putExtra("param2", data2);
         context.startActivity(intent);
     }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image_details);
+    public int getLayoutId() {
+        return R.layout.activity_image_details;
+    }
+
+    @Override
+    public void initViews(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    public void initToolbar() {
+
     }
 }

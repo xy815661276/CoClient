@@ -13,29 +13,23 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+import com.example.docker_android.Base.BaseActivity;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
 import com.example.docker_android.R;
 
 import java.io.IOException;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class OSInfoActivity extends AppCompatActivity {
+public class OSInfoActivity extends BaseActivity {
 
-    @BindView(R.id.docker)
-    TextView dockerTV;
-    @BindView(R.id.api)
-    TextView apiTV;
-    @BindView(R.id.os)
-    TextView osTV;
-    @BindView(R.id.arch)
-    TextView archTV;
-    @BindView(R.id.kernel)
-    TextView kernelTV;
+    private TextView dockerTV;
+    private TextView apiTV;
+    private TextView osTV;
+    private TextView archTV;
+    private TextView kernelTV;
 
     /**
      * 活动跳转接口
@@ -51,14 +45,27 @@ public class OSInfoActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_osinfo);
-        ButterKnife.bind(this);  //使用BindView必须，不然会崩溃
-        LoadData();
+    public int getLayoutId() {
+        return R.layout.activity_osinfo;
     }
 
-    private void LoadData(){
+    @Override
+    public void initViews(Bundle savedInstanceState) {
+        dockerTV = findViewById(R.id.docker);
+        apiTV = findViewById(R.id.api);
+        osTV = findViewById(R.id.os);
+        archTV = findViewById(R.id.arch);
+        kernelTV = findViewById(R.id.kernel);
+
+    }
+
+    @Override
+    public void initToolbar() {
+
+    }
+
+    @Override
+    public void loadData(){
         DockerService.getInfo(new okhttp3.Callback(){
             @Override
             public void onFailure(Call call, IOException e) {

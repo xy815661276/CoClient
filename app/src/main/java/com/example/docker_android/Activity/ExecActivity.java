@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.example.docker_android.Base.BaseActivity;
 import com.example.docker_android.Dialog.ExecDialog;
 import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.DockerAPI.DockerService;
@@ -21,19 +22,15 @@ import com.example.docker_android.R;
 
 import java.io.IOException;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class ExecActivity extends AppCompatActivity {
-    @BindView(R.id.cmd_result)
-    TextView Response;
-    @BindView(R.id.run_command)
-    TextView Command;
+public class ExecActivity extends BaseActivity {
+    private TextView Response;
+    private TextView Command;
 
     public static final int REQUEST=1;
-    private boolean CREATED = false;
+    private final boolean CREATED = false;
     private String exec_id;
     /**
      * 活动跳转接口
@@ -48,10 +45,14 @@ public class ExecActivity extends AppCompatActivity {
         context.startActivity(intent);
     }
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exec);
-        ButterKnife.bind(this);  //使用BindView必须，不然会崩溃
+    public int getLayoutId() {
+        return R.layout.activity_exec;
+    }
+
+    @Override
+    public void initViews(Bundle savedInstanceState) {
+        Response = findViewById(R.id.cmd_result);
+        Command = findViewById(R.id.run_command);
         Command.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,4 +115,10 @@ public class ExecActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void initToolbar() {
+
+    }
+
 }

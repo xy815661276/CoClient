@@ -159,7 +159,7 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
                                 else {
                                     Toast.makeText(mContext,"操作失败，请稍后再试",Toast.LENGTH_SHORT).show();
                                 }
-                                ((ContainerRunningActivity)mContext).LoadData();
+                                ((ContainerRunningActivity)mContext).loadData();
                                 LoadingDialog.hideDialogForLoading();
                             }
                         });

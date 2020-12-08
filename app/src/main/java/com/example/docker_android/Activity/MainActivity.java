@@ -19,65 +19,55 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+import com.example.docker_android.Base.BaseActivity;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
 import com.example.docker_android.Entity.Image.Image;
 import com.example.docker_android.R;
-import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton;
-import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper;
-import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout;
-import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem;
-import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList;
-import com.wangjie.rapidfloatingactionbutton.util.RFABShape;
-import com.wangjie.rapidfloatingactionbutton.util.RFABTextUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Response;
-public class MainActivity extends AppCompatActivity implements View.OnClickListener,RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener{
-    @BindView(R.id.runningHeader)
-    RelativeLayout containerRun;
-    @BindView(R.id.stoppedHeader)
-    RelativeLayout containerStop;
-    @BindView(R.id.imagesHeader)
-    RelativeLayout image;
-    @BindView(R.id.osHeader)
-    RelativeLayout os;
-    @BindView(R.id.mainpage_toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.running)
-    TextView running;
-    @BindView(R.id.stopped)
-    TextView stopped;
-    @BindView(R.id.images)
-    TextView images;
-    @BindView(R.id.activity_main_rfal)
-    RapidFloatingActionLayout rfaLayout;
-    @BindView(R.id.activity_main_rfab)
-    RapidFloatingActionButton rfaBtn;
-    @BindView(R.id.container_main_srl)
-    SwipeRefreshLayout swipeRefreshLayout;
-    private RapidFloatingActionHelper rfabHelper;
+public class MainActivity extends BaseActivity implements View.OnClickListener{
+
+    private RelativeLayout containerRun;
+    private RelativeLayout containerStop;
+    private RelativeLayout image;
+    private RelativeLayout os;
+    private Toolbar toolbar;
+    private TextView running;
+    private TextView stopped;
+    private TextView images;
+    private SwipeRefreshLayout swipeRefreshLayout;
+
     private long exitTime = 0;//点击两次返回退出时间
-    private List<Container> list_run = new ArrayList<>();
+    private final List<Container> list_run = new ArrayList<>();
     public static List<Container> list_stop = new ArrayList<>();
-    private List<Image> list_image = new ArrayList<>();
+    private final List<Image> list_image = new ArrayList<>();
+
     @Override
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        ButterKnife.bind(this);  //使用BindView必须，不然会崩溃
-        initButton();
+    public int getLayoutId() {
+        return R.layout.activity_home;
+    }
+
+    @Override
+    public void initViews(Bundle savedInstanceState) {
+        containerRun = findViewById(R.id.runningHeader);
+        containerStop = findViewById(R.id.stoppedHeader);
+        image = findViewById(R.id.imagesHeader);
+        os = findViewById(R.id.osHeader);
+        toolbar = findViewById(R.id.mainpage_toolbar);
+        running = findViewById(R.id.running);
+        stopped = findViewById(R.id.stopped);
+        images = findViewById(R.id.images);
+        swipeRefreshLayout = findViewById(R.id.container_main_srl);
         containerRun.setOnClickListener(this);
         containerStop.setOnClickListener(this);
         image.setOnClickListener(this);
         os.setOnClickListener(this);
-        initToolbar();
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -87,13 +77,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void run() {
                         // 设置是否开始刷新,true为刷新，false为停止刷新
                         swipeRefreshLayout.setRefreshing(true);
-                        LoadData();
+                        loadData();
                     }
                 });
             }
         });
-        LoadData();
+        loadData();
     }
+
     /**
      *点击事件处理
      * @param view
@@ -149,33 +140,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getMenuInflater().inflate(R.menu.menu,menu);//将toolbar中的菜单添加上来
         return true;
     }
+
     /**
      * 初始化Toolbar的数据
      */
-    private void initToolbar() {
-        //也可以在布局中设置这些属性,具体见布局文件
-//        toolbar.setNavigationIcon(R.mipmap.ic_launcher);//设置最左侧图标
-        //toolbar.setLogo(R.mipmap.ic_launcher);//设置程序logo图标
-        toolbar.setTitle("toolbar标题");
-        toolbar.setSubtitle("子标题");
-        toolbar.setTitleTextColor(Color.parseColor("#ff0000"));//设置标题的字体颜色
-        toolbar.setSubtitleTextColor(Color.parseColor("#00ff00"));//设置子标题的字体颜色
-        setSupportActionBar(toolbar); //取代原本的actionbar,继承activity可以不设置,不替换显示不了菜单
-        //单击事件需要在setSupportActionBar方法后,因为原本的actionbar也有这个单击事件
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "点击了最左边的图标", Toast.LENGTH_SHORT).show();
-            }
-        });
+    @Override
+    public void initToolbar() {
+
     }
     /**
      * 加载数据
      */
-    private void LoadData() {
+    @Override
+    public void loadData() {
+        //先清除原来的数据
         list_run.clear();
         list_stop.clear();
         list_image.clear();
+
         DockerService.getContainers(new okhttp3.Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -183,7 +165,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                final String responseData = response.body().string(); //toString方法未重写，这里使用string()方法 //string不能调用两次 被调用一次就关闭了，这里调用两次会报异常
+                //toString方法未重写，这里使用string()方法
+                //string不能调用两次 被调用一次就关闭了，这里调用两次会报异常
+                final String responseData = response.body().string();
                 Log.d("Component", "onResponse: " + responseData);
                 runOnUiThread(new Runnable() {
                     @Override
@@ -240,88 +224,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
             }
         });
-    }
-
-    /**
-     * 初始化floatButton，添加弹出菜单
-     */
-    private void initButton(){
-        RapidFloatingActionContentLabelList rfaContent = new RapidFloatingActionContentLabelList(MainActivity.this);
-        rfaContent.setOnRapidFloatingActionContentLabelListListener(this);
-        List<RFACLabelItem> items = new ArrayList<>();
-        items.add(new RFACLabelItem<Integer>()
-                .setLabel("创建容器")
-                .setResId(R.drawable.container)
-                .setIconNormalColor(0xffd84315)
-                .setIconPressedColor(0xffbf360c)
-                .setWrapper(0)
-        );
-        items.add(new RFACLabelItem<Integer>()
-                .setLabel("创建镜像")
-                .setResId(R.drawable.image)
-                .setIconNormalColor(0xff4e342e)
-                .setIconPressedColor(0xff3e2723)
-                .setLabelColor(Color.WHITE)
-                .setLabelSizeSp(14)
-                .setLabelBackgroundDrawable(RFABShape.generateCornerShapeDrawable(0xaa000000, RFABTextUtil.dip2px(MainActivity.this, 4)))
-                .setWrapper(1)
-        );
-        items.add(new RFACLabelItem<Integer>()
-                .setLabel("CRUN")
-                .setResId(R.drawable.image)
-                .setIconNormalColor(0xff4e342e)
-                .setIconPressedColor(0xff3e2723)
-                .setLabelColor(Color.WHITE)
-                .setLabelSizeSp(14)
-                .setLabelBackgroundDrawable(RFABShape.generateCornerShapeDrawable(0xaa000000, RFABTextUtil.dip2px(MainActivity.this, 4)))
-                .setWrapper(1)
-        );
-        rfaContent
-                .setItems(items)
-                .setIconShadowRadius(RFABTextUtil.dip2px(MainActivity.this, 5))
-                .setIconShadowColor(0xff888888)
-                .setIconShadowDy(RFABTextUtil.dip2px(MainActivity.this, 5))
-        ;
-        rfabHelper = new RapidFloatingActionHelper(
-                MainActivity.this,
-                rfaLayout,
-                rfaBtn,
-                rfaContent
-        ).build();
-    }
-    @Override
-    public void onRFACItemLabelClick(int position, RFACLabelItem item) {
-        rfabHelper.toggleContent();
-        switch (position){
-            case 0:
-                CreateContainerActivity.actionStart(MainActivity.this,"","");
-                break;
-            case 1:
-                CreateImageActivity.actionStart(MainActivity.this,"","");
-                break;
-            case 2:
-                CrunActivity.actionStart(MainActivity.this,"","");
-                break;
-            default:
-                break;
-        }
-    }
-
-    @Override
-    public void onRFACItemIconClick(int position, RFACLabelItem item) {
-        rfabHelper.toggleContent();
-        switch (position){
-            case 0:
-                CreateContainerActivity.actionStart(MainActivity.this,"","");
-                break;
-            case 1:
-                CreateImageActivity.actionStart(MainActivity.this,"","");
-                break;
-            case 2:
-                CrunActivity.actionStart(MainActivity.this,"","");
-                break;
-            default:
-                break;
-        }
     }
 }

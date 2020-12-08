@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.example.docker_android.Adapter.ContainerAdapter;
 import com.example.docker_android.Adapter.ImageAdapter;
+import com.example.docker_android.Base.BaseActivity;
 import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
@@ -29,16 +30,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class ImageActivity extends AppCompatActivity {
-    @BindView(R.id.image_srl)
-    SwipeRefreshLayout swipeRefreshLayout;
-    @BindView(R.id.image_recycler_View)
-    RecyclerView recyclerView;
+public class ImageActivity extends BaseActivity {
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private RecyclerView recyclerView;
+
     List<Image> list = new ArrayList<>();
     /**
      * 活动跳转接口
@@ -52,11 +50,16 @@ public class ImageActivity extends AppCompatActivity {
         intent.putExtra("param2", data2);
         context.startActivity(intent);
     }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image);
-        ButterKnife.bind(this);  //使用BindView必须，不然会崩溃
+    public int getLayoutId() {
+        return R.layout.activity_image;
+    }
+
+    @Override
+    public void initViews(Bundle savedInstanceState) {
+        swipeRefreshLayout = findViewById(R.id.image_srl);
+        recyclerView = findViewById(R.id.image_recycler_View);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -66,16 +69,22 @@ public class ImageActivity extends AppCompatActivity {
                     public void run() {
                         // 设置是否开始刷新,true为刷新，false为停止刷新
                         swipeRefreshLayout.setRefreshing(true);
-                        LoadData();
+                        loadData();
                     }
                 });
             }
         });
         LoadingDialog.showDialogForLoading(ImageActivity.this);
-        LoadData();
+        loadData();
     }
 
-    public void LoadData() {
+    @Override
+    public void initToolbar() {
+        //TODO
+    }
+
+    @Override
+    public void loadData() {
         list.clear();
         DockerService.getImages(new okhttp3.Callback() {
             @Override

@@ -30,12 +30,12 @@ import okhttp3.Call;
 import okhttp3.Response;
 
 /**
- * RecyclerView Adapter用于适配飞机的列表，包含飞机图片，飞机名称以及简介
+ * RecyclerView Adapter
  */
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
 
-    private List<Image> mClassList;//收集容器对象
-    private Context mContext;
+    private final List<Image> mClassList;//收集容器对象
+    private final Context mContext;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         View classView;//cardView
@@ -95,7 +95,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
         String res;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        long lt = Long.valueOf(s)*1000;//毫秒转成秒
+        long lt = Long.parseLong(s)*1000;//毫秒转成秒
         Date date = new Date(lt);
         res = simpleDateFormat.format(date);
         return res;
@@ -169,7 +169,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                                     else {
                                         Toast.makeText(mContext,"删除失败，请稍后再试",Toast.LENGTH_SHORT).show();
                                     }
-                                    ((ImageActivity)mContext).LoadData();
+                                    ((ImageActivity)mContext).loadData();
                                     LoadingDialog.hideDialogForLoading();
                                 }
                             });

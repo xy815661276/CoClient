@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.example.docker_android.Base.BaseActivity;
 import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
@@ -24,25 +25,16 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 import java.io.IOException;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class CreateContainerActivity extends AppCompatActivity {
-    @BindView(R.id.container_name)
+public class CreateContainerActivity extends BaseActivity {
     EditText Container_name;
-    @BindView(R.id.image_name)
     EditText Image_name;
-    @BindView(R.id.host_port)
     EditText Host_port;
-    @BindView(R.id.container_port)
     EditText Container_port;
-    @BindView(R.id.host_volume)
     EditText Host_volume;
-    @BindView(R.id.container_volume)
     EditText Container_volume;
-    @BindView(R.id.submit)
     TextView submit;
     /**
      * 活动跳转接口
@@ -56,11 +48,21 @@ public class CreateContainerActivity extends AppCompatActivity {
         intent.putExtra("param2", data2);
         context.startActivity(intent);
     }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_container);
-        ButterKnife.bind(this);  //使用BindView必须，不然会崩溃
+    public int getLayoutId() {
+        return R.layout.activity_create_container;
+    }
+
+    @Override
+    public void initViews(Bundle savedInstanceState) {
+        Container_name = findViewById(R.id.container_name);
+        Image_name = findViewById(R.id.image_name);
+        Host_port = findViewById(R.id.host_port);
+        Container_port = findViewById(R.id.container_port);
+        Host_volume = findViewById(R.id.host_volume);
+        Container_volume = findViewById(R.id.container_volume);
+        submit = findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,5 +115,10 @@ public class CreateContainerActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void initToolbar() {
+
     }
 }

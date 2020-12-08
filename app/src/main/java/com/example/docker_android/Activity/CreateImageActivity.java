@@ -14,24 +14,20 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.example.docker_android.Base.BaseActivity;
 import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.R;
 
 import java.io.IOException;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class CreateImageActivity extends AppCompatActivity {
-    @BindView(R.id.image_name)
-    EditText Image_name;
-    @BindView(R.id.image_tag)
-    EditText Image_tag;
-    @BindView(R.id.submit)
-    TextView submit;
+public class CreateImageActivity extends BaseActivity {
+    private EditText Image_name;
+    private EditText Image_tag;
+    private TextView submit;
     /**
      * 活动跳转接口
      * @param context
@@ -44,11 +40,17 @@ public class CreateImageActivity extends AppCompatActivity {
         intent.putExtra("param2", data2);
         context.startActivity(intent);
     }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_image);
-        ButterKnife.bind(this);  //使用BindView必须，不然会崩溃
+    public int getLayoutId() {
+        return R.layout.activity_create_image;
+    }
+
+    @Override
+    public void initViews(Bundle savedInstanceState) {
+        Image_name = findViewById(R.id.image_name);
+        Image_tag = findViewById(R.id.image_tag);
+        submit = findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,5 +92,10 @@ public class CreateImageActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void initToolbar() {
+
     }
 }

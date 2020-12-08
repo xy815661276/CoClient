@@ -16,6 +16,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.example.docker_android.Adapter.ContainerAdapter;
+import com.example.docker_android.Base.BaseActivity;
 import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
@@ -25,15 +26,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class ContainerRunningActivity extends AppCompatActivity {
-    @BindView(R.id.container_running_srl)
-    SwipeRefreshLayout swipeRefreshLayout;
-    List<Container> list = new ArrayList<>();
+public class ContainerRunningActivity extends BaseActivity {
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private RecyclerView recyclerView;
+    private final List<Container> list = new ArrayList<>();
     /**
      * 活动跳转接口
      * @param context
@@ -46,13 +45,16 @@ public class ContainerRunningActivity extends AppCompatActivity {
         intent.putExtra("param2", data2);
         context.startActivity(intent);
     }
-    @BindView(R.id.running_RecycleView)
-    RecyclerView recyclerView;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_container_running);
-        ButterKnife.bind(this);  //使用BindView必须，不然会崩溃
+    public int getLayoutId() {
+        return R.layout.activity_container_running;
+    }
+
+    @Override
+    public void initViews(Bundle savedInstanceState) {
+        swipeRefreshLayout = findViewById(R.id.container_running_srl);
+        recyclerView = findViewById(R.id.running_RecycleView);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -62,16 +64,22 @@ public class ContainerRunningActivity extends AppCompatActivity {
                     public void run() {
                         // 设置是否开始刷新,true为刷新，false为停止刷新
                         swipeRefreshLayout.setRefreshing(true);
-                        LoadData();
+                        loadData();
                     }
                 });
             }
         });
         LoadingDialog.showDialogForLoading(ContainerRunningActivity.this);
-        LoadData();
+        loadData();
     }
 
-    public void LoadData() {
+    @Override
+    public void initToolbar() {
+
+    }
+
+    @Override
+    public void loadData() {
         list.clear();
         DockerService.getContainers(new okhttp3.Callback() {
             @Override

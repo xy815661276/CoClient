@@ -9,7 +9,6 @@ import com.example.docker_android.DockerAPI.Configuration.CreateExecConfig;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import cn.edu.hust.wjz.crun.CrunJni;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -26,7 +25,7 @@ public class DockerService {
     private static final MediaType JSON = MediaType
             .parse("application/json; charset=utf-8");
     //private static String address = "http://121.36.19.122:2375";
-    private static String address = "http://127.0.0.1:2375";
+    private static final String address = "http://127.0.0.1:2375";
     /**
      * 获取系统信息
      * @param callback 回调方法
