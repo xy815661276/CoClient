@@ -9,10 +9,9 @@
     <TextView
         android:id="@+id/exec_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:gravity="center"
-        android:paddingTop="15dp"
-        android:text="提示"
+        android:text="prompt"
         android:textColor="#111111"
         android:textSize="20sp"/>
 
@@ -21,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:hint="请输入命令"
+        android:hint="input command"
         android:background="@drawable/edit_shape"
         android:textColor="#111111"
         android:textSize="17sp"/>
@@ -30,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:hint="请输入工作目录"
+        android:hint="input work directory"
         android:background="@drawable/edit_shape"
         android:textColor="#111111"
         android:textSize="17sp"/>
@@ -52,7 +51,7 @@
             android:padding="14dp"
             android:gravity="center"
             android:textColor="#111111"
-            android:text="取消"/>
+            android:text="cancel"/>
 
         <View
             android:layout_width="0.1dp"
@@ -67,7 +66,7 @@
             android:padding="14dp"
             android:gravity="center"
             android:textColor="#111111"
-            android:text="确定"/>
+            android:text="ok"/>
 
     </LinearLayout>
 

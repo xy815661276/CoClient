@@ -25,7 +25,8 @@
             android:gravity="center_vertical"
             android:maxLines="1"
             android:padding="@dimen/toolbar_textbtn_padding"
-            android:text="创建容器"
+            android:text="Create container"
+            android:textStyle="bold"
             android:textColor="@color/pure_white"
             android:textSize="@dimen/default_medium_text_size" />
 
@@ -40,7 +41,8 @@
             android:gravity="center_vertical"
             android:maxLines="1"
             android:padding="@dimen/toolbar_textbtn_padding"
-            android:text="提交"
+            android:text="submit"
+            android:textStyle="bold"
             android:textColor="@color/pure_white"
             android:textSize="@dimen/default_medium_text_size" />
     </androidx.appcompat.widget.Toolbar>
@@ -66,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="容器名称"
+                android:text="Name "
                 android:textColor="@color/grey_black"
                 android:textSize="@dimen/default_small_text_size"/>
 
@@ -82,7 +84,7 @@
                 android:layout_toEndOf="@+id/container_name_text"
                 android:layout_toRightOf="@+id/container_name_text"
                 android:gravity="center_vertical"
-                android:hint="请输入容器的名称"
+                android:hint="Input container name"
                 android:textColorHint="@color/toolbar_title"
                 android:textColor="@color/grey_black"
                 android:textSize="@dimen/default_small_text_size"/>
@@ -118,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="镜像名称"
+                android:text="Image"
                 android:textColor="@color/grey_black"
                 android:textSize="@dimen/default_small_text_size"/>
 
@@ -134,7 +136,7 @@
                 android:layout_toEndOf="@+id/image_name_text"
                 android:layout_toRightOf="@+id/image_name_text"
                 android:gravity="center_vertical"
-                android:hint="请输入镜像的名称"
+                android:hint="Input image name"
                 android:textColorHint="@color/toolbar_title"
                 android:textColor="@color/grey_black"
                 android:textSize="@dimen/default_small_text_size"/>
@@ -164,7 +166,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="端口映射"
+                android:text="Port      "
                 android:textColor="@color/grey_black"
                 android:textSize="@dimen/default_small_text_size" />
 
@@ -181,7 +183,7 @@
                 android:layout_toRightOf="@+id/container_port_text"
                 android:layout_marginLeft="@dimen/default_big_margin"
                 android:gravity="center_vertical"
-                android:hint="请输入容器端口"
+                android:hint="Input container port"
                 android:inputType="number"
                 android:textColorHint="@color/toolbar_title"
                 android:textColor="@color/grey_black"
@@ -199,7 +201,7 @@
                 android:layout_toRightOf="@+id/container_port"
                 android:layout_marginLeft="@dimen/default_big_margin"
                 android:gravity="center_vertical"
-                android:hint="请输入主机端口"
+                android:hint="Input host port"
                 android:inputType="number"
                 android:textColorHint="@color/toolbar_title"
                 android:textColor="@color/grey_black"
@@ -230,7 +232,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="挂载磁盘"
+                android:text="Volume"
                 android:textColor="@color/grey_black"
                 android:textSize="@dimen/default_small_text_size"/>
 
@@ -247,7 +249,7 @@
                 android:layout_toRightOf="@+id/host_port_text"
                 android:layout_marginLeft="@dimen/default_big_margin"
                 android:gravity="center_vertical"
-                android:hint="请输入容器磁盘"
+                android:hint="Input container dir"
                 android:textColorHint="@color/toolbar_title"
                 android:textColor="@color/grey_black"
                 android:textSize="@dimen/default_small_text_size"/>
@@ -264,7 +266,7 @@
                 android:layout_toRightOf="@+id/container_volume"
                 android:layout_marginLeft="@dimen/default_big_margin"
                 android:gravity="center_vertical"
-                android:hint="请输入主机磁盘"
+                android:hint="Input host dir"
                 android:textColorHint="@color/toolbar_title"
                 android:textColor="@color/grey_black"
                 android:textSize="@dimen/default_small_text_size"/>

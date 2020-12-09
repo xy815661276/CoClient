@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:fitsSystemWindows">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
     <style name="FullScreenTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->

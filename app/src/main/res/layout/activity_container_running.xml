@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@color/pure_white"
     tools:context=".Activity.ContainerRunningActivity">
-    <include layout="@layout/toolbar_mainpage"/>
+    <include layout="@layout/toolbar_main_page"/>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     android:id="@+id/container_running_srl"
     android:layout_width="match_parent"

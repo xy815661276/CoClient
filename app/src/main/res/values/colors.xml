@@ -56,10 +56,12 @@
     <color name="near_transparent_white">#88FFFFFF</color>
     <color name="transparentBlack">#96000000</color>
     <color name="dashboard">#18A689</color>
-
     <color name="running">#00BCD4</color>
     <color name="stopped">#673AB7</color>
     <color name="images">#3F51B5</color>
     <color name="os">#F8AC59</color>
     <color name="networkout">#F44336</color>
+    <color name="shrine_pink">#FDD2C6</color>
+    <color name="tab_checked">#ED6A2C</color>
+    <color name="tab_unchecked">#757575</color>
 </resources>
