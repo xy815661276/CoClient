@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ContainerClient</string>
+    <string name="app_name">Container</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="main1">运行中</string>

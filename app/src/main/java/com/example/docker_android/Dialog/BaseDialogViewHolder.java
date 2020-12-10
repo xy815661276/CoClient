@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.IdRes;
 
 /**
- * by Pcd at 19/04/23 22:30
+ * by xavier
  */
 public class BaseDialogViewHolder {
 

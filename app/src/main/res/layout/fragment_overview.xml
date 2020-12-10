@@ -1,0 +1,342 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/pure_white">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/dockerHeader"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/mainPage_background_white"
+                android:focusable="true"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="10dp">
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/running">
+
+                    <ImageView
+                        android:id="@+id/dockerIcon"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/dockericon"/>
+
+                    <TextView
+                        android:id="@+id/dockerLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Docker"
+                        android:textColor="@color/white"
+                        android:layout_marginRight="15dp"
+                        android:textSize="18dp"
+                        android:layout_above="@+id/docker"
+                        android:layout_alignParentRight="true"/>
+
+                    <TextView
+                        android:id="@+id/docker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Undefined"
+                        android:textSize="18dp"
+                        android:textColor="@color/white"
+                        android:layout_marginRight="15dp"
+                        android:textStyle="bold"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"/>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/apiHeader"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/mainPage_background_white"
+                android:focusable="true"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_below="@+id/dockerHeader"
+                app:cardCornerRadius="10dp">
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/stopped">
+
+                    <ImageView
+                        android:id="@+id/apiIcon"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/api"/>
+
+                    <TextView
+                        android:id="@+id/apiLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="API"
+                        android:textColor="@color/white"
+                        android:layout_marginRight="15dp"
+                        android:textSize="18dp"
+                        android:layout_above="@+id/api"
+                        android:layout_alignParentRight="true"/>
+
+                    <TextView
+                        android:id="@+id/api"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="v1.40"
+                        android:textSize="18dp"
+                        android:textColor="@color/white"
+                        android:layout_marginRight="15dp"
+                        android:textStyle="bold"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"/>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/osHeader"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/mainPage_background_white"
+                android:focusable="true"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_below="@+id/apiHeader"
+                app:cardCornerRadius="10dp">
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/images">
+
+                    <ImageView
+                        android:id="@+id/osIcon"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/os"/>
+
+                    <TextView
+                        android:id="@+id/osLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="OS"
+                        android:textColor="@color/white"
+                        android:layout_marginRight="15dp"
+                        android:textSize="18dp"
+                        android:layout_above="@+id/os"
+                        android:layout_alignParentRight="true"/>
+
+                    <TextView
+                        android:id="@+id/os"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Undefined"
+                        android:textSize="18dp"
+                        android:textColor="@color/white"
+                        android:layout_marginRight="15dp"
+                        android:textStyle="bold"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"/>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/archHeader"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/mainPage_background_white"
+                android:focusable="true"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_below="@+id/osHeader"
+                app:cardCornerRadius="10dp">
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/networkout">
+
+                    <ImageView
+                        android:id="@+id/archIcon"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/arch"/>
+
+                    <TextView
+                        android:id="@+id/archLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Architecture"
+                        android:textColor="@color/white"
+                        android:layout_marginRight="15dp"
+                        android:textSize="18dp"
+                        android:layout_above="@+id/arch"
+                        android:layout_alignParentRight="true"/>
+
+                    <TextView
+                        android:id="@+id/arch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Undefined"
+                        android:textSize="18dp"
+                        android:textColor="@color/white"
+                        android:layout_marginRight="15dp"
+                        android:textStyle="bold"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"/>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/runtimeHeader"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/mainPage_background_white"
+                android:focusable="true"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_below="@+id/archHeader"
+                app:cardCornerRadius="10dp">
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/runtime">
+
+                    <ImageView
+                        android:id="@+id/runtimeIcon"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/runtime"/>
+
+                    <TextView
+                        android:id="@+id/runtimeLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Runtime"
+                        android:textColor="@color/white"
+                        android:layout_marginRight="15dp"
+                        android:textSize="18dp"
+                        android:layout_above="@+id/runtime"
+                        android:layout_alignParentRight="true"/>
+
+                    <TextView
+                        android:id="@+id/runtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Undefined"
+                        android:textSize="18dp"
+                        android:textColor="@color/white"
+                        android:layout_marginRight="15dp"
+                        android:textStyle="bold"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"/>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/kernelHeader"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:cardBackgroundColor="@color/mainPage_background_white"
+                android:focusable="true"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_below="@+id/runtimeHeader"
+                app:cardCornerRadius="10dp">
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/os">
+
+                    <ImageView
+                        android:id="@+id/kernelIcon"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/cpu"/>
+
+                    <TextView
+                        android:id="@+id/kernelLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kernel"
+                        android:textColor="@color/white"
+                        android:layout_marginRight="15dp"
+                        android:textSize="18dp"
+                        android:layout_above="@+id/kernel"
+                        android:layout_alignParentRight="true"/>
+
+                    <TextView
+                        android:id="@+id/kernel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Undefined"
+                        android:textSize="18dp"
+                        android:textColor="@color/white"
+                        android:layout_marginRight="15dp"
+                        android:textStyle="bold"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"/>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+
+</RelativeLayout>

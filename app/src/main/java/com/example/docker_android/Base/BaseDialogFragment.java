@@ -1,4 +1,4 @@
-package com.example.docker_android.Fragment;
+package com.example.docker_android.Base;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ import com.example.docker_android.R;
 
 
 /**
- * by Pcd at 19/04/23 22:28
+ * by xavier
  */
 public abstract class BaseDialogFragment extends DialogFragment {
 

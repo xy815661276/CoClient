@@ -3,7 +3,7 @@
         android:id="@+id/page_home"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_home_24"
-        android:title="Home"/>
+        android:title="Overview"/>
     <item
         android:id="@+id/page_container"
         android:enabled="true"

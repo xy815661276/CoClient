@@ -6,10 +6,17 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.docker_android.Adapter.ViewPagerAdapter;
 import com.example.docker_android.Base.BaseActivity;
+import com.example.docker_android.Fragment.ContainerFragment;
+import com.example.docker_android.Fragment.HomeFragment;
+import com.example.docker_android.Fragment.ImageFragment;
+import com.example.docker_android.Fragment.OverviewFragment;
 import com.example.docker_android.Fragment.TestFragment;
 import com.example.docker_android.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,9 +27,10 @@ import java.util.List;
 public class MainActivity extends BaseActivity {
 
     private BottomNavigationView bottomNavigationView;
-    private ViewPagerAdapter viewPagerAdapter;
     private ViewPager viewPager;
     private MenuItem menuItem;
+    //点击两次返回退出时间
+    private long exitTime = 0;
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;
@@ -55,12 +63,12 @@ public class MainActivity extends BaseActivity {
 
             }
         });
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
         List<Fragment> list = new ArrayList<>();
-        list.add(TestFragment.newInstance("home"));
-        list.add(TestFragment.newInstance("container"));
-        list.add(TestFragment.newInstance("image"));
+        list.add(new OverviewFragment());
+        list.add(new ContainerFragment());
+        list.add(new ImageFragment());
         viewPagerAdapter.setList(list);
 
     }
@@ -89,4 +97,27 @@ public class MainActivity extends BaseActivity {
             return false;
         }
     };
+
+    /**
+     * 检测返回键，实现按下两次返回退出程序
+     * @param keyCode code
+     * @param event event
+     * @return boolean
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            exit();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+    private void exit() {
+        if ((SystemClock.elapsedRealtime() - exitTime) > 2000){
+            Toast.makeText(MainActivity.this, "Press again to exit", Toast.LENGTH_SHORT).show();
+            exitTime = SystemClock.elapsedRealtime();
+        } else {
+            finish();
+        }
+    }
 }

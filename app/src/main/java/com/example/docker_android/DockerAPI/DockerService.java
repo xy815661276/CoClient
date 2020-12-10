@@ -208,5 +208,32 @@ public class DockerService {
                 .build();
         client.newCall(request).enqueue(callback);
     }
-
+    /**
+     * 删除停止的容器
+     * @param callback 回调方法
+     */
+    public static void DeleteStopContainer(okhttp3.Callback callback) {
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .connectTimeout(60000, TimeUnit.MILLISECONDS)//设置超时时间为60s
+                .readTimeout(60000, TimeUnit.MILLISECONDS).build();
+        RequestBody body = new FormBody.Builder()
+                .build();
+        Request request=new Request.Builder()
+                .url(address+"/containers/prune")
+                .post(body)
+                .build();
+        client.newCall(request).enqueue(callback);
+    }
+    /**
+     * 获取容器的日志，GET方法
+     * @param id 容器id
+     * @param callback 回调方法
+     */
+    public static void getLogs(String id,okhttp3.Callback callback) {
+        OkHttpClient client=new OkHttpClient();
+        Request request=new Request.Builder()
+                .url(address+"/containers/"+id+"/logs?stdout=true&stderr=true")
+                .build();
+        client.newCall(request).enqueue(callback);
+    }
 }

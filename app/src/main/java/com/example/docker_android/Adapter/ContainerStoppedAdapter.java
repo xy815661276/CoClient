@@ -91,10 +91,10 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
      */
     int choice;
     private void showSingDialog(String id){
-        final String[] items = {"启动","删除","待定"};
+        final String[] items = {"Start","Delete"};
         AlertDialog.Builder singleChoiceDialog = new AlertDialog.Builder(mContext);
         singleChoiceDialog.setIcon(R.drawable.docker);
-        singleChoiceDialog.setTitle("请选择");
+        singleChoiceDialog.setTitle("Please Select");
         //第二个参数是默认的选项
         singleChoiceDialog.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
             @Override
@@ -102,7 +102,7 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
                 choice= which;
             }
         });
-        singleChoiceDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        singleChoiceDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 LoadingDialog.showDialogForLoading(mContext);
@@ -115,9 +115,9 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
                                 @Override
                                 public void run() {
                                     if(response.code() == 204)
-                                        Toast.makeText(mContext,"启动成功",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(mContext,"Start successfully",Toast.LENGTH_SHORT).show();
                                     else
-                                        Toast.makeText(mContext,"启动失败，请稍后再试",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(mContext,"Start failed, please try again later",Toast.LENGTH_SHORT).show();
                                     ((ContainerStoppedActivity)mContext).loadData();
                                     LoadingDialog.hideDialogForLoading();
                                 }
@@ -141,9 +141,9 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
                                 @Override
                                 public void run() {
                                     if(response.code() == 204)
-                                        Toast.makeText(mContext,"删除成功",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(mContext,"Successfully deleted",Toast.LENGTH_SHORT).show();
                                     else
-                                        Toast.makeText(mContext,"删除失败，请稍后再试",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(mContext,"Delete failed, please try again later",Toast.LENGTH_SHORT).show();
                                     ((ContainerStoppedActivity)mContext).loadData();
                                     LoadingDialog.hideDialogForLoading();
                                 }
@@ -153,7 +153,7 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
                 }
             }
         });
-        singleChoiceDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+        singleChoiceDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 

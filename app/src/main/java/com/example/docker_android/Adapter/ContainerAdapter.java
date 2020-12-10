@@ -9,12 +9,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.docker_android.Activity.ContainerDetailsActivity;
 import com.example.docker_android.Activity.ContainerRunningActivity;
+import com.example.docker_android.Activity.LogsActivity;
 import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
@@ -70,19 +72,10 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
         final ViewHolder holder = new ViewHolder(view);
         holder.classView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 int position = holder.getAdapterPosition();
                 Container container = mClassList.get(position);
-                ContainerDetailsActivity.actionStart(mContext,container.getId(),container.getImage());
-            }
-        });
-        holder.classView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                int position = holder.getAdapterPosition();
-                Container container = mClassList.get(position);
-                showSingDialog(container.getId());
-                return false;
+                showSingDialog(container.getId(),container.getImage());
             }
         });
         return holder;
@@ -123,11 +116,11 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
      * 开启对话框，用于对容器的操作
      */
     int choice;
-    private void showSingDialog(String id){
-        final String[] items = {"停止","重启"};
+    private void showSingDialog(String id,String image){
+        final String[] items = {"View info","Stop","Start","View logs"};
         AlertDialog.Builder singleChoiceDialog = new AlertDialog.Builder(mContext);
         singleChoiceDialog.setIcon(R.drawable.docker);
-        singleChoiceDialog.setTitle("请选择");
+        singleChoiceDialog.setTitle("Please Select");
         //第二个参数是默认的选项
         singleChoiceDialog.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
             @Override
@@ -135,39 +128,46 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
                 choice= which;
             }
         });
-        singleChoiceDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        singleChoiceDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                LoadingDialog.showDialogForLoading(mContext);
                 String action = "";
-                if (choice==0) action = "stop";
-                else if(choice==1) action = "restart";
-                DockerService.ContainerAction(id,action,new okhttp3.Callback(){
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        ((AppCompatActivity)mContext).runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if(response.code() == 204){
-                                    Toast.makeText(mContext,"操作成功",Toast.LENGTH_SHORT).show();
+                if(choice == 0)
+                    ContainerDetailsActivity.actionStart(mContext,id,image);
+                else if(choice == 3){
+                    LogsActivity.actionStart(mContext,id,"");
+                }
+                else {
+                    LoadingDialog.showDialogForLoading(mContext);
+                    if (choice==1) action = "stop";
+                    else if(choice==2) action = "restart";
+                    DockerService.ContainerAction(id,action,new okhttp3.Callback(){
+                        @Override
+                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                            ((AppCompatActivity)mContext).runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if(response.code() == 204){
+                                        Toast.makeText(mContext,"Successful operation",Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                        Toast.makeText(mContext,"Operation failed, please try again later",Toast.LENGTH_SHORT).show();
+                                    }
+                                    ((ContainerRunningActivity)mContext).loadData();
+                                    LoadingDialog.hideDialogForLoading();
                                 }
-                                else {
-                                    Toast.makeText(mContext,"操作失败，请稍后再试",Toast.LENGTH_SHORT).show();
-                                }
-                                ((ContainerRunningActivity)mContext).loadData();
-                                LoadingDialog.hideDialogForLoading();
-                            }
-                        });
+                            });
 
-                    }
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        e.printStackTrace();
-                    }
-                });
+                        }
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }
             }
         });
-        singleChoiceDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+        singleChoiceDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 

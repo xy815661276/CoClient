@@ -11,23 +11,28 @@ import androidx.annotation.Nullable;
 
 import com.example.docker_android.Activity.ExecActivity;
 import com.example.docker_android.Base.BaseDialogFragment;
+import com.example.docker_android.Fragment.ContainerFragment;
 import com.example.docker_android.R;
+
+import org.w3c.dom.Text;
 
 
 /**
  * by xavier
  */
-public class ExecDialog extends BaseDialogFragment {
+public class PromptDialog extends BaseDialogFragment {
     private OnItemClickListener mOnItemClickListener;
-    public static ExecDialog newInstance() {
+
+    public static PromptDialog newInstance() {
         Bundle bundle = new Bundle();
-        ExecDialog dialog = new ExecDialog();
+        PromptDialog dialog = new PromptDialog();
         dialog.setArguments(bundle);
         return dialog;
     }
+
     @Override
     public int setUpLayoutId() {
-        return R.layout.dialog_exec;
+        return R.layout.dialog_prompt;
     }
 
     @Override
@@ -41,8 +46,6 @@ public class ExecDialog extends BaseDialogFragment {
 
     @Override
     public void convertView(final BaseDialogViewHolder holder, final BaseDialogFragment dialog) {
-        final EditText cmd = holder.getView(R.id.exec_cmd);
-        final EditText working_dir = holder.getView(R.id.exec_working_dir);
         holder.setOnClickListener(R.id.btn_cancel, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,18 +56,10 @@ public class ExecDialog extends BaseDialogFragment {
             @Override
             public void onClick(View view) {
                 if (mOnItemClickListener != null) {
-                    String Command = cmd.getText().toString().trim();
-                    String Working_dir = working_dir.getText().toString().trim();
-                    if ("".equals(Command)||"".equals(Working_dir)) {
-                        Toast.makeText(holder.getConvertView().getContext(), "有输入为空，请重新输入",Toast.LENGTH_SHORT).show();
-                    } else {
-                            Intent resultIntent = new Intent();
-                            resultIntent.putExtra("Command", Command);
-                            resultIntent.putExtra("Working_dir", Working_dir);
-                            onActivityResult(ExecActivity.REQUEST, Activity.RESULT_OK,resultIntent);
-                            if (mOnItemClickListener.onOKClick(holder.getConvertView(), resultIntent)) {
-                                dialog.dismiss();
-                            }
+                    Intent resultIntent = new Intent();
+                    onActivityResult(ContainerFragment.REQUEST, Activity.RESULT_OK,resultIntent);
+                    if (mOnItemClickListener.onOKClick(holder.getConvertView(), resultIntent)) {
+                        dialog.dismiss();
                     }
                 } else {
                     dialog.dismiss();
@@ -76,7 +71,7 @@ public class ExecDialog extends BaseDialogFragment {
             boolean onOKClick(View view, Intent data);
     }
 
-    public void setOnItemClickListener(ExecDialog.OnItemClickListener onItemClickListener) {
+    public void setOnItemClickListener(PromptDialog.OnItemClickListener onItemClickListener) {
         mOnItemClickListener = onItemClickListener;
     }
 

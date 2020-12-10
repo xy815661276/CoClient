@@ -1,0 +1,248 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/pure_white"
+    android:orientation="vertical">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/container_main_srl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/home_container_running_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="10dp"
+                    app:cardBackgroundColor="@color/mainPage_background_white"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="10dp">
+
+                    <RelativeLayout
+                        android:id="@+id/runningHeader"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/running">
+
+                        <ImageView
+                            android:id="@+id/runningIcon"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/running"/>
+
+                        <TextView
+                            android:id="@+id/runningLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Running containers"
+                            android:textColor="@color/white"
+                            android:layout_marginRight="15dp"
+                            android:textSize="18dp"
+                            android:layout_above="@+id/running"
+                            android:layout_alignParentRight="true"/>
+
+                        <TextView
+                            android:id="@+id/running"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Undefined"
+                            android:textSize="22dp"
+                            android:textColor="@color/white"
+                            android:layout_marginRight="15dp"
+                            android:textStyle="bold"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"/>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/home_container_stop_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="10dp"
+                    app:cardBackgroundColor="@color/mainPage_background_white"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:layout_below="@+id/home_container_running_card"
+                    app:cardCornerRadius="10dp">
+
+                    <RelativeLayout
+                        android:id="@+id/stoppedHeader"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/stopped">
+
+                        <ImageView
+                            android:id="@+id/stoppedIcon"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/stop"/>
+
+                        <TextView
+                            android:id="@+id/stoppedLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Stopped containers"
+                            android:textColor="@color/white"
+                            android:layout_marginRight="15dp"
+                            android:textSize="18dp"
+                            android:layout_above="@+id/stopped"
+                            android:layout_alignParentRight="true"/>
+
+                        <TextView
+                            android:id="@+id/stopped"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Undefined"
+                            android:textSize="22dp"
+                            android:textColor="@color/white"
+                            android:layout_marginRight="15dp"
+                            android:textStyle="bold"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"/>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/home_image_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="10dp"
+                    app:cardBackgroundColor="@color/mainPage_background_white"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:layout_below="@+id/home_container_stop_card"
+                    app:cardCornerRadius="10dp">
+
+                    <RelativeLayout
+                        android:id="@+id/imagesHeader"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/images">
+
+                        <ImageView
+                            android:id="@+id/imagesIcon"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/image"/>
+
+                        <TextView
+                            android:id="@+id/imagesLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Images"
+                            android:textColor="@color/white"
+                            android:layout_marginRight="15dp"
+                            android:textSize="18dp"
+                            android:layout_above="@+id/images"
+                            android:layout_alignParentRight="true"/>
+
+                        <TextView
+                            android:id="@+id/images"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Undefined"
+                            android:textSize="22dp"
+                            android:textColor="@color/white"
+                            android:layout_marginRight="15dp"
+                            android:textStyle="bold"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"/>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/home_os_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="10dp"
+                    app:cardBackgroundColor="@color/mainPage_background_white"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:layout_below="@+id/home_image_card"
+                    app:cardCornerRadius="10dp">
+
+                    <RelativeLayout
+                        android:id="@+id/osHeader"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/os">
+
+                        <ImageView
+                            android:id="@+id/osIcon"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/os"/>
+
+                        <TextView
+                            android:id="@+id/osLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="OS"
+                            android:textColor="@color/white"
+                            android:layout_marginRight="15dp"
+                            android:textSize="18dp"
+                            android:layout_above="@+id/os"
+                            android:layout_alignParentRight="true"/>
+
+                        <TextView
+                            android:id="@+id/os"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Android"
+                            android:textSize="22dp"
+                            android:textColor="@color/white"
+                            android:layout_marginRight="15dp"
+                            android:textStyle="bold"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"/>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>
