@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.docker_android.Activity.ContainerRunningActivity;
 import com.example.docker_android.Activity.ImageActivity;
+import com.example.docker_android.Activity.ImageDetailsActivity;
 import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
@@ -136,10 +137,10 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
      */
     int choice;
     private void showSingDialog(String id){
-        final String[] items = {"删除","待定"};
+        final String[] items = {"Delete","View Info"};
         AlertDialog.Builder singleChoiceDialog = new AlertDialog.Builder(mContext);
         singleChoiceDialog.setIcon(R.drawable.docker);
-        singleChoiceDialog.setTitle("请选择");
+        singleChoiceDialog.setTitle("Please Select");
         //第二个参数是默认的选项
         singleChoiceDialog.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
             @Override
@@ -147,11 +148,11 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                 choice= which;
             }
         });
-        singleChoiceDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        singleChoiceDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                LoadingDialog.showDialogForLoading(mContext);
-                if (choice==0) {
+                if (choice == 0) {
+                    LoadingDialog.showDialogForLoading(mContext);
                     DockerService.DeleteImage(id,new okhttp3.Callback(){
                         @Override
                         public void onFailure(Call call, IOException e) {
@@ -164,10 +165,10 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                                 @Override
                                 public void run() {
                                     if(response.code() == 200){
-                                        Toast.makeText(mContext,"删除成功",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(mContext,"successfully deleted",Toast.LENGTH_SHORT).show();
                                     }
                                     else {
-                                        Toast.makeText(mContext,"删除失败，请稍后再试",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(mContext,"Delete failed, please try again later",Toast.LENGTH_SHORT).show();
                                     }
                                     ((ImageActivity)mContext).loadData();
                                     LoadingDialog.hideDialogForLoading();
@@ -176,9 +177,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                         }
                     });
                 }
+                else if(choice == 1){
+                    ImageDetailsActivity.actionStart(mContext,id,"");
+                }
             }
         });
-        singleChoiceDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+        singleChoiceDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 

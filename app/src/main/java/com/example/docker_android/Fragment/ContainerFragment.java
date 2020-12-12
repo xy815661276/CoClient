@@ -3,13 +3,10 @@ package com.example.docker_android.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,16 +18,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.docker_android.Activity.ContainerRunningActivity;
 import com.example.docker_android.Activity.ContainerStoppedActivity;
 import com.example.docker_android.Activity.CreateContainerActivity;
-import com.example.docker_android.Activity.ExecActivity;
-import com.example.docker_android.Activity.ImageActivity;
-import com.example.docker_android.Activity.OSInfoActivity;
 import com.example.docker_android.Base.BaseLazyFragment;
-import com.example.docker_android.Dialog.ExecDialog;
 import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.Dialog.PromptDialog;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
-import com.example.docker_android.Entity.Image.Image;
 import com.example.docker_android.R;
 
 import java.io.IOException;
@@ -96,7 +88,7 @@ public class ContainerFragment extends BaseLazyFragment {
         containerDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final PromptDialog promptDialog = PromptDialog.newInstance();
+                final PromptDialog promptDialog = PromptDialog.newInstance("Are you sure to delete the stopped containers?");
                 promptDialog.setOnItemClickListener(new PromptDialog.OnItemClickListener() {
                     @Override
                     public boolean onOKClick(View view, Intent data) {
@@ -121,6 +113,7 @@ public class ContainerFragment extends BaseLazyFragment {
                                             else {
                                                 Toast.makeText(getActivity(),"Delete failed,try again later",Toast.LENGTH_SHORT).show();
                                             }
+                                            loadData();
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                             Toast.makeText(getActivity(), "Delete failed,try again later", Toast.LENGTH_SHORT).show();
@@ -132,7 +125,7 @@ public class ContainerFragment extends BaseLazyFragment {
                         return true;
                     }
                 });
-                promptDialog.setMargin(60)
+                promptDialog.setMargin(30)
                         .setClickOutCancel(true)
                         .show(getActivity().getSupportFragmentManager());
             }

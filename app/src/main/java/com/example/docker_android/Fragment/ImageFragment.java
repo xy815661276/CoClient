@@ -1,14 +1,12 @@
 package com.example.docker_android.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,12 +14,14 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
-import com.alibaba.fastjson.JSONObject;
-import com.example.docker_android.Activity.ContainerRunningActivity;
-import com.example.docker_android.Activity.ContainerStoppedActivity;
+import com.example.docker_android.Activity.CreateImageActivity;
 import com.example.docker_android.Activity.ImageActivity;
-import com.example.docker_android.Activity.OSInfoActivity;
+import com.example.docker_android.Activity.ImageSearchActivity;
 import com.example.docker_android.Base.BaseLazyFragment;
+import com.example.docker_android.Dialog.ExecDialog;
+import com.example.docker_android.Dialog.LoadingDialog;
+import com.example.docker_android.Dialog.PromptDialog;
+import com.example.docker_android.Dialog.SearchDialog;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
 import com.example.docker_android.Entity.Image.Image;
@@ -32,10 +32,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.Response;
 
 public class ImageFragment extends BaseLazyFragment {
     private RelativeLayout image;
+    private RelativeLayout create_image;
+    private RelativeLayout delete_unused_image;
+    private RelativeLayout image_search;
     private TextView images;
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -53,6 +57,9 @@ public class ImageFragment extends BaseLazyFragment {
         image = view.findViewById(R.id.imagesHeader);
         images = view.findViewById(R.id.images);
         swipeRefreshLayout = view.findViewById(R.id.image_srl);
+        create_image = view.findViewById(R.id.create_image);
+        delete_unused_image = view.findViewById(R.id.delete_image);
+        image_search = view.findViewById(R.id.image_search_Header);
     }
 
     @Override
@@ -62,6 +69,67 @@ public class ImageFragment extends BaseLazyFragment {
             @Override
             public void onClick(View view) {
                 ImageActivity.actionStart(getActivity(),"","");
+            }
+        });
+        create_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CreateImageActivity.actionStart(getActivity(),"","");
+            }
+        });
+        image_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SearchDialog searchDialog = SearchDialog.newInstance();
+                searchDialog.setMargin(60)
+                        .setClickOutCancel(true)
+                        .show(getActivity().getSupportFragmentManager());
+            }
+        });
+        delete_unused_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final PromptDialog promptDialog = PromptDialog.newInstance("Are you sure to delete the unused images?");
+                promptDialog.setOnItemClickListener(new PromptDialog.OnItemClickListener() {
+                    @Override
+                    public boolean onOKClick(View view, Intent data) {
+                        LoadingDialog.showDialogForLoading(getActivity());
+                        DockerService.DeleteUnusedImage(new Callback() {
+                            @Override
+                            public void onFailure(Call call, IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+                                LoadingDialog.hideDialogForLoading();
+                                final String responseData = response.body().string();
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        try {
+                                            if(response.code() == 200){
+                                                Toast.makeText(getActivity(),"Successfully deleted",Toast.LENGTH_SHORT).show();
+                                            }
+                                            else {
+                                                Toast.makeText(getActivity(),"Delete failed,try again later",Toast.LENGTH_SHORT).show();
+                                            }
+                                            loadData();
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                            Toast.makeText(getActivity(), "Delete failed,try again later", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                        return true;
+                    }
+                });
+                promptDialog.setMargin(30)
+                        .setClickOutCancel(true)
+                        .show(getActivity().getSupportFragmentManager());
             }
         });
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

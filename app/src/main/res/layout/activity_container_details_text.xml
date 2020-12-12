@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.ImageDetailsActivity">
-
+    tools:context=".Activity.ContainerDetailsTextActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/logs_toolbar"
         android:layout_width="match_parent"
@@ -32,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="Image Info"
+                android:text="Container Info"
                 android:textSize="@dimen/default_big_large_text_size"
                 android:textColor="@color/pure_white"/>
 
@@ -45,9 +44,8 @@
         android:orientation="vertical">
 
         <com.yuyh.jsonviewer.library.JsonRecyclerView
-            android:id="@+id/image_info"
+            android:id="@+id/container_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </HorizontalScrollView>
-
 </LinearLayout>

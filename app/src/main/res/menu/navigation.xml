@@ -14,4 +14,9 @@
         android:enabled="true"
         android:icon="@drawable/ic_image"
         android:title="image"/>
+    <item
+        android:id="@+id/page_checkpoint"
+        android:enabled="true"
+        android:icon="@drawable/ic_container_checkpoint"
+        android:title="checkpoint"/>
 </menu>

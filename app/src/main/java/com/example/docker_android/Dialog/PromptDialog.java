@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -22,6 +23,15 @@ import org.w3c.dom.Text;
  */
 public class PromptDialog extends BaseDialogFragment {
     private OnItemClickListener mOnItemClickListener;
+    private String prompt_content;
+
+    public PromptDialog(String text) {
+        prompt_content = text;
+    }
+
+    public PromptDialog() {
+
+    }
 
     public static PromptDialog newInstance() {
         Bundle bundle = new Bundle();
@@ -30,6 +40,12 @@ public class PromptDialog extends BaseDialogFragment {
         return dialog;
     }
 
+    public static PromptDialog newInstance(String text) {
+        Bundle bundle = new Bundle();
+        PromptDialog dialog = new PromptDialog(text);
+        dialog.setArguments(bundle);
+        return dialog;
+    }
     @Override
     public int setUpLayoutId() {
         return R.layout.dialog_prompt;
@@ -46,6 +62,7 @@ public class PromptDialog extends BaseDialogFragment {
 
     @Override
     public void convertView(final BaseDialogViewHolder holder, final BaseDialogFragment dialog) {
+        holder.setText(R.id.prompt_content,prompt_content);
         holder.setOnClickListener(R.id.btn_cancel, new View.OnClickListener() {
             @Override
             public void onClick(View view) {

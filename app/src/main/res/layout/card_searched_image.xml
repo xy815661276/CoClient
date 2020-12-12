@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardBackgroundColor="@color/mainPage_background_white"
+    android:focusable="true"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="10dp">
+    <LinearLayout
+        android:id="@+id/dockerHeader"
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:background="@color/colorPrimaryDark">
+
+        <RelativeLayout
+            android:id="@+id/imageIcon_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/imageIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/image"
+                android:layout_alignParentLeft="true"/>
+            <TextView
+                android:id="@+id/image_search_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@+id/imageIcon"
+                android:text="Image Name"
+                android:textStyle="bold"
+                android:textColor="#FFF"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/imageDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="description"
+            android:textColor="@color/white"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/imageIcon_search"
+            android:textSize="15dp"
+            android:layout_above="@+id/tagTV"/>
+
+        <TextView
+            android:id="@+id/is_official"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="is_official:"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/is_automated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="is_automated:"
+            android:layout_marginLeft="10dp"
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="bottom"
+        android:layout_height="20dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_image_star"
+            android:layout_toLeftOf="@+id/stars"/>
+
+        <TextView
+            android:id="@+id/stars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_alignParentRight="true"
+            android:text="100k+"
+            android:textStyle="bold"
+            android:textColor="#FFF"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

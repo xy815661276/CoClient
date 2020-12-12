@@ -56,7 +56,7 @@ public class ExecDialog extends BaseDialogFragment {
                     String Command = cmd.getText().toString().trim();
                     String Working_dir = working_dir.getText().toString().trim();
                     if ("".equals(Command)||"".equals(Working_dir)) {
-                        Toast.makeText(holder.getConvertView().getContext(), "有输入为空，请重新输入",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(holder.getConvertView().getContext(), "Some input is empty",Toast.LENGTH_SHORT).show();
                     } else {
                             Intent resultIntent = new Intent();
                             resultIntent.putExtra("Command", Command);

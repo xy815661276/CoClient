@@ -19,6 +19,7 @@ import com.example.docker_android.Base.BaseActivity;
 import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
+import com.example.docker_android.Fragment.ContainerFragment;
 import com.example.docker_android.R;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -74,7 +75,7 @@ public class CreateContainerActivity extends BaseActivity {
                 String host_volume = Host_volume.getText().toString();
                 String container_volume = Container_volume.getText().toString();
                 if(container_name.equals("")||image_name.equals("")||container_port.equals("")||host_port.equals("")||host_volume.equals("")||container_volume.equals("")){
-                    Toast.makeText(CreateContainerActivity.this,"输入有空，请重新输入",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateContainerActivity.this,"Input available",Toast.LENGTH_SHORT).show();
                     LoadingDialog.hideDialogForLoading();
                 }
                 else {
@@ -95,15 +96,15 @@ public class CreateContainerActivity extends BaseActivity {
                                         @Override
                                         public void run() {
                                             if(response.code()==201)
-                                                Toast.makeText(CreateContainerActivity.this,"创建成功",Toast.LENGTH_LONG).show();
+                                                Toast.makeText(CreateContainerActivity.this,"Created successfully",Toast.LENGTH_LONG).show();
                                             else if(response.code()==400)
-                                                Toast.makeText(CreateContainerActivity.this,"创建失败，错误的参数:"+result.getString("message"),Toast.LENGTH_LONG).show();
+                                                Toast.makeText(CreateContainerActivity.this,"Creation failed, wrong parameters:"+result.getString("message"),Toast.LENGTH_LONG).show();
                                             else if(response.code()==404)
-                                                Toast.makeText(CreateContainerActivity.this,"创建失败，没有该容器",Toast.LENGTH_LONG).show();
+                                                Toast.makeText(CreateContainerActivity.this,"Creation failed, there is no such container",Toast.LENGTH_LONG).show();
                                             else if(response.code()==409)
-                                                Toast.makeText(CreateContainerActivity.this,"创建失败，参数冲突:"+result.getString("message"),Toast.LENGTH_LONG).show();
+                                                Toast.makeText(CreateContainerActivity.this,"Creation failed, parameter conflict:"+result.getString("message"),Toast.LENGTH_LONG).show();
                                             else if(response.code()==500)
-                                                Toast.makeText(CreateContainerActivity.this,"创建失败，服务器错误",Toast.LENGTH_LONG).show();
+                                                Toast.makeText(CreateContainerActivity.this,"Creation failed, server error",Toast.LENGTH_LONG).show();
                                             LoadingDialog.hideDialogForLoading();
                                             finish();
                                         }

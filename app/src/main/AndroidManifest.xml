@@ -17,6 +17,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity android:name=".Activity.ImageSearchActivity"></activity>
+        <activity android:name=".Activity.ContainerDetailsTextActivity" />
         <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,14 +29,12 @@
         <activity android:name=".Activity.ExecActivity" />
         <activity android:name=".Activity.CreateImageActivity" />
         <activity android:name=".Activity.CreateContainerActivity" />
-        <activity android:name=".Activity.OSInfoActivity" />
         <activity android:name=".Activity.ImageDetailsActivity" />
         <activity android:name=".Activity.ContainerDetailsActivity" />
         <activity android:name=".Activity.ImageActivity" />
         <activity android:name=".Activity.ContainerRunningActivity" />
         <activity android:name=".Activity.ContainerStoppedActivity" />
-        <activity android:name=".Activity.HomeActivity"/>
-        <activity android:name=".Activity.LogsActivity"/>
+        <activity android:name=".Activity.LogsActivity" />
     </application>
 
 </manifest>

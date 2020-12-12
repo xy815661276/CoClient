@@ -1,7 +1,6 @@
 package com.example.docker_android.Activity;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -13,11 +12,10 @@ import android.widget.Toast;
 
 import com.example.docker_android.Adapter.ViewPagerAdapter;
 import com.example.docker_android.Base.BaseActivity;
+import com.example.docker_android.Fragment.CheckpointFragment;
 import com.example.docker_android.Fragment.ContainerFragment;
-import com.example.docker_android.Fragment.HomeFragment;
 import com.example.docker_android.Fragment.ImageFragment;
 import com.example.docker_android.Fragment.OverviewFragment;
-import com.example.docker_android.Fragment.TestFragment;
 import com.example.docker_android.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -69,6 +67,7 @@ public class MainActivity extends BaseActivity {
         list.add(new OverviewFragment());
         list.add(new ContainerFragment());
         list.add(new ImageFragment());
+        list.add(new CheckpointFragment());
         viewPagerAdapter.setList(list);
 
     }
@@ -92,6 +91,9 @@ public class MainActivity extends BaseActivity {
                     return true;
                 case R.id.page_image:
                     viewPager.setCurrentItem(2);
+                    return true;
+                case R.id.page_checkpoint:
+                    viewPager.setCurrentItem(3);
                     return true;
             }
             return false;
