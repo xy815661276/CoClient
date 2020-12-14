@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardBackgroundColor="@color/mainPage_background_white"
+    android:focusable="true"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="10dp">
+    <RelativeLayout
+        android:id="@+id/dockerHeader"
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        android:background="@color/checkpoint">
+
+        <ImageView
+            android:id="@+id/dockerIcon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_checkpoints"
+            android:layout_alignParentLeft="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="checkpoint"
+            android:textColor="@color/white"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/dockerIcon"
+            android:textSize="15dp"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_below="@+id/dockerIcon"
+            android:layout_alignParentLeft="true"/>
+
+
+        <TextView
+            android:id="@+id/checkpoint_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Checkpoint name"
+            android:gravity="right"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/dockerIcon"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="22dp"
+            android:textColor="@color/white"
+            android:layout_marginRight="15dp"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

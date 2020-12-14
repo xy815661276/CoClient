@@ -16,11 +16,10 @@
         android:textSize="20sp"/>
 
     <EditText
-        android:id="@+id/search_content"
+        android:id="@+id/edit_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:hint="input search content"
         android:background="@drawable/edit_shape"
         android:textColor="#111111"
         android:textSize="17sp"/>

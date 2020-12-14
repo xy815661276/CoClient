@@ -62,6 +62,7 @@
     <color name="os">#F8AC59</color>
     <color name="runtime">#9C27B0</color>
     <color name="networkout">#F44336</color>
+    <color name="checkpoint">#00BCD4</color>
     <color name="shrine_pink">#FDD2C6</color>
     <color name="tab_checked">#FFFFFF</color>
     <color name="tab_unchecked">#C5C3C3</color>

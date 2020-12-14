@@ -131,65 +131,58 @@
 
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
-                    <LinearLayout
-                        android:id="@+id/container_action"
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/home_container_create_card"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_below="@+id/home_container_stop_card">
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/home_container_create_card"
-                                android:layout_width="190dp"
-                                android:layout_height="120dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="10dp"
-                                app:cardBackgroundColor="@color/dashboard"
-                                android:focusable="true"
-                                android:clickable="true"
-                                android:foreground="?android:attr/selectableItemBackground"
-                                app:cardCornerRadius="10dp">
-                                <RelativeLayout
-                                    android:id="@+id/create_container"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-                                    <ImageView
-                                        android:id="@+id/container_create_img"
-                                        android:layout_width="60dp"
-                                        android:layout_height="60dp"
-                                        android:layout_marginLeft="10dp"
-                                        android:layout_centerVertical="true"
-                                        android:src="@drawable/ic_container_create"/>
-                                    <TextView
-                                        android:id="@+id/container_create_txt"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Create\nContainer"
-                                        android:textSize="22sp"
-                                        android:textColor="@color/white"
-                                        android:textStyle="bold"
-                                        android:layout_marginLeft="15dp"
-                                        android:layout_centerVertical="true"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_toRightOf="@id/container_create_img"/>
-                                </RelativeLayout>
-                            </androidx.cardview.widget.CardView>
+                        android:layout_height="120dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp"
+                        app:cardBackgroundColor="@color/dashboard"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:layout_below="@+id/home_container_stop_card"
+                        app:cardCornerRadius="10dp">
+                        <RelativeLayout
+                            android:id="@+id/create_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:id="@+id/container_create_img"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_container_create"/>
+                            <TextView
+                                android:id="@+id/container_create_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Create\nContainer"
+                                android:textSize="22sp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:layout_marginRight="10dp"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"/>
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
 
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/home_container_delete_card"
-                            android:layout_width="190dp"
+                            android:layout_width="match_parent"
                             android:layout_height="120dp"
                             android:layout_gravity="center"
                             android:layout_marginEnd="5dp"
                             android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
                             app:cardBackgroundColor="@color/networkout"
                             android:focusable="true"
                             android:clickable="true"
                             android:foreground="?android:attr/selectableItemBackground"
-                            android:layout_below="@+id/home_container_running_card"
+                            android:layout_below="@+id/home_container_create_card"
                             app:cardCornerRadius="10dp">
 
                             <RelativeLayout
@@ -217,7 +210,6 @@
                                     android:layout_alignParentRight="true"/>
                             </RelativeLayout>
                         </androidx.cardview.widget.CardView>
-                    </LinearLayout>
                     <androidx.cardview.widget.CardView
                         android:id="@+id/home_container_migrate_card"
                         android:layout_width="match_parent"
@@ -229,7 +221,7 @@
                         app:cardBackgroundColor="@color/mainPage_background_white"
                         android:focusable="true"
                         android:clickable="true"
-                        android:layout_below="@+id/container_action"
+                        android:layout_below="@+id/home_container_delete_card"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="10dp">
 

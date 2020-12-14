@@ -17,7 +17,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".Activity.ImageSearchActivity"></activity>
+        <activity android:name=".Activity.CheckpointActivity"></activity>
+        <activity android:name=".Activity.ImageSearchActivity" />
         <activity android:name=".Activity.ContainerDetailsTextActivity" />
         <activity android:name=".Activity.MainActivity">
             <intent-filter>

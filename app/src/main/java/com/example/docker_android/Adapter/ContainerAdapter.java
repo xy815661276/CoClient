@@ -1,6 +1,7 @@
 package com.example.docker_android.Adapter;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
@@ -18,6 +19,8 @@ import com.example.docker_android.Activity.ContainerDetailsActivity;
 import com.example.docker_android.Activity.ContainerDetailsTextActivity;
 import com.example.docker_android.Activity.ContainerRunningActivity;
 import com.example.docker_android.Activity.LogsActivity;
+import com.example.docker_android.Base.BaseActivity;
+import com.example.docker_android.Dialog.EditDialog;
 import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
@@ -29,6 +32,7 @@ import java.util.Date;
 import java.util.List;
 
 import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
@@ -138,6 +142,14 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
                 else if(choice == 3){
                     LogsActivity.actionStart(mContext,id,"");
                 }
+                else if(choice == 4){
+                    EditDialog searchDialog = EditDialog.newInstance("input checkpoint name",1,id);
+                    BaseActivity activity = (BaseActivity) mContext;
+                    searchDialog.setMargin(60)
+                            .setClickOutCancel(true)
+                            .show(activity.getSupportFragmentManager());
+                    ((ContainerRunningActivity)mContext).loadData();
+                }
                 else if(choice == 5){
                     ContainerDetailsTextActivity.actionStart(mContext,id,"");
                 }
@@ -145,7 +157,7 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
                     LoadingDialog.showDialogForLoading(mContext);
                     if (choice==1) action = "stop";
                     else if(choice==2) action = "start";
-                    DockerService.ContainerAction(id,action,new okhttp3.Callback(){
+                    DockerService.ContainerAction(id,action,new Callback(){
                         @Override
                         public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                             ((AppCompatActivity)mContext).runOnUiThread(new Runnable() {

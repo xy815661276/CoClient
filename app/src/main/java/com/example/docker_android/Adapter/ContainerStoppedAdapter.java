@@ -18,8 +18,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.docker_android.Activity.ContainerDetailsActivity;
 import com.example.docker_android.Activity.ContainerStoppedActivity;
+import com.example.docker_android.Base.BaseActivity;
+import com.example.docker_android.Dialog.EditDialog;
 import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.DockerAPI.DockerService;
+import com.example.docker_android.DockerAPI.DockerTerminalService;
 import com.example.docker_android.Entity.Container.Container;
 import com.example.docker_android.R;
 
@@ -91,7 +94,7 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
      */
     int choice;
     private void showSingDialog(String id){
-        final String[] items = {"Start","Delete"};
+        final String[] items = {"Start","Delete","Checkpoint Start"};
         AlertDialog.Builder singleChoiceDialog = new AlertDialog.Builder(mContext);
         singleChoiceDialog.setIcon(R.drawable.docker);
         singleChoiceDialog.setTitle("Please Select");
@@ -105,8 +108,8 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
         singleChoiceDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                LoadingDialog.showDialogForLoading(mContext);
                 if (choice == 0){
+                    LoadingDialog.showDialogForLoading(mContext);
                     DockerService.ContainerAction(id,"start",new okhttp3.Callback(){
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
@@ -130,6 +133,7 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
                     });
                 }
                 else if(choice == 1){
+                    LoadingDialog.showDialogForLoading(mContext);
                     DockerService.DeleteContainer(id,new okhttp3.Callback(){
                         @Override
                         public void onFailure(Call call, IOException e) {
@@ -150,6 +154,13 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
                             });
                         }
                     });
+                }
+                else if(choice == 2){
+                    BaseActivity baseActivity = (BaseActivity) mContext;
+                    EditDialog searchDialog = EditDialog.newInstance("input checkpoint name",2,id);
+                    searchDialog.setMargin(60)
+                            .setClickOutCancel(true)
+                            .show(baseActivity.getSupportFragmentManager());
                 }
             }
         });

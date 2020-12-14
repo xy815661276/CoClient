@@ -16,12 +16,10 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.example.docker_android.Activity.CreateImageActivity;
 import com.example.docker_android.Activity.ImageActivity;
-import com.example.docker_android.Activity.ImageSearchActivity;
 import com.example.docker_android.Base.BaseLazyFragment;
-import com.example.docker_android.Dialog.ExecDialog;
 import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.Dialog.PromptDialog;
-import com.example.docker_android.Dialog.SearchDialog;
+import com.example.docker_android.Dialog.EditDialog;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
 import com.example.docker_android.Entity.Image.Image;
@@ -80,7 +78,7 @@ public class ImageFragment extends BaseLazyFragment {
         image_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SearchDialog searchDialog = SearchDialog.newInstance();
+                EditDialog searchDialog = EditDialog.newInstance("input search content",0,"");
                 searchDialog.setMargin(60)
                         .setClickOutCancel(true)
                         .show(getActivity().getSupportFragmentManager());
