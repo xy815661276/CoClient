@@ -65,13 +65,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void finishTask() {
 
     }
+
     //设置透明状态栏
     public void setTranslucentStatus() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         //注意要清除 FLAG_TRANSLUCENT_STATUS flag
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
-
     }
 
     @Override

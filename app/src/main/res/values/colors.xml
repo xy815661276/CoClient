@@ -65,5 +65,5 @@
     <color name="checkpoint">#00BCD4</color>
     <color name="shrine_pink">#FDD2C6</color>
     <color name="tab_checked">#FFFFFF</color>
-    <color name="tab_unchecked">#C5C3C3</color>
+    <color name="tab_unchecked">#F1EEEE</color>
 </resources>
