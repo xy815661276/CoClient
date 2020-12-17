@@ -16,6 +16,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.example.docker_android.Activity.CreateImageActivity;
 import com.example.docker_android.Activity.ImageActivity;
+import com.example.docker_android.Activity.ImageMigrateActivity;
 import com.example.docker_android.Base.BaseLazyFragment;
 import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.Dialog.PromptDialog;
@@ -38,6 +39,7 @@ public class ImageFragment extends BaseLazyFragment {
     private RelativeLayout create_image;
     private RelativeLayout delete_unused_image;
     private RelativeLayout image_search;
+    private RelativeLayout image_migrate;
     private TextView images;
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -58,6 +60,7 @@ public class ImageFragment extends BaseLazyFragment {
         create_image = view.findViewById(R.id.create_image);
         delete_unused_image = view.findViewById(R.id.delete_image);
         image_search = view.findViewById(R.id.image_search_Header);
+        image_migrate = view.findViewById(R.id.image_migrateHeader);
     }
 
     @Override
@@ -128,6 +131,12 @@ public class ImageFragment extends BaseLazyFragment {
                 promptDialog.setMargin(30)
                         .setClickOutCancel(true)
                         .show(getActivity().getSupportFragmentManager());
+            }
+        });
+        image_migrate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ImageMigrateActivity.actionStart(getActivity(),"","");
             }
         });
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

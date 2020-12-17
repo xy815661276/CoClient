@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/list_interval">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginEnd="@dimen/dafault_general_margin"
+            android:layout_marginRight="@dimen/dafault_general_margin"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:padding="@dimen/toolbar_textbtn_padding"
+            android:text="Image Migration"
+            android:textStyle="bold"
+            android:textColor="@color/pure_white"
+            android:textSize="@dimen/default_medium_text_size" />
+
+        <TextView
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/dafault_general_margin"
+            android:layout_marginRight="@dimen/dafault_general_margin"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:padding="@dimen/toolbar_textbtn_padding"
+            android:text="submit"
+            android:textStyle="bold"
+            android:textColor="@color/pure_white"
+            android:textSize="@dimen/default_medium_text_size" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorTabUnchecked"
+            android:paddingStart="@dimen/dafault_general_margin"
+            android:paddingLeft="@dimen/dafault_general_margin"
+            android:paddingEnd="0dp"
+            android:paddingRight="0dp">
+
+            <TextView
+                android:id="@+id/container_name_text"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="IP Address"
+                android:lineSpacingMultiplier="1.2"
+                android:textColor="@color/grey_black"
+                android:textSize="@dimen/default_small_text_size"/>
+
+            <EditText
+                android:id="@+id/image_ip_addr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/edit_shape"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/container_name_text"
+                android:layout_toRightOf="@+id/container_name_text"
+                android:gravity="center_vertical"
+                android:hint="Input ip address"
+                android:textColorHint="@color/toolbar_title"
+                android:textColor="@color/grey_black"
+                android:textSize="@dimen/default_small_text_size"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="@dimen/dafault_general_margin"
+                android:layout_marginRight="@dimen/dafault_general_margin"
+                android:background="#DADADA" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_alignParentTop="true"
+                android:background="@color/label_interval_view" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/file"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/colorTabUnchecked"
+            android:paddingStart="@dimen/dafault_general_margin"
+            android:paddingLeft="@dimen/dafault_general_margin"
+            android:paddingEnd="0dp"
+            android:paddingRight="0dp">
+
+            <TextView
+                android:id="@+id/file_name_text"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Container Name"
+                android:lineSpacingMultiplier="1.2"
+                android:textColor="@color/grey_black"
+                android:textSize="@dimen/default_small_text_size"/>
+
+            <EditText
+                android:id="@+id/container_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/edit_shape"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/file_name_text"
+                android:layout_toRightOf="@+id/file_name_text"
+                android:gravity="center_vertical"
+                android:hint="Input container name or id"
+                android:textColorHint="@color/toolbar_title"
+                android:textColor="@color/grey_black"
+                android:textSize="@dimen/default_small_text_size"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="@dimen/dafault_general_margin"
+                android:layout_marginRight="@dimen/dafault_general_margin"
+                android:background="#DADADA" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/colorTabUnchecked"
+            android:paddingStart="@dimen/dafault_general_margin"
+            android:paddingLeft="@dimen/dafault_general_margin"
+            android:paddingEnd="0dp"
+            android:paddingRight="0dp">
+
+            <TextView
+                android:id="@+id/image_name_text"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Image Name"
+                android:lineSpacingMultiplier="1.2"
+                android:textColor="@color/grey_black"
+                android:textSize="@dimen/default_small_text_size"/>
+
+            <EditText
+                android:id="@+id/image_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/edit_shape"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/image_name_text"
+                android:layout_toRightOf="@+id/image_name_text"
+                android:gravity="center_vertical"
+                android:hint="Input image name"
+                android:textColorHint="@color/toolbar_title"
+                android:textColor="@color/grey_black"
+                android:textSize="@dimen/default_small_text_size"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="@dimen/dafault_general_margin"
+                android:layout_marginRight="@dimen/dafault_general_margin"
+                android:background="#DADADA" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</FrameLayout>

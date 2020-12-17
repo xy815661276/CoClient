@@ -5,6 +5,8 @@
     package="com.example.docker_android">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <dist:module dist:instant="true" />
 
@@ -15,8 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity android:name=".Activity.ImageMigrateActivity" />
+        <activity android:name=".Activity.ContainerMigrateActivity" />
         <activity android:name=".Activity.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +32,7 @@
         <activity android:name=".Activity.CheckpointActivity" />
         <activity android:name=".Activity.ImageSearchActivity" />
         <activity android:name=".Activity.ContainerDetailsTextActivity" />
-        <activity android:name=".Activity.MainActivity"/>
+        <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.ExecActivity" />
         <activity android:name=".Activity.CreateImageActivity" />
         <activity android:name=".Activity.CreateContainerActivity" />

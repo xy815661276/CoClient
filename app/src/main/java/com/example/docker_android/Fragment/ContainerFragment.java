@@ -15,6 +15,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+import com.example.docker_android.Activity.ContainerMigrateActivity;
 import com.example.docker_android.Activity.ContainerRunningActivity;
 import com.example.docker_android.Activity.ContainerStoppedActivity;
 import com.example.docker_android.Activity.CreateContainerActivity;
@@ -39,6 +40,7 @@ public class ContainerFragment extends BaseLazyFragment {
     private RelativeLayout containerStop;
     private RelativeLayout containerCreate;
     private RelativeLayout containerDelete;
+    private RelativeLayout containerMigrate;
     private TextView running;
     private TextView stopped;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -62,6 +64,7 @@ public class ContainerFragment extends BaseLazyFragment {
         running = view.findViewById(R.id.running);
         stopped = view.findViewById(R.id.stopped);
         swipeRefreshLayout = view.findViewById(R.id.container_srl);
+        containerMigrate = view.findViewById(R.id.migrateHeader);
     }
 
     @Override
@@ -128,6 +131,12 @@ public class ContainerFragment extends BaseLazyFragment {
                 promptDialog.setMargin(30)
                         .setClickOutCancel(true)
                         .show(getActivity().getSupportFragmentManager());
+            }
+        });
+        containerMigrate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ContainerMigrateActivity.actionStart(getActivity(),"","");
             }
         });
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.docker_android.Adapter.ViewPagerAdapter;
@@ -121,5 +122,16 @@ public class MainActivity extends BaseActivity {
         } else {
             finish();
         }
+    }
+
+
+    @Override
+    //设置状态栏和底部横条颜色
+    public void setTranslucentStatus() {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        //注意要清除 FLAG_TRANSLUCENT_STATUS flag
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimary));
     }
 }

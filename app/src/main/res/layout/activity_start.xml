@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:text="Android"
-        android:layout_marginTop="10dp"
         android:textColor="@color/black"
         android:textSize="30dp"/>
     <ImageView
@@ -27,5 +26,6 @@
         android:textStyle="bold"
         android:text="Container Client"
         android:textColor="@color/black"
+        android:layout_marginTop="10dp"
         android:textSize="30dp"/>
 </LinearLayout>
