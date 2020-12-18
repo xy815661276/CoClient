@@ -1,5 +1,7 @@
 package com.example.docker_android.DockerAPI;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
@@ -21,9 +23,11 @@ public class MigrateService {
      * @param callback 回调方法
      */
     public static void image_migrate(String url,String container_id,String repository,String tag,okhttp3.Callback callback) {
-        OkHttpClient client=new OkHttpClient();
+        OkHttpClient client=new OkHttpClient().newBuilder()
+                .connectTimeout(120000, TimeUnit.MILLISECONDS)//设置超时时间为120s
+                .readTimeout(120000, TimeUnit.MILLISECONDS).build();;
         Request request=new Request.Builder()
-                .url(url+"/migrate/container?"+"container_id="+container_id+"&repository="+repository+"&tag="+tag)
+                .url(url+"/migrate/image?"+"container_id="+container_id+"&repository="+repository+"&tag="+tag)
                 .build();
         client.newCall(request).enqueue(callback);
     }

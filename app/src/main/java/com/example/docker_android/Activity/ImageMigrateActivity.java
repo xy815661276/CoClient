@@ -10,21 +10,33 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.example.docker_android.Base.BaseActivity;
 import com.example.docker_android.Dialog.LoadingDialog;
+import com.example.docker_android.DockerAPI.MigrateService;
 import com.example.docker_android.R;
 import com.example.docker_android.Utils.DownloadUtil;
+import com.example.docker_android.Utils.RootCmd;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class ImageMigrateActivity extends BaseActivity {
 
     private EditText ip;
     private EditText container;
     private EditText image;
+    private EditText tag;
     private TextView submit;
     private ProgressDialog dialog;
     /**
@@ -49,45 +61,78 @@ public class ImageMigrateActivity extends BaseActivity {
         ip = findViewById(R.id.image_ip_addr);
         container = findViewById(R.id.container_name);
         image = findViewById(R.id.image_name);
+        tag = findViewById(R.id.tag_name);
         submit = findViewById(R.id.submit);
         dialog = new ProgressDialog(ImageMigrateActivity.this);
         requestPower();
-        String url = "http://192.168.8.31:8080/checkpoints/simple.tar.xz";
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showProgress();
-                DownloadUtil.get().download(url, "Download/", new DownloadUtil.OnDownloadListener() {
-                    @Override
-                    public void onDownloadSuccess() {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                dialog.dismiss();
-                                Toast.makeText(ImageMigrateActivity.this,"Download Successfully",Toast.LENGTH_SHORT).show();
+                String ip_address = ip.getText().toString().trim();
+                String image_name = image.getText().toString().trim();
+                String container_name = container.getText().toString().trim();
+                String tag_name = tag.getText().toString().trim();
+                if(ip_address.equals("") || image_name.equals("") || container_name.equals("") || tag_name.equals("")){
+                    Toast.makeText(ImageMigrateActivity.this,"There are empty items",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    showProgress();
+                    String migrate_url = "http://" + ip_address + ":8081";
+                    MigrateService.image_migrate(migrate_url,container_name,image_name,tag_name, new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            Log.d("migrate",e.getMessage());
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            final String responseData = response.body().string();
+                            JSONObject tmp = JSON.parseObject(responseData);
+                            int code = tmp.getIntValue("code");
+                            if(code == 1){
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        String download_url = "http://"+ ip_address +":8080/images/arm64-target.tar.xz";
+                                        DownloadUtil.get().download(download_url, "Download/", new DownloadUtil.OnDownloadListener() {
+                                            @Override
+                                            public void onDownloadSuccess() {
+                                                runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        importImage();
+                                                        dialog.dismiss();
+                                                        Toast.makeText(ImageMigrateActivity.this,"Image Migrate Successfully",Toast.LENGTH_SHORT).show();
+                                                        finish();
+                                                    }
+                                                });
+                                            }
+                                            @Override
+                                            public void onDownloading(int progress) {
+                                                runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        dialog.setProgress(progress);
+                                                    }
+                                                });
+                                            }
+                                            @Override
+                                            public void onDownloadFailed() {
+                                                runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        dialog.dismiss();
+                                                        Toast.makeText(ImageMigrateActivity.this,"Download failed",Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    }
+                                });
                             }
-                        });
-                    }
-                    @Override
-                    public void onDownloading(int progress) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                dialog.setProgress(progress);
-                            }
-                        });
-                    }
-                    @Override
-                    public void onDownloadFailed() {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                dialog.dismiss();
-                                Toast.makeText(ImageMigrateActivity.this,"Download failed",Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                });
+                        }
+                    });
+                }
             }
         });
     }
@@ -113,14 +158,14 @@ public class ImageMigrateActivity extends BaseActivity {
         }
     }
     public void showProgress(){
-        dialog.setTitle("Prompt");
-        dialog.setMessage("Downloading...");
-        //设置进度条为方形的，默认为圆形
-        dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        dialog.setTitle("Image Migrate");
+        dialog.setMessage("In migration...");
         dialog.setMax(100);
         dialog.setProgress(0);
-        //第二进度条，当缓冲速度（虚的）比下载速度（实的）快的
-//        dialog.setSecondaryProgress(80);
         dialog.show();
+    }
+    public void importImage(){
+        RootCmd.execRootCmdSilent("cd /sdcard/Download && docker load -i arm64-target.tar.xz");
+        RootCmd.execRootCmdSilent("cd /sdcard/Download && rm arm64-target.tar.xz");
     }
 }
