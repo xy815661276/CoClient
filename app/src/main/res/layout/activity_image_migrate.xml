@@ -85,7 +85,7 @@
                 android:layout_toRightOf="@+id/container_name_text"
                 android:gravity="center_vertical"
                 android:hint="Input ip address"
-                android:text="192.168.8.31"
+                android:text="192.168.8.105"
                 android:textColorHint="@color/toolbar_title"
                 android:textColor="@color/grey_black"
                 android:textSize="@dimen/default_small_text_size"/>

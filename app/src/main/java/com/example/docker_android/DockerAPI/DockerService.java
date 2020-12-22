@@ -24,8 +24,10 @@ import okhttp3.Response;
 public class DockerService {
     private static final MediaType JSON = MediaType
             .parse("application/json; charset=utf-8");
-    //private static String address = "http://121.36.19.122:2375";
-    private static final String address = "http://127.0.0.1:2375";
+    private static String address;
+    public static void setAddress(String ip,String port){
+        address = "http://" + ip + ":" + port;
+    }
     /**
      * 获取系统信息
      * @param callback 回调方法

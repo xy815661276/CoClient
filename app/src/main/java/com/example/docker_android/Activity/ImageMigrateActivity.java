@@ -166,6 +166,6 @@ public class ImageMigrateActivity extends BaseActivity {
     }
     public void importImage(){
         RootCmd.execRootCmdSilent("cd /sdcard/Download && docker load -i arm64-target.tar.xz");
-        RootCmd.execRootCmdSilent("cd /sdcard/Download && rm arm64-target.tar.xz");
+        //RootCmd.execRootCmdSilent("cd /sdcard/Download && rm arm64-target.tar.xz");
     }
 }

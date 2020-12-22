@@ -58,7 +58,7 @@ public class CreateImageActivity extends BaseActivity {
                 String image_name = Image_name.getText().toString();
                 String image_tag = Image_tag.getText().toString();
                 if(image_name.equals("")||image_tag.equals("")){
-                    Toast.makeText(CreateImageActivity.this,"输入有空，请重新输入",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateImageActivity.this,"Input available",Toast.LENGTH_SHORT).show();
                     LoadingDialog.hideDialogForLoading();
                 }
                 else {
@@ -78,9 +78,9 @@ public class CreateImageActivity extends BaseActivity {
                                         @Override
                                         public void run() {
                                             if(response.code()==200)
-                                                Toast.makeText(CreateImageActivity.this,"拉取成功",Toast.LENGTH_LONG).show();
+                                                Toast.makeText(CreateImageActivity.this,"Pull Successfully",Toast.LENGTH_LONG).show();
                                             else
-                                                Toast.makeText(CreateImageActivity.this,"拉取失败，请稍后再试",Toast.LENGTH_LONG).show();
+                                                Toast.makeText(CreateImageActivity.this,"Pull Failed,try again",Toast.LENGTH_LONG).show();
                                             LoadingDialog.hideDialogForLoading();
                                             finish();
                                         }
