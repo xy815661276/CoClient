@@ -46,7 +46,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/docker"
+            android:src="@drawable/ic_container"
             android:layout_marginBottom="50dp"/>
 
         <EditText
