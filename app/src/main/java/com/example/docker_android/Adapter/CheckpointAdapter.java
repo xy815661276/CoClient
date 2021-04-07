@@ -37,7 +37,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * RecyclerView Adapter用于适配飞机的列表，包含飞机图片，飞机名称以及简介
+ * RecyclerView Adapter用于适配checkpoint页面
  */
 public class CheckpointAdapter extends RecyclerView.Adapter<CheckpointAdapter.ViewHolder> {
     //收集容器对象

@@ -30,7 +30,7 @@ import okhttp3.Call;
 import okhttp3.Response;
 
 /**
- * RecyclerView Adapter
+ * RecyclerView Adapter 用于适配镜像搜索列表
  */
 public class ImageSearchAdapter extends RecyclerView.Adapter<ImageSearchAdapter.ViewHolder> {
 

@@ -1,16 +1,9 @@
-/**
-  * Copyright 2020 bejson.com 
-  */
+
 package com.example.docker_android.Entity.Container;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Auto-generated: 2020-02-14 14:23:50
- *
- * @author bejson.com (i@bejson.com)
- * @website http://www.bejson.com/java2pojo/
- */
+
 public class Container implements Serializable {
 
     private String Id;

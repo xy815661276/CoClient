@@ -4,6 +4,9 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4c001ee7c7bf1a180363c905f0ac0a28/jetified-jsonviewer-1.0.6/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4c001ee7c7bf1a180363c905f0ac0a28/jetified-jsonviewer-1.0.6/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4c001ee7c7bf1a180363c905f0ac0a28/jetified-jsonviewer-1.0.6/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7d247d71f2aa658972faa4eca6a9b863/jetified-jsonviewer-1.0.6/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7d247d71f2aa658972faa4eca6a9b863/jetified-jsonviewer-1.0.6/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7d247d71f2aa658972faa4eca6a9b863/jetified-jsonviewer-1.0.6/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.yuyh.json/jsonviewer/1.0.6/f8ae35f5e3f917560b005006e70edaa668446def/jsonviewer-1.0.6-javadoc.jar!/" />

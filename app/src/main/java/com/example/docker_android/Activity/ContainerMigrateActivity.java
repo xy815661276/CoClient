@@ -172,9 +172,9 @@ public class ContainerMigrateActivity extends BaseActivity {
         dialog.show();
     }
     public String createMigrateContainer(String image){
-        String cmd = "docker run -d --cap-add all " + image;
+        String cmd = "docker create --cap-add all " + image;
         String container_id = RootCmd.execRootCmd(cmd);
-        RootCmd.execRootCmd("docker stop " + container_id);
+//        RootCmd.execRootCmd("docker stop " + container_id);
         return container_id;
     }
     public void copyCheckpoint(String checkpointName,String container_id){

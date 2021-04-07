@@ -35,7 +35,7 @@ import okhttp3.Call;
 import okhttp3.Response;
 
 /**
- * RecyclerView Adapter
+ * RecyclerView Adapter 用于适配停止的容器列表
  */
 public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStoppedAdapter.ViewHolder> {
 

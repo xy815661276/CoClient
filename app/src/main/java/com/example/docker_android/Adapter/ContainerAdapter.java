@@ -36,7 +36,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * RecyclerView Adapter用于适配飞机的列表，包含飞机图片，飞机名称以及简介
+ * RecyclerView Adapter用于适配容器列表
  */
 public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.ViewHolder> {
 
@@ -46,22 +46,14 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
     static class ViewHolder extends RecyclerView.ViewHolder {
         View classView;//cardView
         TextView ContainerName;//容器名
-//        TextView ContainerID;//ID
-//        TextView ContainerState;//状态
         TextView ContainerTime;//创建时间
-//        TextView ContainerPorts;//端口映射
-//        TextView ContainerLabel;//标签
         TextView ContainerImage;//镜像名
 
         private ViewHolder(View view) {//绑定控件
             super(view);
             classView = view;
             ContainerName = view.findViewById(R.id.containerTV);
-//            ContainerID = view.findViewById(R.id.container_id);
-//            ContainerState = view.findViewById(R.id.container_state);
             ContainerTime = view.findViewById(R.id.timeTV);
-//            ContainerPorts = view.findViewById(R.id.container_ports);
-//            ContainerLabel = view.findViewById(R.id.container_label);
             ContainerImage = view.findViewById(R.id.imageTV);
         }
     }
