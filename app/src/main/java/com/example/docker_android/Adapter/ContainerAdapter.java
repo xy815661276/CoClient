@@ -114,7 +114,7 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
      */
     int choice;
     private void showSingDialog(String id,String image){
-        final String[] items = {"View info","Stop","Start","View logs","Checkpoint","View info(JSON)"};
+        final String[] items = {"View info","Stop","View logs","Checkpoint","View info(JSON)"};
         AlertDialog.Builder singleChoiceDialog = new AlertDialog.Builder(mContext);
         singleChoiceDialog.setIcon(R.drawable.docker);
         singleChoiceDialog.setTitle("Please Select");
@@ -131,10 +131,10 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
                 String action = "";
                 if(choice == 0)
                     ContainerDetailsActivity.actionStart(mContext,id,image);
-                else if(choice == 3){
+                else if(choice == 2){
                     LogsActivity.actionStart(mContext,id,"");
                 }
-                else if(choice == 4){
+                else if(choice == 3){
                     EditDialog searchDialog = EditDialog.newInstance("input checkpoint name",1,id);
                     BaseActivity activity = (BaseActivity) mContext;
                     searchDialog.setMargin(60)
@@ -142,13 +142,12 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
                             .show(activity.getSupportFragmentManager());
                     ((ContainerRunningActivity)mContext).loadData();
                 }
-                else if(choice == 5){
+                else if(choice == 4){
                     ContainerDetailsTextActivity.actionStart(mContext,id,"");
                 }
                 else {
                     LoadingDialog.showDialogForLoading(mContext);
                     if (choice==1) action = "stop";
-                    else if(choice==2) action = "start";
                     DockerService.ContainerAction(id,action,new Callback(){
                         @Override
                         public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {

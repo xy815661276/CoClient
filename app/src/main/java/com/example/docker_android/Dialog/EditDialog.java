@@ -1,6 +1,7 @@
 package com.example.docker_android.Dialog;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -80,6 +81,7 @@ public class EditDialog extends BaseDialogFragment {
                     }
                     else if(edit_action == 2){
                         LoadingDialog.showDialogForLoading(getActivity());
+                        long start = System.currentTimeMillis();
                         List<String> list = DockerTerminalService.GetCheckpoint(edit_data);
                         if(!list.contains(edit_content)){
                             Toast.makeText(holder.getConvertView().getContext(), "Checkpoint does not exists",Toast.LENGTH_SHORT).show();
@@ -87,6 +89,8 @@ public class EditDialog extends BaseDialogFragment {
                         else {
                             DockerTerminalService.StartCheckpoint(edit_data,edit_content);
                             Toast.makeText(holder.getConvertView().getContext(), "Checkpoint Start Successfully",Toast.LENGTH_SHORT).show();
+                            long end = System.currentTimeMillis();
+                            Log.d("Start Time:", String.valueOf(end - start));
                             ContainerStoppedActivity containerStoppedActivity = (ContainerStoppedActivity) getActivity();
                             containerStoppedActivity.loadData();
                         }

@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.docker_android.Activity.ContainerDetailsActivity;
 import com.example.docker_android.Activity.ContainerStoppedActivity;
+import com.example.docker_android.Activity.LogsActivity;
 import com.example.docker_android.Base.BaseActivity;
 import com.example.docker_android.Dialog.EditDialog;
 import com.example.docker_android.Dialog.LoadingDialog;
@@ -94,7 +95,7 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
      */
     int choice;
     private void showSingDialog(String id){
-        final String[] items = {"Start","Delete","Checkpoint Start"};
+        final String[] items = {"Start","Delete","Checkpoint Start","View logs"};
         AlertDialog.Builder singleChoiceDialog = new AlertDialog.Builder(mContext);
         singleChoiceDialog.setIcon(R.drawable.docker);
         singleChoiceDialog.setTitle("Please Select");
@@ -161,6 +162,9 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
                     searchDialog.setMargin(60)
                             .setClickOutCancel(true)
                             .show(baseActivity.getSupportFragmentManager());
+                }
+                else if(choice == 3){
+                    LogsActivity.actionStart(mContext,id,"");
                 }
             }
         });

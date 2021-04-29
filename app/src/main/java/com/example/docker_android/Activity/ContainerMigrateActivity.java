@@ -82,6 +82,7 @@ public class ContainerMigrateActivity extends BaseActivity {
                 else {
                     showProgress();
                     String migrate_url = "http://" + ip_address + ":8081";
+                    long start = System.currentTimeMillis();
                     MigrateService.container_migrate(migrate_url,container_name,checkpoint_name, new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {
@@ -108,6 +109,8 @@ public class ContainerMigrateActivity extends BaseActivity {
                                                         copyCheckpoint(checkpoint_name,migrate_container_id);
                                                         dialog.dismiss();
                                                         Toast.makeText(ContainerMigrateActivity.this,"Container Migrate Successfully",Toast.LENGTH_SHORT).show();
+                                                        long end = System.currentTimeMillis();
+                                                        Log.d("Migrate Time:", String.valueOf(end - start));
                                                         finish();
                                                     }
                                                 });
@@ -172,7 +175,7 @@ public class ContainerMigrateActivity extends BaseActivity {
         dialog.show();
     }
     public String createMigrateContainer(String image){
-        String cmd = "docker create --cap-add all " + image;
+        String cmd = "docker create -t --cap-add all --name lenet " + image;
         String container_id = RootCmd.execRootCmd(cmd);
 //        RootCmd.execRootCmd("docker stop " + container_id);
         return container_id;

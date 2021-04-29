@@ -136,7 +136,9 @@ public class DockerService {
      * @param callback 回调方法
      */
     public static void ContainerAction(String id,String action,okhttp3.Callback callback) {
-        OkHttpClient client=new OkHttpClient();
+        OkHttpClient client=new OkHttpClient().newBuilder()
+                .connectTimeout(60000, TimeUnit.MILLISECONDS)//设置超时时间为60s
+                .readTimeout(60000, TimeUnit.MILLISECONDS).build();;
         RequestBody body = new FormBody.Builder()
                 .build();
         Request request=new Request.Builder()
