@@ -28,10 +28,16 @@ public class OverviewFragment extends BaseLazyFragment {
     private TextView archTV;
     private TextView kernelTV;
     private TextView runtimeTV;
+    private TextView running;
+    private TextView stopped;
+    private TextView paused;
+    private TextView images;
+    private TextView cpus;
+    private TextView memory;
     private SwipeRefreshLayout swipeRefreshLayout;
     @Override
     public int getLayoutResId() {
-        return R.layout.fragment_overview;
+        return R.layout.fragment_overview_new;
     }
 
     @Override
@@ -42,6 +48,12 @@ public class OverviewFragment extends BaseLazyFragment {
         archTV = view.findViewById(R.id.arch);
         kernelTV = view.findViewById(R.id.kernel);
         runtimeTV = view.findViewById(R.id.runtime);
+        running = view.findViewById(R.id.containers_running);
+        stopped = view.findViewById(R.id.container_stopped);
+        paused = view.findViewById(R.id.container_paused);
+        images = view.findViewById(R.id.images);
+        cpus = view.findViewById(R.id.cpus);
+        memory = view.findViewById(R.id.memory);
         swipeRefreshLayout = view.findViewById(R.id.overview_srl);
     }
 
@@ -65,6 +77,11 @@ public class OverviewFragment extends BaseLazyFragment {
     }
     @Override
     public void loadData(){
+        getVersion();
+        getInfo();
+    }
+
+    public void getVersion(){
         DockerService.getVersion(new okhttp3.Callback(){
             @Override
             public void onFailure(Call call, IOException e) {
@@ -100,7 +117,9 @@ public class OverviewFragment extends BaseLazyFragment {
                 });
             }
         });
+    }
 
+    public void getInfo(){
         DockerService.getInfo(new okhttp3.Callback(){
             @Override
             public void onFailure(Call call, IOException e) {
@@ -117,6 +136,13 @@ public class OverviewFragment extends BaseLazyFragment {
                             JSONObject tmp = JSON.parseObject(responseData);
                             String runtime = tmp.getString("DefaultRuntime");
                             runtimeTV.setText(runtime);
+                            running.setText(tmp.getString("ContainersRunning"));
+                            stopped.setText(tmp.getString("ContainersStopped"));
+                            paused.setText(tmp.getString("ContainersPaused"));
+                            images.setText(tmp.getString("Images"));
+                            cpus.setText(tmp.getString("NCPU"));
+                            String mem =(tmp.getLong("MemTotal")/1000000)+" Mb";
+                            memory.setText(mem);
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getActivity(), "Failed to get data, please try again later", Toast.LENGTH_SHORT).show();

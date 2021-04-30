@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimary">#00a8cc</color>
     <color name="colorPrimaryDark">#183C70</color>
     <color name="colorPrimaryPlain">#5AB963</color>
+    <color name="colorLogin">#2196F3</color>
     <color name="colorAccent">#005cb9</color>
-    <color name="colorGreen">#ff669900</color>
+    <color name="colorGreen">#009688</color>
     <color name="colorGray">#ccc</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="primary_light">#D1C4E9</color>
@@ -55,15 +56,23 @@
     <color name="transparent_black">#00000000</color>
     <color name="near_transparent_white">#88FFFFFF</color>
     <color name="transparentBlack">#96000000</color>
-    <color name="dashboard">#18A689</color>
     <color name="running">#00BCD4</color>
     <color name="stopped">#673AB7</color>
     <color name="images">#3F51B5</color>
     <color name="os">#F8AC59</color>
+    <color name="dashboard">#222831</color>
     <color name="runtime">#9C27B0</color>
     <color name="networkout">#F44336</color>
     <color name="checkpoint">#00BCD4</color>
     <color name="shrine_pink">#FDD2C6</color>
     <color name="tab_checked">#FFFFFF</color>
     <color name="tab_unchecked">#F1EEEE</color>
+    <color name="color1">#142850</color>
+    <color name="color2">#27496d</color>
+    <color name="color3">#0c7b93</color>
+    <color name="color4">#00a8cc</color>
+    <color name="light_grey">#F8E6E4E4</color>
+    <color name="green">#027E07</color>
+    <color name="yellow">#B6C802</color>
+    <color name="red">#F8B50404</color>
 </resources>

@@ -7,11 +7,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSON;
@@ -48,6 +50,9 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
         TextView ContainerName;//容器名
         TextView ContainerTime;//创建时间
         TextView ContainerImage;//镜像名
+        ImageView menu;//菜单
+        CardView delete;//删除按钮
+        TextView dot;//镜像名
 
         private ViewHolder(View view) {//绑定控件
             super(view);
@@ -55,6 +60,9 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
             ContainerName = view.findViewById(R.id.containerTV);
             ContainerTime = view.findViewById(R.id.timeTV);
             ContainerImage = view.findViewById(R.id.imageTV);
+            menu = view.findViewById(R.id.menu);
+            delete = view.findViewById(R.id.delete);
+            dot = view.findViewById(R.id.dot);
         }
     }
 
@@ -65,14 +73,25 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_container, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_container_new, parent, false);
         final ViewHolder holder = new ViewHolder(view);
         holder.classView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            }
+        });
+        holder.menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 int position = holder.getAdapterPosition();
                 Container container = mClassList.get(position);
                 showSingDialog(container.getId());
+            }
+        });
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteDialog();
             }
         });
         return holder;
@@ -166,6 +185,25 @@ public class ContainerStoppedAdapter extends RecyclerView.Adapter<ContainerStopp
                 else if(choice == 3){
                     LogsActivity.actionStart(mContext,id,"");
                 }
+            }
+        });
+        singleChoiceDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        singleChoiceDialog.show();
+    }
+    private void deleteDialog(){
+        AlertDialog.Builder singleChoiceDialog = new AlertDialog.Builder(mContext);
+        singleChoiceDialog.setIcon(R.drawable.docker);
+        singleChoiceDialog.setTitle("Prompt");
+        singleChoiceDialog.setMessage("You sure you want to delete it?");
+        singleChoiceDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
             }
         });
         singleChoiceDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
