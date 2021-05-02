@@ -21,6 +21,7 @@ import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
 import com.example.docker_android.Fragment.ContainerFragment;
 import com.example.docker_android.R;
+import com.example.docker_android.Utils.RootCmd;
 import com.wang.avi.AVLoadingIndicatorView;
 
 
@@ -74,45 +75,49 @@ public class CreateContainerActivity extends BaseActivity {
                 String host_port = Host_port.getText().toString();
                 String host_volume = Host_volume.getText().toString();
                 String container_volume = Container_volume.getText().toString();
-                if(container_name.equals("")||image_name.equals("")||container_port.equals("")||host_port.equals("")||host_volume.equals("")||container_volume.equals("")){
+                if(container_name.equals("")||image_name.equals("")){
                     Toast.makeText(CreateContainerActivity.this,"Input available",Toast.LENGTH_SHORT).show();
                     LoadingDialog.hideDialogForLoading();
                 }
                 else {
-                    new Handler().postDelayed(new Runnable() {
-                        //加载动画太快，延时几秒
-                        @Override
-                        public void run() {
-                            DockerService.createContainer(container_name,image_name,host_port,container_port,host_volume,container_volume,new okhttp3.Callback(){
-                                @Override
-                                public void onFailure(Call call, IOException e) {
-                                    e.printStackTrace();
-                                }
-                                @Override
-                                public void onResponse(Call call, Response response) throws IOException {
-                                    JSONObject result = JSON.parseObject(response.body().string());
-                                    Log.d("create container",result.toJSONString());
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            if(response.code()==201)
-                                                Toast.makeText(CreateContainerActivity.this,"Created successfully",Toast.LENGTH_LONG).show();
-                                            else if(response.code()==400)
-                                                Toast.makeText(CreateContainerActivity.this,"Creation failed, wrong parameters:"+result.getString("message"),Toast.LENGTH_LONG).show();
-                                            else if(response.code()==404)
-                                                Toast.makeText(CreateContainerActivity.this,"Creation failed, there is no such container",Toast.LENGTH_LONG).show();
-                                            else if(response.code()==409)
-                                                Toast.makeText(CreateContainerActivity.this,"Creation failed, parameter conflict:"+result.getString("message"),Toast.LENGTH_LONG).show();
-                                            else if(response.code()==500)
-                                                Toast.makeText(CreateContainerActivity.this,"Creation failed, server error",Toast.LENGTH_LONG).show();
-                                            LoadingDialog.hideDialogForLoading();
-                                            finish();
-                                        }
-                                    });
-                                }
-                            });
-                        }
-                    },1000);
+                    String res = "";
+                    RootCmd.execRootCmd("docker create --name " + container_name + " " + image_name);
+                    Toast.makeText(CreateContainerActivity.this,"Create Successfully",Toast.LENGTH_LONG).show();
+                    LoadingDialog.hideDialogForLoading();
+                    finish();
+//                    new Handler().postDelayed(new Runnable() {
+//                        //加载动画太快，延时几秒
+//                        @Override
+//                        public void run() {
+//                            DockerService.createContainer(container_name,image_name,host_port,container_port,host_volume,container_volume,new okhttp3.Callback(){
+//                                @Override
+//                                public void onFailure(Call call, IOException e) {
+//                                    e.printStackTrace();
+//                                }
+//                                @Override
+//                                public void onResponse(Call call, Response response) throws IOException {
+//                                    JSONObject result = JSON.parseObject(response.body().string());
+//                                    runOnUiThread(new Runnable() {
+//                                        @Override
+//                                        public void run() {
+//                                            if(response.code()==201)
+//                                                Toast.makeText(CreateContainerActivity.this,"Created successfully",Toast.LENGTH_LONG).show();
+//                                            else if(response.code()==400)
+//                                                Toast.makeText(CreateContainerActivity.this,"Creation failed, wrong parameters:"+result.getString("message"),Toast.LENGTH_LONG).show();
+//                                            else if(response.code()==404)
+//                                                Toast.makeText(CreateContainerActivity.this,"Creation failed, there is no such container",Toast.LENGTH_LONG).show();
+//                                            else if(response.code()==409)
+//                                                Toast.makeText(CreateContainerActivity.this,"Creation failed, parameter conflict:"+result.getString("message"),Toast.LENGTH_LONG).show();
+//                                            else if(response.code()==500)
+//                                                Toast.makeText(CreateContainerActivity.this,"Creation failed, server error",Toast.LENGTH_LONG).show();
+//                                            LoadingDialog.hideDialogForLoading();
+//                                            finish();
+//                                        }
+//                                    });
+//                                }
+//                            });
+//                        }
+//                    },1000);
                 }
             }
         });

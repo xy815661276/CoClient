@@ -172,7 +172,6 @@ public class ContainerFragment extends BaseLazyFragment {
                 //toString方法未重写，这里使用string()方法
                 //string不能调用两次 被调用一次就关闭了，这里调用两次会报异常
                 final String responseData = response.body().string();
-                Log.d("Component", "onResponse: " + responseData);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -180,9 +179,7 @@ public class ContainerFragment extends BaseLazyFragment {
                         try {
                             JSONArray jsonArray = JSONArray.parseArray(responseData);
                             for (int i= 0;i < jsonArray.size();i++){
-                                Log.d("container", "onResponse: " + jsonArray.getString(i));
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                Log.d("container",jsonObject.getString("Names"));
                                 Container container = JSON.parseObject(jsonArray.getString(i), Container.class);
                                 if(container.getState().equals("running"))
                                     list_run.add(container);

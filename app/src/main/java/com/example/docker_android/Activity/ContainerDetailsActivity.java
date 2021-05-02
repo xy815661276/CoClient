@@ -109,7 +109,6 @@ public class ContainerDetailsActivity extends BaseActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String responseData = response.body().string();
-                Log.d("containerDetail", "onResponse: " + responseData);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

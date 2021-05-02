@@ -14,6 +14,7 @@ import com.example.docker_android.Activity.ImageSearchActivity;
 import com.example.docker_android.Base.BaseDialogFragment;
 import com.example.docker_android.DockerAPI.DockerTerminalService;
 import com.example.docker_android.Entity.Container.Container;
+import com.example.docker_android.Fragment.ContainerFragment_new;
 import com.example.docker_android.R;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class EditDialog extends BaseDialogFragment {
     private static String edit_hint = "input search content";
     private static int edit_action = 0;
     private static String edit_data = "";
-    public static EditDialog newInstance(String hint, int action,String data) {
+    public static EditDialog newInstance(String hint, int action, String data) {
         Bundle bundle = new Bundle();
         EditDialog dialog = new EditDialog();
         dialog.setArguments(bundle);
@@ -91,8 +92,6 @@ public class EditDialog extends BaseDialogFragment {
                             Toast.makeText(holder.getConvertView().getContext(), "Checkpoint Start Successfully",Toast.LENGTH_SHORT).show();
                             long end = System.currentTimeMillis();
                             Log.d("Start Time:", String.valueOf(end - start));
-                            ContainerStoppedActivity containerStoppedActivity = (ContainerStoppedActivity) getActivity();
-                            containerStoppedActivity.loadData();
                         }
                     }
                     LoadingDialog.hideDialogForLoading();

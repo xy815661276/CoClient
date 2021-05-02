@@ -35,7 +35,7 @@
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/color3"
+                        android:background="@color/color2"
                         android:orientation="vertical">
 
 
@@ -289,286 +289,277 @@
                                 android:layout_marginTop="5dp"
                                 />
                         </LinearLayout>
-
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_below="@+id/dockerHeader"
-                    android:id="@+id/dockerInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="10dp"
-                    app:cardBackgroundColor="@color/mainPage_background_white"
-                    android:focusable="true"
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="10dp"
-                    >
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/color2"
-                        android:orientation="vertical">
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Docker Info"
-                            android:textStyle="bold"
-                            android:textColor="@color/white"
-                            android:layout_margin="10dp"
-                            android:textSize="20dp"
-                            android:layout_above="@+id/docker"
-                            android:layout_alignParentRight="true"/>
-
                         <View
                             android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
+                            android:layout_height="1dp"
                             android:background="@color/pure_white"
+                            android:layout_marginTop="5dp"
                             />
-
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/color2"
                             android:orientation="vertical">
-                            <LinearLayout
-                                android:layout_width="match_parent"
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:src="@drawable/running"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:layout_gravity="center_vertical"
-                                    android:textStyle="bold"
-                                    android:textSize="15dp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_weight="1"
-                                    android:text="Running containers"/>
-                                <TextView
-                                    android:id="@+id/containers_running"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:layout_gravity="end|center_vertical"
-                                    android:textStyle="bold"
-                                    android:textSize="15dp"
-                                    android:layout_marginRight="10dp"
-                                    android:text="Undefined"/>
-                            </LinearLayout>
+                                android:text="Docker Info"
+                                android:textStyle="bold"
+                                android:textColor="@color/white"
+                                android:layout_margin="10dp"
+                                android:textSize="20dp"
+                                android:layout_above="@+id/docker"
+                                android:layout_alignParentRight="true"/>
 
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="0.5dp"
                                 android:background="@color/pure_white"
-                                android:layout_marginTop="5dp"
                                 />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:src="@drawable/stop"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
+                                android:layout_margin="5dp"
+                                android:orientation="vertical">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:layout_gravity="center_vertical"
-                                    android:textStyle="bold"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_weight="1"
-                                    android:textSize="15dp"
-                                    android:text="Stopped containers"/>
-                                <TextView
-                                    android:id="@+id/container_stopped"
-                                    android:layout_width="wrap_content"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:src="@drawable/running"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:layout_gravity="center_vertical"
+                                        android:textStyle="bold"
+                                        android:textSize="15dp"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_weight="1"
+                                        android:text="Running containers"/>
+                                    <TextView
+                                        android:id="@+id/containers_running"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:layout_gravity="end|center_vertical"
+                                        android:textStyle="bold"
+                                        android:textSize="15dp"
+                                        android:layout_marginRight="10dp"
+                                        android:text="Undefined"/>
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.5dp"
+                                    android:background="@color/pure_white"
+                                    android:layout_marginTop="5dp"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:layout_gravity="end|center_vertical"
-                                    android:textStyle="bold"
-                                    android:textSize="15dp"
-                                    android:layout_marginRight="10dp"
-                                    android:text="Undefined"/>
+                                    android:layout_marginTop="10dp"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:src="@drawable/stop"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:layout_gravity="center_vertical"
+                                        android:textStyle="bold"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_weight="1"
+                                        android:textSize="15dp"
+                                        android:text="Stopped containers"/>
+                                    <TextView
+                                        android:id="@+id/container_stopped"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:layout_gravity="end|center_vertical"
+                                        android:textStyle="bold"
+                                        android:textSize="15dp"
+                                        android:layout_marginRight="10dp"
+                                        android:text="Undefined"/>
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.5dp"
+                                    android:background="@color/pure_white"
+                                    android:layout_marginTop="5dp"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:src="@drawable/paused"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:layout_gravity="center_vertical"
+                                        android:textStyle="bold"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_weight="1"
+                                        android:textSize="15dp"
+                                        android:text="Paused containers"/>
+                                    <TextView
+                                        android:id="@+id/container_paused"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:layout_gravity="end|center_vertical"
+                                        android:textStyle="bold"
+                                        android:textSize="15dp"
+                                        android:layout_marginRight="10dp"
+                                        android:text="Undefined"/>
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.5dp"
+                                    android:background="@color/pure_white"
+                                    android:layout_marginTop="5dp"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:src="@drawable/image_white"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:layout_gravity="center_vertical"
+                                        android:textStyle="bold"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_weight="1"
+                                        android:textSize="15dp"
+                                        android:text="Images"/>
+                                    <TextView
+                                        android:id="@+id/images"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:layout_gravity="end|center_vertical"
+                                        android:textStyle="bold"
+                                        android:textSize="15dp"
+                                        android:layout_marginRight="10dp"
+                                        android:text="Undefined"/>
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.5dp"
+                                    android:background="@color/pure_white"
+                                    android:layout_marginTop="5dp"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:src="@drawable/cpu"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:layout_gravity="center_vertical"
+                                        android:textStyle="bold"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_weight="1"
+                                        android:textSize="15dp"
+                                        android:text="CPUs"/>
+                                    <TextView
+                                        android:id="@+id/cpus"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:layout_gravity="end|center_vertical"
+                                        android:textStyle="bold"
+                                        android:textSize="15dp"
+                                        android:layout_marginRight="10dp"
+                                        android:text="Undefined"/>
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.5dp"
+                                    android:background="@color/pure_white"
+                                    android:layout_marginTop="5dp"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:src="@drawable/memory"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:layout_gravity="center_vertical"
+                                        android:textStyle="bold"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_weight="1"
+                                        android:textSize="15dp"
+                                        android:text="Total Memory"/>
+                                    <TextView
+                                        android:id="@+id/memory"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:layout_gravity="end|center_vertical"
+                                        android:textStyle="bold"
+                                        android:textSize="15dp"
+                                        android:layout_marginRight="10dp"
+                                        android:text="Undefined"/>
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.5dp"
+                                    android:background="@color/pure_white"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="10dp"
+                                    />
                             </LinearLayout>
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="0.5dp"
-                                android:background="@color/pure_white"
-                                android:layout_marginTop="5dp"
-                                />
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:src="@drawable/paused"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:layout_gravity="center_vertical"
-                                    android:textStyle="bold"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_weight="1"
-                                    android:textSize="15dp"
-                                    android:text="Paused containers"/>
-                                <TextView
-                                    android:id="@+id/container_paused"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:layout_gravity="end|center_vertical"
-                                    android:textStyle="bold"
-                                    android:textSize="15dp"
-                                    android:layout_marginRight="10dp"
-                                    android:text="Undefined"/>
-                            </LinearLayout>
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="0.5dp"
-                                android:background="@color/pure_white"
-                                android:layout_marginTop="5dp"
-                                />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:src="@drawable/image"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:layout_gravity="center_vertical"
-                                    android:textStyle="bold"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_weight="1"
-                                    android:textSize="15dp"
-                                    android:text="Images"/>
-                                <TextView
-                                    android:id="@+id/images"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:layout_gravity="end|center_vertical"
-                                    android:textStyle="bold"
-                                    android:textSize="15dp"
-                                    android:layout_marginRight="10dp"
-                                    android:text="Undefined"/>
-                            </LinearLayout>
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="0.5dp"
-                                android:background="@color/pure_white"
-                                android:layout_marginTop="5dp"
-                                />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:src="@drawable/cpu"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:layout_gravity="center_vertical"
-                                    android:textStyle="bold"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_weight="1"
-                                    android:textSize="15dp"
-                                    android:text="CPUs"/>
-                                <TextView
-                                    android:id="@+id/cpus"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:layout_gravity="end|center_vertical"
-                                    android:textStyle="bold"
-                                    android:textSize="15dp"
-                                    android:layout_marginRight="10dp"
-                                    android:text="Undefined"/>
-                            </LinearLayout>
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="0.5dp"
-                                android:background="@color/pure_white"
-                                android:layout_marginTop="5dp"
-                                />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:src="@drawable/memory"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:layout_gravity="center_vertical"
-                                    android:textStyle="bold"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_weight="1"
-                                    android:textSize="15dp"
-                                    android:text="Total Memory"/>
-                                <TextView
-                                    android:id="@+id/memory"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:layout_gravity="end|center_vertical"
-                                    android:textStyle="bold"
-                                    android:textSize="15dp"
-                                    android:layout_marginRight="10dp"
-                                    android:text="Undefined"/>
-                            </LinearLayout>
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="0.5dp"
-                                android:background="@color/pure_white"
-                                android:layout_marginTop="5dp"
-                                />
                         </LinearLayout>
 
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
             </RelativeLayout>
 
 

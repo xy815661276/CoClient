@@ -168,7 +168,6 @@ public class ImageFragment extends BaseLazyFragment {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String responseData = response.body().string(); //toString方法未重写，这里使用string()方法 //string不能调用两次 被调用一次就关闭了，这里调用两次会报异常
-                Log.d("Component", "onResponse: " + responseData);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -176,7 +175,6 @@ public class ImageFragment extends BaseLazyFragment {
                         try {
                             JSONArray jsonArray = JSONArray.parseArray(responseData);
                             for (int i= 0;i < jsonArray.size();i++){
-                                Log.d("container", "onResponse: " + jsonArray.getString(i));
                                 Image image = JSON.parseObject(jsonArray.getString(i), Image.class);
                                 list_image.add(image);
                             }

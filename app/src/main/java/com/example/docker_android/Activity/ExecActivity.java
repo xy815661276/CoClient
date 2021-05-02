@@ -72,7 +72,6 @@ public class ExecActivity extends BaseActivity {
                             @Override
                             public void onResponse(Call call, Response response) throws IOException {
                                 String responseData = response.body().string();
-                                Log.d("exec",responseData);
                                 JSONObject result = JSON.parseObject(responseData);
                                 exec_id = result.getString("Id");
                                 runOnUiThread(new Runnable() {

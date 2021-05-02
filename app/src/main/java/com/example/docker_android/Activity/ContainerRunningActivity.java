@@ -1,6 +1,5 @@
 package com.example.docker_android.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -15,7 +14,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
-import com.example.docker_android.Adapter.ContainerAdapter;
+import com.example.docker_android.Adapter.ContainerRunningAdapter;
 import com.example.docker_android.Base.BaseActivity;
 import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.DockerAPI.DockerService;
@@ -90,7 +89,6 @@ public class ContainerRunningActivity extends BaseActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String responseData = response.body().string(); //toString方法未重写，这里使用string()方法 //string不能调用两次 被调用一次就关闭了，这里调用两次会报异常
-                Log.d("Component", "onResponse: " + responseData);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -100,14 +98,12 @@ public class ContainerRunningActivity extends BaseActivity {
                         try {
                             JSONArray jsonArray = JSONArray.parseArray(responseData);
                             for (int i = 0; i < jsonArray.size(); i++) {
-                                Log.d("container", "onResponse: " + jsonArray.getString(i));
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                Log.d("container", jsonObject.getString("Names"));
                                 Container container = JSON.parseObject(jsonArray.getString(i), Container.class);
                                 if (container.getState().equals("running"))
                                     list.add(container);
                             }
-                            ContainerAdapter adapter = new ContainerAdapter(list,ContainerRunningActivity.this);
+                            ContainerRunningAdapter adapter = new ContainerRunningAdapter(list,ContainerRunningActivity.this);
                             recyclerView.setAdapter(adapter);
                             GridLayoutManager layoutManager = new GridLayoutManager(ContainerRunningActivity.this,1);
                             recyclerView.setLayoutManager(layoutManager);

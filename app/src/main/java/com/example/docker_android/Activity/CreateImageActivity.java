@@ -73,7 +73,6 @@ public class CreateImageActivity extends BaseActivity {
                                 }
                                 @Override
                                 public void onResponse(Call call, Response response) throws IOException {
-                                    Log.d("createImage",response.body().string());
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {

@@ -91,7 +91,7 @@ public class CheckpointsAdapter extends RecyclerView.Adapter<CheckpointsAdapter.
      */
     int choice;
     private void showSingDialog(String id,String name){
-        final String[] items = {"Delete"};
+        final String[] items = {"Delete","Start container"};
         AlertDialog.Builder singleChoiceDialog = new AlertDialog.Builder(mContext);
         singleChoiceDialog.setIcon(R.drawable.docker);
         singleChoiceDialog.setTitle("Please Select");
@@ -110,6 +110,12 @@ public class CheckpointsAdapter extends RecyclerView.Adapter<CheckpointsAdapter.
                     DockerTerminalService.DeleteCheckpoint(id,name);
                     LoadingDialog.hideDialogForLoading();
                     ((CheckpointActivity) mContext).loadData();
+                }
+                else if(choice == 1) {
+                    LoadingDialog.showDialogForLoading(mContext);
+                    DockerTerminalService.StartCheckpoint(id,name);
+                    LoadingDialog.hideDialogForLoading();
+                    ((CheckpointActivity) mContext).finish();
                 }
             }
         });

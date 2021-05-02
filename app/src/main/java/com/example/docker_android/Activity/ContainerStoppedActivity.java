@@ -1,15 +1,11 @@
 package com.example.docker_android.Activity;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -18,12 +14,10 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.example.docker_android.Adapter.ContainerAdapter;
-import com.example.docker_android.Adapter.ContainerStoppedAdapter;
 import com.example.docker_android.Base.BaseActivity;
 import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
-import com.example.docker_android.Entity.Image.Image;
 import com.example.docker_android.R;
 
 import java.io.IOException;
@@ -95,7 +89,6 @@ public class ContainerStoppedActivity extends BaseActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String responseData = response.body().string(); //toString方法未重写，这里使用string()方法 //string不能调用两次 被调用一次就关闭了，这里调用两次会报异常
-                Log.d("Component", "onResponse: " + responseData);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -109,7 +102,7 @@ public class ContainerStoppedActivity extends BaseActivity {
                                 if(!container.getState().equals("running"))
                                     list_stop.add(container);
                             }
-                            ContainerStoppedAdapter adapter = new ContainerStoppedAdapter(list_stop, ContainerStoppedActivity.this);
+                            ContainerAdapter adapter = new ContainerAdapter(list_stop, ContainerStoppedActivity.this);
                             recyclerView.setAdapter(adapter);
                             GridLayoutManager layoutManager = new GridLayoutManager(ContainerStoppedActivity.this,1);
                             recyclerView.setLayoutManager(layoutManager);

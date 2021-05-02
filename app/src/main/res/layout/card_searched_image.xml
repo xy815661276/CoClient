@@ -16,7 +16,7 @@
         android:layout_width="fill_parent"
         android:layout_height="150dp"
         android:orientation="vertical"
-        android:background="@color/colorPrimaryDark">
+        android:background="@color/color2">
 
         <RelativeLayout
             android:id="@+id/imageIcon_search"
@@ -28,7 +28,7 @@
                 android:layout_height="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/image"
+                android:src="@drawable/image_white"
                 android:layout_alignParentLeft="true"/>
             <TextView
                 android:id="@+id/image_search_name"

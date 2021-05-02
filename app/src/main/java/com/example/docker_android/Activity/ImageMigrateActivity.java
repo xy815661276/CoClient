@@ -81,7 +81,7 @@ public class ImageMigrateActivity extends BaseActivity {
                     MigrateService.image_migrate(migrate_url,container_name,image_name,tag_name, new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {
-                            Log.d("migrate",e.getMessage());
+
                         }
 
                         @Override

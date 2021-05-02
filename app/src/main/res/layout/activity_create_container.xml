@@ -159,6 +159,7 @@
             android:paddingStart="@dimen/dafault_general_margin"
             android:paddingLeft="@dimen/dafault_general_margin"
             android:paddingEnd="0dp"
+            android:visibility="invisible"
             android:paddingRight="0dp">
 
             <TextView
@@ -221,6 +222,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginTop="10dp"
+            android:visibility="invisible"
             android:background="@color/colorTabUnchecked"
             android:paddingStart="@dimen/dafault_general_margin"
             android:paddingLeft="@dimen/dafault_general_margin"

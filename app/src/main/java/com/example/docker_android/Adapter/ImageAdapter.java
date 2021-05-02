@@ -6,11 +6,14 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.docker_android.Activity.ContainerRunningActivity;
@@ -20,6 +23,7 @@ import com.example.docker_android.Dialog.LoadingDialog;
 import com.example.docker_android.DockerAPI.DockerService;
 import com.example.docker_android.Entity.Container.Container;
 import com.example.docker_android.Entity.Image.Image;
+import com.example.docker_android.Fragment.ImageFragment_new;
 import com.example.docker_android.R;
 
 import java.io.IOException;
@@ -37,12 +41,16 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     private final List<Image> mClassList;//收集容器对象
     private final Context mContext;
+    private ImageFragment_new mFragment;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         View classView;//cardView
         TextView ImageName;//镜像名
         TextView ImageTag;//标签
         TextView ImageSize;//大小
+        LinearLayout about;
+        CardView delete;
+        ImageView menu;
 
         private ViewHolder(View view) {//绑定控件
             super(view);
@@ -50,6 +58,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             ImageName = view.findViewById(R.id.imageTV);
             ImageTag = view.findViewById(R.id.tagTV);
             ImageSize = view.findViewById(R.id.sizeTV);
+            about = view.findViewById(R.id.about);
+            delete = view.findViewById(R.id.delete);
+            menu = view.findViewById(R.id.menu);
         }
     }
 
@@ -58,16 +69,45 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         mClassList = classList;
     }
 
+    public ImageAdapter(List<Image> classList, Context context,ImageFragment_new fragment) {
+        mContext = context;
+        mClassList = classList;
+        mFragment = fragment;
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_image, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_image_new, parent, false);
         final ViewHolder holder = new ViewHolder(view);
         holder.classView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        holder.about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                Image image = mClassList.get(position);
+                ImageDetailsActivity.actionStart(mContext,image.getId(),"");
+            }
+        });
+        holder.menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 Image image = mClassList.get(position);
                 showSingDialog(image.getId());
+            }
+        });
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                Image image = mClassList.get(position);
+                LoadingDialog.showDialogForLoading(mContext);
+                deleteDialog(image.getId());
             }
         });
         return holder;
@@ -78,7 +118,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         Image image = mClassList.get(position);
         String tag = image.getRepoTags().get(0);
         holder.ImageName.setText(tag.substring(0,tag.indexOf(":")));
-        holder.ImageTag.setText(tag.substring(tag.indexOf(":")+1));
+        String time = "Created: " + stampToDate(image.getCreated());
+        holder.ImageTag.setText(time);
         holder.ImageSize.setText(getPrintSize(image.getSize()));
     }
 
@@ -92,11 +133,11 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
      */
 
-    private static String stampToDate(String s){
+    private static String stampToDate(long l){
 
         String res;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        long lt = Long.parseLong(s)*1000;//毫秒转成秒
+        long lt = l*1000;//毫秒转成秒
         Date date = new Date(lt);
         res = simpleDateFormat.format(date);
         return res;
@@ -186,6 +227,52 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
+            }
+        });
+        singleChoiceDialog.show();
+    }
+
+    private void deleteDialog(String id){
+        AlertDialog.Builder singleChoiceDialog = new AlertDialog.Builder(mContext);
+        singleChoiceDialog.setIcon(R.drawable.docker);
+        singleChoiceDialog.setTitle("Prompt");
+        singleChoiceDialog.setMessage("You sure you want to delete it?");
+        singleChoiceDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                LoadingDialog.showDialogForLoading(mContext);
+
+                DockerService.DeleteImage(id,new okhttp3.Callback(){
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        ((AppCompatActivity)mContext).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(response.code() == 200){
+                                    Toast.makeText(mContext,"successfully deleted",Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    Toast.makeText(mContext,"Delete failed, please try again later",Toast.LENGTH_SHORT).show();
+                                }
+                                mFragment.loadData();
+                                LoadingDialog.hideDialogForLoading();
+                            }
+                        });
+                    }
+                });
+
+            }
+        });
+        singleChoiceDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                LoadingDialog.hideDialogForLoading();
             }
         });
         singleChoiceDialog.show();
