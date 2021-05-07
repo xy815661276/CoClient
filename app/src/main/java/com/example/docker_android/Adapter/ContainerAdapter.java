@@ -182,7 +182,7 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
                                     else
                                         Toast.makeText(mContext,"Start failed, please try again later",Toast.LENGTH_SHORT).show();
                                     LoadingDialog.hideDialogForLoading();
-                                    mFragment.loadData();
+                                    ((ContainerStoppedActivity)mContext).loadData();
                                 }
                             });
                         }
@@ -209,7 +209,7 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
                                     else
                                         Toast.makeText(mContext,"Delete failed, please try again later",Toast.LENGTH_SHORT).show();
                                     LoadingDialog.hideDialogForLoading();
-                                    mFragment.loadData();
+                                    ((ContainerStoppedActivity)mContext).loadData();
                                 }
                             });
                         }
@@ -217,7 +217,7 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
                 }
                 else if(choice == 2){
                     CheckpointActivity.actionStart(mContext,id,"");
-                    mFragment.loadData();
+                    ((ContainerStoppedActivity)mContext).loadData();
                 }
                 else if(choice == 3){
                     LogsActivity.actionStart(mContext,id,"");
@@ -264,7 +264,7 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
                     searchDialog.setMargin(60)
                             .setClickOutCancel(true)
                             .show(activity.getSupportFragmentManager());
-                    mFragment.loadData();
+                    ((ContainerStoppedActivity)mContext).loadData();
                 }
                 else if(choice == 4){
                     ContainerDetailsTextActivity.actionStart(mContext,id,"");
@@ -288,7 +288,7 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
                                         Toast.makeText(mContext,"Operation failed, please try again later",Toast.LENGTH_SHORT).show();
                                     }
                                     LoadingDialog.hideDialogForLoading();
-                                    mFragment.loadData();
+                                    ((ContainerStoppedActivity)mContext).loadData();
                                 }
                             });
 
@@ -335,7 +335,7 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.View
                                 else
                                     Toast.makeText(mContext,"Delete failed, please try again later",Toast.LENGTH_SHORT).show();
                                 LoadingDialog.hideDialogForLoading();
-                                mFragment.loadData();
+                                ((ContainerStoppedActivity)mContext).loadData();
                             }
                         });
                     }

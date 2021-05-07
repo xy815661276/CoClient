@@ -24,7 +24,7 @@ import java.util.List;
  * by xavier
  */
 public class EditDialog extends BaseDialogFragment {
-    private static String edit_hint = "input search content";
+    private static String edit_hint = "Input search content";
     private static int edit_action = 0;
     private static String edit_data = "";
     public static EditDialog newInstance(String hint, int action, String data) {

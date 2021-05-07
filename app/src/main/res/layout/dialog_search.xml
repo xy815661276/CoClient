@@ -11,9 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="prompt"
+        android:text="Prompt"
         android:textColor="#111111"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/edit_content"

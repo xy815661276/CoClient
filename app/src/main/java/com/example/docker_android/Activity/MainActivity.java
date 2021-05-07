@@ -68,8 +68,8 @@ public class MainActivity extends BaseActivity {
         viewPager.setAdapter(viewPagerAdapter);
         List<Fragment> list = new ArrayList<>();
         list.add(new OverviewFragment());
-        list.add(new ContainerFragment_new());
-        list.add(new ImageFragment_new());
+        list.add(new ContainerFragment());
+        list.add(new ImageFragment());
         viewPagerAdapter.setList(list);
 
     }

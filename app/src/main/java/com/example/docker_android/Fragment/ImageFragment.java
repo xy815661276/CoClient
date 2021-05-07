@@ -3,6 +3,7 @@ package com.example.docker_android.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
@@ -35,11 +36,11 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class ImageFragment extends BaseLazyFragment {
-    private RelativeLayout image;
-    private RelativeLayout create_image;
-    private RelativeLayout delete_unused_image;
-    private RelativeLayout image_search;
-    private RelativeLayout image_migrate;
+    private CardView image;
+    private CardView create_image;
+    private CardView delete_unused_image;
+    private CardView image_search;
+    private CardView image_migrate;
     private TextView images;
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -54,13 +55,13 @@ public class ImageFragment extends BaseLazyFragment {
 
     @Override
     public void initFragments(View view) {
-        image = view.findViewById(R.id.imagesHeader);
+        image = view.findViewById(R.id.home_image_card);
         images = view.findViewById(R.id.images);
         swipeRefreshLayout = view.findViewById(R.id.image_srl);
-        create_image = view.findViewById(R.id.create_image);
-        delete_unused_image = view.findViewById(R.id.delete_image);
-        image_search = view.findViewById(R.id.image_search_Header);
-        image_migrate = view.findViewById(R.id.image_migrateHeader);
+        create_image = view.findViewById(R.id.home_image_create_card);
+        delete_unused_image = view.findViewById(R.id.home_image_delete_card);
+        image_search = view.findViewById(R.id.home_image_search_card);
+        image_migrate = view.findViewById(R.id.home_image_migrate_card);
     }
 
     @Override
@@ -81,7 +82,7 @@ public class ImageFragment extends BaseLazyFragment {
         image_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditDialog searchDialog = EditDialog.newInstance("input search content",0,"");
+                EditDialog searchDialog = EditDialog.newInstance("Input search content",0,"");
                 searchDialog.setMargin(60)
                         .setClickOutCancel(true)
                         .show(getActivity().getSupportFragmentManager());

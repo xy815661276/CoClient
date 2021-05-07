@@ -3,6 +3,7 @@ package com.example.docker_android.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
@@ -36,20 +37,17 @@ import okhttp3.Response;
 
 public class ContainerFragment extends BaseLazyFragment {
 
-    private RelativeLayout containerRun;
-    private RelativeLayout containerStop;
-    private RelativeLayout containerCreate;
-    private RelativeLayout containerDelete;
-    private RelativeLayout containerMigrate;
-    private TextView running;
+    private CardView containerStop;
+    private CardView containerCreate;
+    private CardView containerDelete;
+    private CardView containerMigrate;
     private TextView stopped;
     private SwipeRefreshLayout swipeRefreshLayout;
 
     public static final int REQUEST=1;
 
 
-    private final List<Container> list_run = new ArrayList<>();
-    public static List<Container> list_stop = new ArrayList<>();
+    private final List<Container> list = new ArrayList<>();
     @Override
     public int getLayoutResId() {
         return R.layout.fragment_container;
@@ -57,25 +55,16 @@ public class ContainerFragment extends BaseLazyFragment {
 
     @Override
     public void initFragments(View view) {
-        containerRun = view.findViewById(R.id.runningHeader);
-        containerStop = view.findViewById(R.id.stoppedHeader);
-        containerCreate = view.findViewById(R.id.create_container);
-        containerDelete = view.findViewById(R.id.delete_container);
-        running = view.findViewById(R.id.running);
+        containerStop = view.findViewById(R.id.home_container_stop_card);
+        containerCreate = view.findViewById(R.id.home_container_create_card);
+        containerDelete = view.findViewById(R.id.home_container_delete_card);
         stopped = view.findViewById(R.id.stopped);
         swipeRefreshLayout = view.findViewById(R.id.container_srl);
-        containerMigrate = view.findViewById(R.id.migrateHeader);
+        containerMigrate = view.findViewById(R.id.home_container_migrate_card);
     }
 
     @Override
     public void finishCreateView(Bundle state) {
-        //监听跳转
-        containerRun.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ContainerRunningActivity.actionStart(getActivity(),"","");
-            }
-        });
         containerStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,8 +148,7 @@ public class ContainerFragment extends BaseLazyFragment {
     @Override
     public void loadData() {
         //先清除原来的数据
-        list_run.clear();
-        list_stop.clear();
+        list.clear();
 
         DockerService.getContainers(new okhttp3.Callback() {
             @Override
@@ -181,13 +169,9 @@ public class ContainerFragment extends BaseLazyFragment {
                             for (int i= 0;i < jsonArray.size();i++){
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 Container container = JSON.parseObject(jsonArray.getString(i), Container.class);
-                                if(container.getState().equals("running"))
-                                    list_run.add(container);
-                                else
-                                    list_stop.add(container);
+                                list.add(container);
                             }
-                            running.setText(String.valueOf(list_run.size()));
-                            stopped.setText(String.valueOf(list_stop.size()));
+                            stopped.setText(String.valueOf(list.size()));
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getActivity(), "Failed,please try again", Toast.LENGTH_SHORT).show();

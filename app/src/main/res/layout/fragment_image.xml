@@ -26,7 +26,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/home_image_card"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="110dp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
@@ -42,7 +42,7 @@
                             android:id="@+id/imagesHeader"
                             android:layout_width="fill_parent"
                             android:layout_height="match_parent"
-                            android:background="@color/images">
+                            android:background="@color/running">
 
                             <ImageView
                                 android:id="@+id/imagesIcon"
@@ -50,7 +50,7 @@
                                 android:layout_height="60dp"
                                 android:layout_centerVertical="true"
                                 android:layout_marginLeft="10dp"
-                                android:src="@drawable/image"/>
+                                android:src="@drawable/image_white"/>
 
                             <TextView
                                 android:id="@+id/imagesLabel"
@@ -59,7 +59,7 @@
                                 android:text="Images"
                                 android:textColor="@color/white"
                                 android:layout_marginRight="15dp"
-                                android:textSize="18dp"
+                                android:textSize="20dp"
                                 android:layout_above="@+id/images"
                                 android:layout_alignParentRight="true"/>
 
@@ -78,88 +78,100 @@
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/home_image_create_card"
+                    <LinearLayout
+                        android:id="@+id/image_card"
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        app:cardBackgroundColor="@color/dashboard"
-                        android:focusable="true"
-                        android:clickable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
                         android:layout_below="@+id/home_image_card"
-                        app:cardCornerRadius="10dp">
-                        <RelativeLayout
-                            android:id="@+id/create_image"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-                            <ImageView
-                                android:id="@+id/container_create_img"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_marginLeft="10dp"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/ic_container_create"/>
-                            <TextView
-                                android:id="@+id/container_create_txt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Create\nImage"
-                                android:textSize="22sp"
-                                android:textColor="@color/white"
-                                android:textStyle="bold"
-                                android:layout_marginRight="10dp"
-                                android:layout_centerVertical="true"
-                                android:layout_alignParentRight="true"/>
-                        </RelativeLayout>
-                    </androidx.cardview.widget.CardView>
+                        android:orientation="horizontal">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/home_image_delete_card"
-                        android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginTop="10dp"
-                        app:cardBackgroundColor="@color/networkout"
-                        android:focusable="true"
-                        android:clickable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:layout_below="@+id/home_image_create_card"
-                        app:cardCornerRadius="10dp">
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/home_image_create_card"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="130dp"
+                            android:layout_marginLeft="5dp"
+                            app:cardBackgroundColor="@color/dashboard"
+                            android:focusable="true"
+                            android:clickable="true"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:layout_below="@+id/home_image_card"
+                            app:cardCornerRadius="10dp">
+                            <RelativeLayout
+                                android:id="@+id/create_image"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/stopped">
+                                <ImageView
+                                    android:id="@+id/container_create_img"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/ic_container_create"/>
+                                <TextView
+                                    android:id="@+id/container_create_txt"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Create\nImage"
+                                    android:textSize="22sp"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_alignParentRight="true"/>
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
 
-                        <RelativeLayout
-                            android:id="@+id/delete_image"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-                            <ImageView
-                                android:id="@+id/container_delete_img"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_marginStart="10dp"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/ic_container_delete"/>
-                            <TextView
-                                android:id="@+id/container_delete"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Delete\nUnused\nImage"
-                                android:layout_gravity="center"
-                                android:textSize="22sp"
-                                android:textColor="@color/white"
-                                android:layout_margin="10dp"
-                                android:textStyle="bold"
-                                android:layout_centerVertical="true"
-                                android:layout_alignParentRight="true"/>
-                        </RelativeLayout>
-                    </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/home_image_delete_card"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="130dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginStart="5dp"
+                            app:cardBackgroundColor="@color/networkout"
+                            android:focusable="true"
+                            android:clickable="true"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:layout_below="@+id/home_image_create_card"
+                            app:cardCornerRadius="10dp">
+
+                            <RelativeLayout
+                                android:id="@+id/delete_image"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <ImageView
+                                    android:id="@+id/container_delete_img"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/ic_container_delete"/>
+                                <TextView
+                                    android:id="@+id/container_delete"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Delete\nUnused\nImage"
+                                    android:layout_gravity="center"
+                                    android:textSize="22sp"
+                                    android:textColor="@color/white"
+                                    android:layout_margin="10dp"
+                                    android:textStyle="bold"
+                                    android:layout_centerVertical="true"
+                                    android:layout_alignParentRight="true"/>
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/home_image_search_card"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="110dp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
@@ -168,14 +180,14 @@
                         android:focusable="true"
                         android:clickable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        android:layout_below="@+id/home_image_delete_card"
+                        android:layout_below="@+id/image_card"
                         app:cardCornerRadius="10dp">
 
                         <RelativeLayout
                             android:id="@+id/image_search_Header"
                             android:layout_width="fill_parent"
                             android:layout_height="match_parent"
-                            android:background="@color/running">
+                            android:background="@color/color3">
 
                             <ImageView
                                 android:id="@+id/searchIcon"
@@ -192,7 +204,7 @@
                                 android:text="Images"
                                 android:textColor="@color/white"
                                 android:layout_marginRight="15dp"
-                                android:textSize="18dp"
+                                android:textSize="20dp"
                                 android:layout_above="@+id/search_images"
                                 android:layout_alignParentRight="true"/>
 
@@ -214,7 +226,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/home_image_migrate_card"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="110dp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
@@ -230,7 +242,7 @@
                             android:id="@+id/image_migrateHeader"
                             android:layout_width="fill_parent"
                             android:layout_height="match_parent"
-                            android:background="@color/runtime">
+                            android:background="@color/images">
 
                             <ImageView
                                 android:id="@+id/image_migrateIcon"
